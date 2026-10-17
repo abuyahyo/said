@@ -31,7 +31,7 @@
 :root{
   --bg:#FFFFFF;--bg-alt:#F0F7FF;--card:#FFFFFF;--card-alt:#F0F7FF;--text:#14212B;--muted:#5D6F7B;--line:#E2E9EE;
   --brand:#0D99FF;--brand-ink:#0080DF;--brand-deep:#0B2C47;--on-brand:#FFFFFF;--soft:#E1F1FF;
-  --accent:#F7A928;--accent-ink:#B86E00;--accent-soft:#FFF1D6;--accent-deep:#E8921A;
+  --accent:#F7A928;--accent-ink:#9A5A00;--accent-soft:#FFF1D6;--accent-deep:#E8921A;
   --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
@@ -241,7 +241,7 @@ fieldset.f{border:0;padding:0;margin:0}
 .seg{display:flex;gap:10px}
 .seg3{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .seg3 span{padding:11px 6px;font-size:14px}
-@media (max-width:480px){.seg3{grid-template-columns:1fr 1fr}}
+@media (max-width:1100px){.seg3{grid-template-columns:1fr 1fr}}
 .seg label{flex:1;cursor:pointer}
 .seg input{position:absolute;opacity:0;pointer-events:none}
 .seg span{display:block;text-align:center;padding:13px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg-alt);font-weight:700;font-size:15px}
@@ -309,7 +309,7 @@ main{overflow-x:clip}
 .f2{right:6%;bottom:9%;animation-delay:-3s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media (max-width:860px){.f1{left:4%;top:8%}.f2{right:3%;bottom:7%}.visual img{width:20%;margin-top:4%}.float{padding:8px 12px 8px 8px;border-radius:13px;gap:8px}.float b{font-size:13px}.float small{font-size:11px}.float .fi{width:30px;height:30px}.float .fi svg{width:15px;height:15px}}
-@media (max-width:380px){.float small{display:none}}
+@media (max-width:380px){.float small{display:none}.visual{aspect-ratio:4/3}.visual img{width:30%;margin-top:0}.f1{top:6%}.f2{bottom:6%}}
 @media (prefers-reduced-motion:reduce){.float{animation:none}}
 
 .stat,.adv,.course,.ct,.about-text,.video,.dir,.faq details,.lic dl,.docs button,.exp,.cred li{border:1px solid var(--line)}
@@ -349,7 +349,8 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
 /* map */
 .map{position:relative;margin-top:20px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--bg-alt);aspect-ratio:21/9;min-height:280px}
 .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
-.map .map-open{position:absolute;left:16px;bottom:16px;padding:11px 16px;font-size:15px;border-radius:12px}
+.map .map-open{position:absolute;left:16px;bottom:16px;padding:11px 16px;font-size:15px;border-radius:12px;background:var(--brand-deep)}
+.map .map-open:hover{background:var(--brand-deep)}
 @media (max-width:700px){.map{aspect-ratio:4/3;border-radius:18px}}
 /* mobile quick bar */
 .qbar{display:none}
@@ -682,8 +683,8 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 
 <button type="button" class="totop" id="totop" aria-label="Yuqoriga"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="qbar" id="qbar" aria-hidden="true">
-  <a class="btn light" href="tel:+998958293330"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span data-t="qb_call"></span></a>
-  <a class="btn" href="#apply"><span data-t="apply"></span></a>
+  <a class="btn light" href="tel:+998958293330" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span data-t="qb_call"></span></a>
+  <a class="btn" href="#apply" tabindex="-1"><span data-t="apply"></span></a>
 </div>
 <footer>
   <div class="wrap">
@@ -972,7 +973,7 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
   const bar=document.getElementById("qbar"),hero=document.querySelector(".hero"),ap=document.getElementById("apply");
   if(!bar||!("IntersectionObserver" in window))return;
   let pastHero=false,formVis=false;
-  const upd=()=>{const on=pastHero&&!formVis;bar.classList.toggle("on",on);bar.setAttribute("aria-hidden",String(!on));document.body.classList.toggle("qbar-pad",on)};
+  const upd=()=>{const on=pastHero&&!formVis;bar.classList.toggle("on",on);bar.setAttribute("aria-hidden",String(!on));bar.querySelectorAll("a").forEach(a=>a.tabIndex=on?0:-1);document.body.classList.toggle("qbar-pad",on)};
   new IntersectionObserver(e=>{pastHero=!e[0].isIntersecting;upd()},{threshold:0}).observe(hero);
   new IntersectionObserver(e=>{formVis=e[0].isIntersecting;upd()},{threshold:.15}).observe(ap);
 })();

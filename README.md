@@ -70,7 +70,7 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
 
 Markazdan material kerak:
 
-- [ ] **Kurslar matni va narxlar** — har bir kurs uchun 2–3 jumla (nima o‘rgatiladi, necha oy, haftada necha marta) va narx
+- [ ] **Kurslar matni** — har bir kurs uchun 2–3 jumla (nima o‘rgatiladi, necha oy, haftada necha marta). Narxlar saytda ko‘rsatilmaydi
 - [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
 - [ ] **Jonli saytda tekshirish** — Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishi, videolar ochilishi
 - [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash

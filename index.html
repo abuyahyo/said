@@ -127,7 +127,8 @@ nav.main a:hover{color:var(--brand-ink)}
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
 .about-text{background:var(--card);border-radius:28px;padding:40px}
 .about-text p{margin-top:18px;font-size:18px;color:var(--muted);max-width:62ch}
-.video{display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;background:var(--brand-deep);color:#fff;border-radius:28px;padding:36px;position:relative;overflow:hidden;min-height:300px}
+.video{display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;background:var(--brand-deep) url(assets/video-poster.jpg) center top/cover no-repeat;color:#fff;border-radius:28px;padding:36px;position:relative;overflow:hidden;min-height:340px;cursor:pointer}
+.video::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,.15) 0%,rgba(8,38,61,.35) 45%,rgba(8,38,61,.9) 100%)}
 .video .play{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;transition:transform .2s;position:relative;z-index:1}
 .video:hover .play{transform:scale(1.07)}
 .video .play svg{width:32px;height:32px;margin-left:4px}
@@ -353,6 +354,29 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
   .qbar .btn svg{width:18px;height:18px}
   body.qbar-pad{padding-bottom:72px}
 }
+
+/* video + gallery */
+.video .play{box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
+.video:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.vlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1}
+.vchip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:8px 14px 8px 10px;font:600 14px var(--sans);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .15s}
+.vchip:hover{background:rgba(255,255,255,.26)}
+.vchip:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.vchip svg{width:14px;height:14px}
+.vchip em{font-style:normal;opacity:.75;font-weight:600}
+.video p a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none}
+.video p a:hover{text-decoration:underline}
+dialog.vd{border:0;padding:0;background:transparent;max-width:min(92vw,440px);max-height:92vh}
+dialog.vd::backdrop{background:rgba(5,15,22,.88)}
+dialog.vd video{display:block;width:100%;max-height:86vh;aspect-ratio:9/16;border-radius:18px;background:#000;object-fit:contain}
+dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font-size:26px;cursor:pointer;z-index:1}
+.gal{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}
+.gal button{all:unset;display:block;cursor:pointer;border-radius:20px;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);background:var(--bg-alt);transition:transform .25s ease,box-shadow .25s ease}
+.gal button:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.35)}
+.gal button:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gal button:hover img{transform:scale(1.05)}
+@media (max-width:900px){.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:28px -20px 0;padding:0 20px 8px;scrollbar-width:none}.gal::-webkit-scrollbar{display:none}.gal button{flex:0 0 58%;scroll-snap-align:start}}
 </style>
 </head>
 <body>
@@ -413,12 +437,16 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
       <p data-t="about_p"></p>
       <p data-t="about_p2"></p>
     </div>
-    <a class="video" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener">
+    <div class="video" id="videoCard" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg" role="button" tabindex="0" aria-label="Video">
       <span class="ring"></span>
       <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
       <div><h3 data-t="video_h"></h3>
-      <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></p></div>
-    </a>
+      <div class="vlist">
+        <button type="button" class="vchip" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v1_t"></span><em>0:50</em></button>
+        <button type="button" class="vchip" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.jpg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v2_t"></span><em>0:28</em></button>
+      </div>
+      <p><a href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></a></p></div>
+    </div>
   </div>
 </section>
 
@@ -464,6 +492,21 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
   </div>
 </section>
 
+<section id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow" data-t="ey_gal"></p>
+    <h2 data-t="gal_h"></h2>
+    <p class="sub" data-t="gal_sub"></p>
+    <div class="gal">
+      <button type="button" data-img="assets/gallery-1.jpg"><img src="assets/gallery-1.jpg" alt="SAID academy — bolalar xonasi" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-2.jpg"><img src="assets/gallery-2.jpg" alt="SAID academy — darsxona" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-3.jpg"><img src="assets/gallery-3.jpg" alt="SAID academy — yo‘lak" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-4.jpg"><img src="assets/gallery-4.jpg" alt="SAID academy — qabulxona" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-5.jpg"><img src="assets/gallery-5.jpg" alt="SAID academy — ish stollari" loading="lazy" width="600" height="800"></button>
+    </div>
+  </div>
+</section>
+
 <section id="courses" class="alt" style="background:var(--bg)">
   <div class="wrap">
     <p class="eyebrow" data-t="ey_courses"></p>
@@ -493,6 +536,7 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
   </div>
 </section>
 <dialog class="lb" id="lb"><button class="x" type="button" aria-label="×">×</button><img alt=""></dialog>
+<dialog class="vd" id="vd"><button class="x" type="button" aria-label="×">×</button><video controls playsinline preload="none"></video></dialog>
 
 <section id="faq">
   <div class="wrap">
@@ -588,7 +632,7 @@ const TG={
 };
 const T={
 uz:{
-s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
+ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
 slogan:"Bilim yangi imkoniyatlar eshigini ochadi",
@@ -634,7 +678,7 @@ ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot
 ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00 – 20:00"
 },
 ru:{
-s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
+ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
 slogan:"Знания открывают дверь к новым возможностям",
@@ -680,7 +724,7 @@ ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский р
 ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00 – 20:00"
 },
 en:{
-s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
+ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 apply:"Apply now",contact_tg:"Contact us on Telegram",
 slogan:"Knowledge opens the door to new opportunities",
@@ -762,7 +806,17 @@ const advs=document.getElementById("advs"),dots=document.getElementById("dots");
 advs.addEventListener("scroll",()=>{const w=advs.children[0].offsetWidth+14;const i=Math.min(advs.children.length-1,Math.round(advs.scrollLeft/w));[...dots.children].forEach((s,j)=>s.classList.toggle("on",j===i))},{passive:true});
 
 const lb=document.getElementById("lb");
-document.querySelectorAll(".docs button").forEach(b=>b.addEventListener("click",()=>{lb.querySelector("img").src=b.dataset.img;lb.showModal()}));
+document.querySelectorAll(".docs button,.gal button").forEach(b=>b.addEventListener("click",()=>{lb.querySelector("img").src=b.dataset.img;lb.showModal()}));
+
+/* video player */
+const vd=document.getElementById("vd"),vdv=vd.querySelector("video"),vcard=document.getElementById("videoCard");
+function playVideo(src,poster){vdv.poster=poster||"";vdv.src=src;vd.showModal();vdv.play().catch(()=>{})}
+function stopVideo(){vdv.pause();vdv.removeAttribute("src");vdv.load()}
+vcard.addEventListener("click",e=>{if(e.target.closest("a"))return;const c=e.target.closest(".vchip")||vcard;playVideo(c.dataset.video,c.dataset.poster)});
+vcard.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target===vcard){e.preventDefault();playVideo(vcard.dataset.video,vcard.dataset.poster)}});
+vd.querySelector(".x").addEventListener("click",()=>vd.close());
+vd.addEventListener("click",e=>{if(e.target===vd)vd.close()});
+vd.addEventListener("close",stopVideo);
 lb.addEventListener("click",e=>{if(e.target!==lb.querySelector("img"))lb.close()});
 
 const form=document.getElementById("form"),sent=document.getElementById("sent"),done=document.getElementById("done"),msg=document.getElementById("msg"),ok=document.getElementById("ok"),failNote=document.getElementById("failNote");
@@ -844,7 +898,7 @@ addEventListener("scroll",()=>hd.classList.toggle("scrolled",scrollY>8),{passive
 /* reveal on scroll */
 (function(){
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
+  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,.gal button,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -6% 0px",threshold:.06});
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();

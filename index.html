@@ -29,15 +29,16 @@
 :root{
   --bg:#FFFFFF;--bg-alt:#F0F7FF;--card:#FFFFFF;--card-alt:#F0F7FF;--text:#14212B;--muted:#5D6F7B;--line:#E2E9EE;
   --brand:#0D99FF;--brand-ink:#0080DF;--brand-deep:#0B2C47;--on-brand:#FFFFFF;--soft:#E1F1FF;
+  --accent:#F7A928;--accent-ink:#B86E00;--accent-soft:#FFF1D6;--accent-deep:#E8921A;
   --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0C171E;--bg-alt:#111F28;--card:#14252F;--card-alt:#1A2E3A;--text:#E7EEF2;--muted:#9AB0BC;--line:#22394A;
-  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;color-scheme:dark;}}
+  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;--accent:#F7A928;--accent-ink:#FFC45C;--accent-soft:#3A2A10;--accent-deep:#E8921A;color-scheme:dark;}}
 :root[data-theme="dark"]{
   --bg:#0C171E;--bg-alt:#111F28;--card:#14252F;--card-alt:#1A2E3A;--text:#E7EEF2;--muted:#9AB0BC;--line:#22394A;
-  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;color-scheme:dark;}
+  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;--accent:#F7A928;--accent-ink:#FFC45C;--accent-soft:#3A2A10;--accent-deep:#E8921A;color-scheme:dark;}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
@@ -377,6 +378,17 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .gal button:hover img{transform:scale(1.05)}
 @media (max-width:900px){.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:28px -20px 0;padding:0 20px 8px;scrollbar-width:none}.gal::-webkit-scrollbar{display:none}.gal button{flex:0 0 58%;scroll-snap-align:start}}
+
+/* warm accent: free first lesson + kids course */
+.float.f1 .fi{background:var(--accent-soft);color:var(--accent-ink)}
+.advs .adv:nth-child(5) .ic{background:linear-gradient(135deg,#FFC257,#E8921A);box-shadow:0 10px 20px -10px rgba(232,146,26,.8)}
+.courses .course:first-child .ic{background:linear-gradient(135deg,#FFC257,#E8921A);box-shadow:0 10px 20px -10px rgba(232,146,26,.8)}
+.courses .course:first-child .who{background:var(--accent-soft);color:var(--accent-ink)}
+.courses .course:first-child{background:linear-gradient(180deg,var(--accent-soft) 0%,var(--bg-alt) 38%)}
+.courses .course:first-child .chk{color:var(--accent-ink)}
+.courses .course:first-child .btn{background:var(--accent-deep);box-shadow:0 10px 24px -10px rgba(232,146,26,.75)}
+.courses .course:first-child .btn:hover{background:#D1800F}
+.apply .side .btn{color:var(--brand-deep)}
 </style>
 </head>
 <body>

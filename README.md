@@ -72,7 +72,6 @@ Markazdan material kerak:
 
 - [ ] **Kurslar matni** — har bir kurs uchun 2–3 jumla (nima o‘rgatiladi, necha oy, haftada necha marta). Narxlar saytda ko‘rsatilmaydi
 - [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
-- [ ] **Jonli saytda tekshirish** — Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishi, videolar ochilishi
 - [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
 - [ ] **Bot tokenini yangilash** — BotFather'da `/revoke`, yangi tokenni Cloudflare'da `BOT_TOKEN` ga yozish
 

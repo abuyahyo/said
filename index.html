@@ -101,6 +101,7 @@ nav.main a:hover{color:var(--brand-ink)}
   .bar .btn{display:none}
 }
 @media (max-width:400px){.brand span{font-size:18px}.brand img{height:32px}}
+@media (max-width:360px){.bar{gap:8px}.brand span{font-size:17px}.brand{gap:8px}.lang>button{padding:8px 9px;font-size:13px}.menu-t{width:40px;height:40px}}
 
 /* hero */
 .hero{padding:56px 0 40px}
@@ -895,7 +896,7 @@ let lang="uz";
 try{const s=localStorage.getItem("said_lang");if(s&&T[s])lang=s}catch(e){}
 const CHK='<svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const CIC=['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M8 21v-6l-2-4h12l-2 4v6"/></svg>','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 8h6M9 12h4"/></svg>'];
-const LN={uz:"Uzb",ru:"Rus",en:"Eng"};
+const LN={uz:"O‘zbekcha",ru:"Русский",en:"English"};
 function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}
 function apply(l){
   lang=l;const d=T[l];document.documentElement.lang=l;

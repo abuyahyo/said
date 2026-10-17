@@ -400,6 +400,9 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .totop:hover{background:var(--brand);color:#fff;border-color:transparent}
 .totop:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px}
 @media (max-width:860px){.totop{right:14px;width:44px;height:44px}body.qbar-pad .totop{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+
+.hero h1 em{font-style:normal;color:var(--brand-ink);background:linear-gradient(90deg,var(--brand-ink),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.1em;border-radius:99px;background:var(--accent);opacity:.9;z-index:-1}
 </style>
 </head>
 <body>
@@ -659,7 +662,7 @@ uz:{
 ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
-slogan:"Bilim yangi imkoniyatlar eshigini ochadi",
+slogan:"Bilim yangi imkoniyatlar eshigini ochadi",slogan_hl:"imkoniyatlar",
 f_subj:"Arab tili | Fonetika | Grammatika",f_who:"Bolalar va kattalar uchun",f_metro:"Tinchlik metro",f_free:"Birinchi dars — bepul",
 s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil topgan sana",
 about_h:"Biz haqimizda",
@@ -705,7 +708,7 @@ ru:{
 ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
-slogan:"Знания открывают дверь к новым возможностям",
+slogan:"Знания открывают дверь к новым возможностям",slogan_hl:"возможностям",
 f_subj:"Арабский язык | Фонетика | Грамматика",f_who:"Для детей и взрослых",f_metro:"Метро «Тинчлик»",f_free:"Первый урок — бесплатно",
 s_students:"студентов",s_teachers:"преподавателей",s_date:"1 апреля 2025",s_founded:"дата основания",
 about_h:"О нас",
@@ -751,7 +754,7 @@ en:{
 ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 apply:"Apply now",contact_tg:"Contact us on Telegram",
-slogan:"Knowledge opens the door to new opportunities",
+slogan:"Knowledge opens the door to new opportunities",slogan_hl:"opportunities",
 f_subj:"Arabic | Phonetics | Grammar",f_who:"For children and adults",f_metro:"Tinchlik metro",f_free:"First lesson — free",
 s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"founded",
 about_h:"About us",
@@ -803,6 +806,7 @@ function esc(s){const d=document.createElement("div");d.textContent=s;return d.i
 function apply(l){
   lang=l;const d=T[l];document.documentElement.lang=l;
   document.querySelectorAll("[data-t]").forEach(el=>{const v=d[el.dataset.t];if(typeof v==="string")el.textContent=v});
+  const h1=document.querySelector(".hero h1");if(h1&&d.slogan_hl){h1.innerHTML=esc(d.slogan).replace(esc(d.slogan_hl),"<em>"+esc(d.slogan_hl)+"</em>")}
   document.getElementById("langCur").textContent=LN[l];
   document.querySelectorAll(".lang li button").forEach(b=>b.setAttribute("aria-current",b.dataset.lang===l));
   const cc=document.getElementById("courseCards");cc.innerHTML="";

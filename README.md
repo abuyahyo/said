@@ -75,6 +75,5 @@ Markazdan material kerak:
 - [ ] **Jonli saytda tekshirish** — Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishi, videolar ochilishi
 - [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
 - [ ] **Bot tokenini yangilash** — BotFather'da `/revoke`, yangi tokenni Cloudflare'da `BOT_TOKEN` ga yozish
-- [ ] **Ortiqcha Worker'ni o‘chirish** — Cloudflare'dagi `tiny-tooth-0ab0`
 
 Bajarilgan: galereya va videolar, iliq rang, sarlavha urg‘usi, metro ikonkasi, "Yuqoriga" tugmasi, Instagram tugmasi, "Qanday boshlanadi" bo‘limi.

@@ -19,6 +19,10 @@ jobs:
         run: |
           # Telefondan nusxalanganda qiymatga bo'sh joy yoki yangi qator kirib qolishi mumkin — tozalaymiz
           TOKEN="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
+          # Agar token o'rniga "Test this token" curl buyrug'i nusxalangan bo'lsa, undan tokenning o'zini ajratib olamiz
+          case "$TOKEN" in
+            *Bearer*) TOKEN="$(printf '%s' "$TOKEN" | grep -oE 'Bearer[A-Za-z0-9_-]+' | head -1 | sed 's/^Bearer//')";;
+          esac
           ACCOUNT="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | tr -d '[:space:]')"
           if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
             echo "::warning::CLOUDFLARE_API_TOKEN yoki CLOUDFLARE_ACCOUNT_ID secret kiritilmagan, deploy o'tkazib yuborildi."

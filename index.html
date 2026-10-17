@@ -436,6 +436,27 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .dur svg{width:18px;height:18px;color:var(--brand-ink);flex:none}
 .dur b{color:var(--text);font-weight:700}
 .dur .free svg,.dur .free b{color:var(--accent-ink)}
+
+/* apply dialog + optional fields */
+dialog.ap{border:0;border-radius:26px;padding:26px 24px 22px;max-width:540px;width:calc(100vw - 32px);background:var(--card);color:var(--text);max-height:92vh;overflow:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.45)}
+dialog.ap::backdrop{background:rgba(5,15,22,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+dialog.ap h3{font-size:24px;font-weight:800;margin:0 0 2px;padding-right:44px}
+dialog.ap .x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:var(--bg-alt);color:var(--text);font-size:22px;cursor:pointer}
+dialog.ap form{padding:0;background:transparent;margin-top:8px}
+form .hint{grid-column:1/-1;margin:0 0 2px;color:var(--muted);font-size:15px;display:none}
+dialog.ap form .hint{display:block}
+form .more{all:unset;grid-column:1/-1;cursor:pointer;color:var(--brand-ink);font:700 14px var(--sans);display:none;padding:2px 0}
+form .more::before{content:"+ ";font-weight:800}
+form .more[aria-expanded="true"]::before{content:"− "}
+form .more:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px;border-radius:6px}
+form .opt{display:contents}
+dialog.ap form .more{display:block}
+dialog.ap form .opt{display:none}
+dialog.ap form.open .opt{display:contents}
+.f label small{font-weight:600;color:var(--muted)}
+@media (max-width:600px){
+  dialog.ap{margin:auto 0 0;max-width:none;width:100vw;border-radius:26px 26px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));max-height:90vh}
+}
 </style>
 </head>
 <body>
@@ -628,24 +649,30 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
         <p class="sub" data-t="form_p"></p>
         <a class="btn" href="tel:+998958293330"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>+998 95 829 33 30</a>
       </div>
+      <div id="formHome"></div>
       <form id="form" novalidate>
+        <p class="hint" data-t="form_hint"></p>
         <div class="hp" aria-hidden="true"><label>Website<input id="website" tabindex="-1" autocomplete="off"></label></div>
         <div class="f" id="fName"><label for="name" data-t="fl_name"></label><input id="name" autocomplete="name"><span class="err"></span></div>
         <div class="f" id="fPhone"><label for="phone" data-t="fl_phone"></label><input id="phone" type="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"><span class="err"></span></div>
         <div class="f full"><label for="course" data-t="fl_course"></label><select id="course"><option value="c1" data-t="c1_h"></option><option value="c2" data-t="c2_h"></option><option value="c3" data-t="c3_h"></option></select></div>
-        <div class="f full" id="fAge"><label for="age" data-t="fl_age"></label><input id="age" type="number" min="4" max="99" inputmode="numeric"><span class="err"></span></div>
+        <button type="button" class="more" id="moreBtn" aria-expanded="false" aria-controls="opt"><span data-t="more_t"></span></button>
+        <div class="opt" id="opt">
+        <div class="f full" id="fAge"><label for="age"><span data-t="fl_age"></span> <small data-t="opt_l"></small></label><input id="age" type="number" min="4" max="99" inputmode="numeric"><span class="err"></span></div>
         <fieldset class="f full"><legend data-t="fl_format"></legend>
           <div class="seg"><label><input type="radio" name="fmt" value="group" checked><span data-t="d_group"></span></label><label><input type="radio" name="fmt" value="ind"><span data-t="d_ind"></span></label></div>
         </fieldset>
         <fieldset class="f full"><legend data-t="fl_when"></legend>
           <div class="seg seg3"><label><input type="radio" name="when" value="any" checked><span data-t="w_any"></span></label><label><input type="radio" name="when" value="morning"><span data-t="w_morning"></span></label><label><input type="radio" name="when" value="day"><span data-t="w_day"></span></label><label><input type="radio" name="when" value="evening"><span data-t="w_evening"></span></label></div>
         </fieldset>
+        </div>
         <button class="btn" type="submit" data-t="send"></button>
         <p class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span data-t="privacy"></span></p>
       </form>
     </div>
   </div>
 </section>
+<dialog class="ap" id="applyDlg"><button class="x" type="button" id="closeApply" aria-label="×">×</button><h3 data-t="form_h"></h3><div id="dlgSlot"></div></dialog>
 <dialog class="sent" id="sent">
   <h3 data-t="m_h"></h3>
   <p class="fail" id="failNote" hidden></p>
@@ -710,7 +737,7 @@ const TG={
 };
 const T={
 uz:{
-meta_t:"SAID academy — arab tili o‘quv markazi, Toshkent",meta_d:"Bolalar va kattalar uchun arab tili fonetikasi va grammatikasi. Tinchlik metrosi yaqinida. Birinchi dars — bepul.",f_metro_s:"Metro yaqinida",ey_steps:"Qanday boshlanadi",steps_h:"Uch oddiy qadam",steps_sub:"Ariza qoldirishdan birinchi darsgacha — hammasi bir necha kun ichida.",st1_h:"Ariza qoldirasiz",st1_p:"Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.",st1_t:"1 daqiqa",st2_h:"Biz qo‘ng‘iroq qilamiz",st2_p:"Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.",st2_t:"Shu kuni",st3_h:"Bepul darsga kelasiz",st3_p:"Ustoz va darslar bilan tanishasiz. Yoqsa — guruhda davom etasiz.",ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
+form_hint:"Ism va telefon kifoya — qolganini qo‘ng‘iroqda aniqlaymiz.",more_t:"Qo‘shimcha: yosh, dars formati, qulay vaqt",opt_l:"(ixtiyoriy)",meta_t:"SAID academy — arab tili o‘quv markazi, Toshkent",meta_d:"Bolalar va kattalar uchun arab tili fonetikasi va grammatikasi. Tinchlik metrosi yaqinida. Birinchi dars — bepul.",f_metro_s:"Metro yaqinida",ey_steps:"Qanday boshlanadi",steps_h:"Uch oddiy qadam",steps_sub:"Ariza qoldirishdan birinchi darsgacha — hammasi bir necha kun ichida.",st1_h:"Ariza qoldirasiz",st1_p:"Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.",st1_t:"1 daqiqa",st2_h:"Biz qo‘ng‘iroq qilamiz",st2_p:"Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.",st2_t:"Shu kuni",st3_h:"Bepul darsga kelasiz",st3_p:"Ustoz va darslar bilan tanishasiz. Yoqsa — guruhda davom etasiz.",ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
 slogan:"Bilim yangi imkoniyatlar eshigini ochadi",slogan_hl:"imkoniyatlar",
@@ -756,7 +783,7 @@ ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot
 ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00 – 20:00"
 },
 ru:{
-meta_t:"SAID academy — центр арабского языка, Ташкент",meta_d:"Фонетика и грамматика арабского языка для детей и взрослых. Рядом с метро Тинчлик. Первый урок — бесплатно.",f_metro_s:"Рядом с метро",ey_steps:"Как начать",steps_h:"Три простых шага",steps_sub:"От заявки до первого урока — всего несколько дней.",st1_h:"Оставляете заявку",st1_p:"Заполняете форму на сайте или звоните. Это займёт 1 минуту.",st1_t:"1 минута",st2_h:"Мы перезваниваем",st2_p:"В течение дня связываемся, подбираем удобное время и группу.",st2_t:"В тот же день",st3_h:"Приходите на бесплатный урок",st3_p:"Знакомитесь с преподавателем и занятиями. Понравится — продолжаете в группе.",ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
+form_hint:"Достаточно имени и телефона — остальное уточним по звонку.",more_t:"Дополнительно: возраст, формат, удобное время",opt_l:"(необязательно)",meta_t:"SAID academy — центр арабского языка, Ташкент",meta_d:"Фонетика и грамматика арабского языка для детей и взрослых. Рядом с метро Тинчлик. Первый урок — бесплатно.",f_metro_s:"Рядом с метро",ey_steps:"Как начать",steps_h:"Три простых шага",steps_sub:"От заявки до первого урока — всего несколько дней.",st1_h:"Оставляете заявку",st1_p:"Заполняете форму на сайте или звоните. Это займёт 1 минуту.",st1_t:"1 минута",st2_h:"Мы перезваниваем",st2_p:"В течение дня связываемся, подбираем удобное время и группу.",st2_t:"В тот же день",st3_h:"Приходите на бесплатный урок",st3_p:"Знакомитесь с преподавателем и занятиями. Понравится — продолжаете в группе.",ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
 slogan:"Знания открывают дверь к новым возможностям",slogan_hl:"возможностям",
@@ -802,7 +829,7 @@ ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский р
 ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00 – 20:00"
 },
 en:{
-meta_t:"SAID academy — Arabic language center, Tashkent",meta_d:"Arabic phonetics and grammar for children and adults. Near Tinchlik metro. The first lesson is free.",f_metro_s:"Near the metro",ey_steps:"How it starts",steps_h:"Three simple steps",steps_sub:"From your application to the first lesson in just a few days.",st1_h:"Apply",st1_p:"Fill in the form on the site or give us a call. It takes 1 minute.",st1_t:"1 minute",st2_h:"We call you back",st2_p:"We get in touch the same day to agree on a convenient time and group.",st2_t:"Same day",st3_h:"Come to a free lesson",st3_p:"Meet the teacher and see how classes go. If you like it, continue in a group.",ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
+form_hint:"Name and phone are enough — we will sort out the rest on the call.",more_t:"More: age, lesson format, best time",opt_l:"(optional)",meta_t:"SAID academy — Arabic language center, Tashkent",meta_d:"Arabic phonetics and grammar for children and adults. Near Tinchlik metro. The first lesson is free.",f_metro_s:"Near the metro",ey_steps:"How it starts",steps_h:"Three simple steps",steps_sub:"From your application to the first lesson in just a few days.",st1_h:"Apply",st1_p:"Fill in the form on the site or give us a call. It takes 1 minute.",st1_t:"1 minute",st2_h:"We call you back",st2_p:"We get in touch the same day to agree on a convenient time and group.",st2_t:"Same day",st3_h:"Come to a free lesson",st3_p:"Meet the teacher and see how classes go. If you like it, continue in a group.",ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 apply:"Apply now",contact_tg:"Contact us on Telegram",
 slogan:"Knowledge opens the door to new opportunities",slogan_hl:"opportunities",
@@ -905,19 +932,19 @@ function setErr(id,key){const w=document.getElementById(id);w.classList.toggle("
 form.addEventListener("submit",e=>{
   e.preventDefault();
   const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim(),age=document.getElementById("age").value.trim();
-  const pOk=phone.replace(/\D/g,"").length>=12,aOk=/^\d{1,2}$/.test(age)&&+age>=4&&+age<=99;
-  setErr("fName",name?null:"e_name");setErr("fPhone",pOk?null:"e_phone");setErr("fAge",aOk?null:(age?"e_age_r":"e_age"));
-  if(!name||!pOk||!aOk){form.querySelector(".bad input").focus();return}
+  const pOk=phone.replace(/\D/g,"").length>=12,aOk=!age||(/^\d{1,2}$/.test(age)&&+age>=4&&+age<=99);
+  setErr("fName",name?null:"e_name");setErr("fPhone",pOk?null:"e_phone");setErr("fAge",aOk?null:"e_age_r");
+  if(!name||!pOk||!aOk){if(!aOk)openOpt();form.querySelector(".bad input").focus();return}
   const c=document.getElementById("course").value,fmt=form.querySelector("input[name=fmt]:checked").value,when=form.querySelector("input[name=when]:checked").value;
-  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+age+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nQulay vaqt: "+UZ["w_"+when]+"\nTil: "+lang.toUpperCase();
+  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+(age||"—")+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nQulay vaqt: "+UZ["w_"+when]+"\nTil: "+lang.toUpperCase();
   msg.textContent=text;ok.textContent="";failNote.hidden=true;
-  if(document.getElementById("website").value){form.reset();done.showModal();return} // spam-bot
+  if(document.getElementById("website").value){form.reset();closeApply();done.showModal();return} // spam-bot
   const auto=TG.endpoint||(TG.botToken&&TG.chatId);
   if(!auto){sent.showModal();return}
   const btn=form.querySelector("button[type=submit]"),label=btn.textContent;
   btn.disabled=true;btn.textContent=T[lang].sending;
   sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,website:document.getElementById("website").value}).then(()=>{
-    form.reset();done.showModal();
+    form.reset();closeApply();done.showModal();
   }).catch(()=>{
     failNote.textContent=T[lang].fail;failNote.hidden=false;sent.showModal();
   }).finally(()=>{btn.disabled=false;btn.textContent=label});
@@ -945,8 +972,21 @@ document.getElementById("tgGo").addEventListener("click",()=>{if(copy(msg.textCo
 document.getElementById("closeSent").addEventListener("click",()=>sent.close());
 document.getElementById("closeDone").addEventListener("click",()=>done.close());
 
-/* course card buttons preselect the course */
-document.addEventListener("click",e=>{const a=e.target.closest("a[data-c]");if(a){document.getElementById("course").value=a.dataset.c}});
+/* apply dialog: one form, moved into the dialog on open and back on close */
+const applyDlg=document.getElementById("applyDlg"),dlgSlot=document.getElementById("dlgSlot"),formHome=document.getElementById("formHome"),moreBtn=document.getElementById("moreBtn");
+function openOpt(){form.classList.add("open");moreBtn.setAttribute("aria-expanded","true")}
+function openApply(){if(applyDlg.open)return;dlgSlot.append(form);form.classList.remove("open");moreBtn.setAttribute("aria-expanded","false");applyDlg.showModal();setTimeout(()=>document.getElementById("name").focus(),50)}
+function closeApply(){if(!applyDlg.open)return;applyDlg.close()}
+applyDlg.addEventListener("close",()=>{formHome.after(form);form.classList.remove("open")});
+document.getElementById("closeApply").addEventListener("click",closeApply);
+applyDlg.addEventListener("click",e=>{if(e.target===applyDlg)closeApply()});
+moreBtn.addEventListener("click",()=>{if(form.classList.contains("open")){form.classList.remove("open");moreBtn.setAttribute("aria-expanded","false")}else openOpt()});
+/* every "apply" link opens the dialog; course card links also preselect the course */
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href="#apply"]');if(!a)return;
+  if(a.dataset.c)document.getElementById("course").value=a.dataset.c;
+  e.preventDefault();const nav=document.getElementById("nav");if(nav)nav.classList.remove("open");openApply();
+});
 
 /* phone mask: +998 XX XXX XX XX */
 (function(){

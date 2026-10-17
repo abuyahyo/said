@@ -7,3 +7,7 @@ Barcha QR-kodlar https://abuyahyo.github.io/said/ manziliga olib boradi.
 - `qr-flyer.png` / `qr-flyer.jpg` — tayyor bezatilgan flayer, 2400×3000 px, logotip, QR va "Skanerlang — saytimizga o‘ting" yozuvi. Markaz eshigiga, stolga yoki devorga.
 
 Chop etishda QR hech bo‘lmaganda 3×3 sm bo‘lsin, atrofida oq bo‘sh joy qolsin.
+
+## Reklama videosi
+
+- `promo-uz.mp4` — 25 soniya, vertikal 1080×1920 (Instagram Reels / Stories, Telegram), ovozsiz. Musiqani Instagram'ning o‘zida qo‘shing.

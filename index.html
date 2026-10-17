@@ -14,6 +14,9 @@
 <meta property="og:locale" content="uz_UZ">
 <link rel="icon" type="image/png" href="assets/logo-dark.png">
 <link rel="apple-touch-icon" href="assets/logo-dark.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"EducationalOrganization","name":"SAID academy","alternateName":"SAIDKAMOL ACADEMY MChJ","url":"https://abuyahyo.github.io/said/","logo":"https://abuyahyo.github.io/said/assets/logo-dark.png","telephone":"+998958293330","foundingDate":"2025-04-01","address":{"@type":"PostalAddress","streetAddress":"Matlubot ko‘chasi, 72-uy, Ilg‘or MFY","addressLocality":"Toshkent","addressRegion":"Shayxontohur tumani","addressCountry":"UZ"},"openingHours":"Mo-Su 07:00-20:00","sameAs":["https://t.me/saidacademy","https://www.instagram.com/said_academy_/","https://yandex.ru/maps/org/said_academy/196416574583"],"description":"Toshkentdagi arab tili o‘quv markazi: bolalar va kattalar uchun fonetika va grammatika kurslari. Birinchi dars bepul."}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -328,6 +331,21 @@ nav.main a:hover{color:var(--brand-ink)}
 footer .socials a{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;margin:0;transition:background .15s,transform .15s}
 footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
 .socials svg{width:20px;height:20px}
+
+/* map */
+.map{position:relative;margin-top:20px;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--bg-alt);aspect-ratio:21/9;min-height:280px}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
+.map .map-open{position:absolute;left:16px;bottom:16px;padding:11px 16px;font-size:15px;border-radius:12px}
+@media (max-width:700px){.map{aspect-ratio:4/3;border-radius:18px}}
+/* mobile quick bar */
+.qbar{display:none}
+@media (max-width:860px){
+  .qbar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1.4fr;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s ease}
+  .qbar.on{transform:none}
+  .qbar .btn{padding:13px 14px;font-size:15px;border-radius:12px}
+  .qbar .btn svg{width:18px;height:18px}
+  body.qbar-pad{padding-bottom:72px}
+}
 </style>
 </head>
 <body>
@@ -388,6 +406,7 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
       <p class="eyebrow" data-t="ey_about"></p>
       <h2 data-t="about_h"></h2>
       <p data-t="about_p"></p>
+      <p data-t="about_p2"></p>
     </div>
     <a class="video" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener">
       <span class="ring"></span>
@@ -418,7 +437,7 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
 <section id="director" style="padding-top:0">
   <div class="wrap">
     <div class="dir">
-      <div class="ph"><img src="assets/director.jpg" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy"></div>
+      <div class="ph"><img src="assets/director.jpg" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy" width="560" height="560"></div>
       <div>
         <h2 data-t="dir_h"></h2>
         <h3>Ne’matullayev Saidkamol Mansur o‘g‘li</h3>
@@ -462,9 +481,9 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
       </dl>
     </div>
     <div class="docs">
-      <button type="button" data-img="assets/license-1.jpg"><img src="assets/license-1.jpg" alt="" loading="lazy"><small data-t="doc1"></small></button>
-      <button type="button" data-img="assets/license-2.jpg"><img src="assets/license-2.jpg" alt="" loading="lazy"><small data-t="doc2"></small></button>
-      <button type="button" data-img="assets/license-3.jpg"><img src="assets/license-3.jpg" alt="" loading="lazy"><small data-t="doc3"></small></button>
+      <button type="button" data-img="assets/license-1.jpg"><img src="assets/license-1.jpg" alt="" loading="lazy" width="682" height="964"><small data-t="doc1"></small></button>
+      <button type="button" data-img="assets/license-2.jpg"><img src="assets/license-2.jpg" alt="" loading="lazy" width="496" height="702"><small data-t="doc2"></small></button>
+      <button type="button" data-img="assets/license-3.jpg"><img src="assets/license-3.jpg" alt="" loading="lazy" width="496" height="702"><small data-t="doc3"></small></button>
     </div>
   </div>
 </section>
@@ -528,10 +547,18 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
       <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg></div><h3 data-t="ct_social"></h3><a href="https://t.me/saidacademy" target="_blank" rel="noopener">@saidacademy</a><a href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener">@said_academy_</a></div>
       <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-t="ct_hours"></h3><p data-t="hours"></p></div>
     </div>
+    <div class="map">
+      <iframe title="SAID academy — Yandex xarita" src="https://yandex.ru/map-widget/v1/?ll=69.2135,41.3420&z=16&mode=search&oid=196416574583&ol=biz" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="btn map-open" href="https://yandex.ru/maps/org/said_academy/196416574583" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-t="map"></span></a>
+    </div>
   </div>
 </section>
 </main>
 
+<div class="qbar" id="qbar" aria-hidden="true">
+  <a class="btn light" href="tel:+998958293330"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span data-t="qb_call"></span></a>
+  <a class="btn" href="#apply"><span data-t="apply"></span></a>
+</div>
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -556,14 +583,14 @@ const TG={
 };
 const T={
 uz:{
-hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
+qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
 slogan:"Bilim yangi imkoniyatlar eshigini ochadi",
 f_subj:"Arab tili | Fonetika | Grammatika",f_who:"Bolalar va kattalar uchun",f_metro:"Tinchlik metro",f_free:"Birinchi dars — bepul",
 s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil topgan sana",
 about_h:"Biz haqimizda",
-about_p:"SAID academy — 2025-yil 1-aprelda Toshkent shahrida tashkil topgan arab tili o‘quv markazi. Bizda arab tili fonetika va grammatikadan boshlab, bosqichma-bosqich o‘rgatiladi. Darslar bolalar uchun ham, kattalar uchun ham tashkil etilgan. Qisqa vaqt ichida markazimizda 400 dan ortiq o‘quvchi tahsil oldi, ularga 10 nafar ustoz dars beradi. Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz, kelib o‘zingiz ko‘ring. Markazimiz Tinchlik metrosi yaqinida joylashgan.",
+about_p:"SAID academy — 2025-yil 1-aprelda Toshkent shahrida tashkil topgan arab tili o‘quv markazi. Bizda arab tili fonetika va grammatikadan boshlab, bosqichma-bosqich o‘rgatiladi. Darslar bolalar uchun ham, kattalar uchun ham tashkil etilgan. Qisqa vaqt ichida markazimizda 400 dan ortiq o‘quvchi tahsil oldi, ularga 10 nafar ustoz dars beradi.",about_p2:"Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz, kelib o‘zingiz ko‘ring. Markazimiz Tinchlik metrosi yaqinida joylashgan.",
 video_h:"SAID academy haqida video",video_btn:"Instagramda ko‘rish",
 dir_h:"Markaz rahbari",dir_role:"SAID academy direktori",dir_c1:"Oriental universiteti bitiruvchisi",dir_c2:"Arab tilidan CEFR B2",dir_c3:"4 yillik tajriba",
 dir_exp:"Ish tajribasi",dir_e1:"Habib Academy — arab tili o‘qituvchisi",dir_e2y:"2025 – hozirgacha",dir_e2:"SAID academy — direktor",
@@ -602,14 +629,14 @@ ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot
 ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00 – 20:00"
 },
 ru:{
-hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
+qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
 slogan:"Знания открывают дверь к новым возможностям",
 f_subj:"Арабский язык | Фонетика | Грамматика",f_who:"Для детей и взрослых",f_metro:"Метро «Тинчлик»",f_free:"Первый урок — бесплатно",
 s_students:"студентов",s_teachers:"преподавателей",s_date:"1 апреля 2025",s_founded:"дата основания",
 about_h:"О нас",
-about_p:"SAID academy — учебный центр арабского языка, основанный 1 апреля 2025 года в Ташкенте. Арабский язык у нас изучается поэтапно, начиная с фонетики и грамматики. Занятия проводятся как для детей, так и для взрослых. За короткое время в нашем центре обучились более 400 учеников, с ними работают 10 преподавателей. Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный: приходите и убедитесь сами. Наш центр находится рядом со станцией метро «Тинчлик».",
+about_p:"SAID academy — учебный центр арабского языка, основанный 1 апреля 2025 года в Ташкенте. Арабский язык у нас изучается поэтапно, начиная с фонетики и грамматики. Занятия проводятся как для детей, так и для взрослых. За короткое время в нашем центре обучились более 400 учеников, с ними работают 10 преподавателей.",about_p2:"Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный: приходите и убедитесь сами. Наш центр находится рядом со станцией метро «Тинчлик».",
 video_h:"Видео о SAID academy",video_btn:"Смотреть в Instagram",
 dir_h:"Руководитель центра",dir_role:"Директор SAID academy",dir_c1:"Выпускник университета Oriental",dir_c2:"CEFR B2 по арабскому языку",dir_c3:"4 года опыта",
 dir_exp:"Опыт работы",dir_e1:"Habib Academy — преподаватель арабского языка",dir_e2y:"2025 – настоящее время",dir_e2:"SAID academy — директор",
@@ -648,14 +675,14 @@ ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский р
 ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00 – 20:00"
 },
 en:{
-hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
+qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 apply:"Apply now",contact_tg:"Contact us on Telegram",
 slogan:"Knowledge opens the door to new opportunities",
 f_subj:"Arabic | Phonetics | Grammar",f_who:"For children and adults",f_metro:"Tinchlik metro",f_free:"First lesson — free",
 s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"founded",
 about_h:"About us",
-about_p:"SAID academy is an Arabic language learning center founded in Tashkent on April 1, 2025. We teach Arabic step by step, starting with phonetics and grammar. Classes are available for both children and adults. In a short time, more than 400 students have studied at our center, taught by 10 teachers. We believe knowledge opens the door to new opportunities — that’s why your first lesson is free: come and see for yourself. Our center is located near Tinchlik metro station.",
+about_p:"SAID academy is an Arabic language learning center founded in Tashkent on April 1, 2025. We teach Arabic step by step, starting with phonetics and grammar. Classes are available for both children and adults. In a short time, more than 400 students have studied at our center, taught by 10 teachers.",about_p2:"We believe knowledge opens the door to new opportunities — that’s why your first lesson is free: come and see for yourself. Our center is located near Tinchlik metro station.",
 video_h:"Video about SAID academy",video_btn:"Watch on Instagram",
 dir_h:"Head of the center",dir_role:"Director of SAID academy",dir_c1:"Graduate of Oriental University",dir_c2:"CEFR B2 in Arabic",dir_c3:"4 years of experience",
 dir_exp:"Work experience",dir_e1:"Habib Academy — Arabic teacher",dir_e2y:"2025 – present",dir_e2:"SAID academy — Director",
@@ -782,6 +809,16 @@ document.getElementById("closeDone").addEventListener("click",()=>done.close());
 /* header shadow on scroll */
 const hd=document.querySelector("header");
 addEventListener("scroll",()=>hd.classList.toggle("scrolled",scrollY>8),{passive:true});
+
+/* mobile quick bar */
+(function(){
+  const bar=document.getElementById("qbar"),hero=document.querySelector(".hero"),ap=document.getElementById("apply");
+  if(!bar||!("IntersectionObserver" in window))return;
+  let pastHero=false,formVis=false;
+  const upd=()=>{const on=pastHero&&!formVis;bar.classList.toggle("on",on);bar.setAttribute("aria-hidden",String(!on));document.body.classList.toggle("qbar-pad",on)};
+  new IntersectionObserver(e=>{pastHero=!e[0].isIntersecting;upd()},{threshold:0}).observe(hero);
+  new IntersectionObserver(e=>{formVis=e[0].isIntersecting;upd()},{threshold:.15}).observe(ap);
+})();
 
 /* reveal on scroll */
 (function(){

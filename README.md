@@ -65,3 +65,14 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
    - `CHAT_ID` (Secret) — chat ID
    - `ALLOWED_ORIGIN` — `https://abuyahyo.github.io`
 5. Worker manzilini (`https://....workers.dev`) `index.html` dagi `endpoint` ga yozing.
+
+## Keyingi rejalar
+
+Quyidagilar uchun markazdan material kerak:
+
+- [ ] **Galereya / "Markaz hayoti"** — darsxona, darslar va ustozlardan 3–6 ta fotosurat
+- [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
+- [ ] **Xaritani tekshirish** — jonli saytda Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishini tasdiqlash
+- [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
+- [ ] **Bot tokenini yangilash** — BotFather'da `/revoke`, yangi tokenni Cloudflare'da `BOT_TOKEN` ga yozish
+- [ ] **Ortiqcha Worker'ni o‘chirish** — Cloudflare'dagi `tiny-tooth-0ab0`

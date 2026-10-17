@@ -389,6 +389,9 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .courses .course:first-child .btn{background:var(--accent-deep);box-shadow:0 10px 24px -10px rgba(232,146,26,.75)}
 .courses .course:first-child .btn:hover{background:#D1800F}
 .apply .side .btn{color:var(--brand-deep)}
+
+.chips .metro{color:var(--brand)}
+.chips .metro path{fill:#fff}
 </style>
 </head>
 <body>
@@ -423,7 +426,7 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
       <ul class="chips">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><span data-t="f_subj"></span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1-4.3 3-4.8 2 .4 3 2.2 3 4.8"/></svg><span data-t="f_who"></span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-t="f_metro"></span></li>
+        <li><svg class="metro" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.5 17V7.2h2.6L12 12.4l2.9-5.2h2.6V17h-2.3v-5.6L12.8 15.6h-1.6L8.8 11.4V17z" fill="#fff"/></svg><span data-t="f_metro"></span></li>
       </ul>
       <div class="cta">
         <a class="btn" href="#apply"><span data-t="apply"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9l-5.7 1.5L12 16l-1.8-5.5L4.5 9l5.7-1.4zM19 15l.9 2.3 2.1.7-2.1.8L19 21l-.9-2.2-2.1-.8 2.1-.7z"/></svg></a>

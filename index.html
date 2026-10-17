@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAID academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--bg-alt:#F0F7FF;--card:#FFFFFF;--card-alt:#F0F7FF;--text:#14212B;--muted:#5D6F7B;--line:#E2E9EE;
+  --brand:#0D99FF;--brand-ink:#0080DF;--brand-deep:#0B2C47;--on-brand:#FFFFFF;--soft:#E1F1FF;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media not all{:root:not([data-theme="light"]){
+  --bg:#0C171E;--bg-alt:#111F28;--card:#14252F;--card-alt:#1A2E3A;--text:#E7EEF2;--muted:#9AB0BC;--line:#22394A;
+  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0C171E;--bg-alt:#111F28;--card:#14252F;--card-alt:#1A2E3A;--text:#E7EEF2;--muted:#9AB0BC;--line:#22394A;
+  --brand:#0D99FF;--brand-ink:#6CC4FF;--brand-deep:#08263D;--soft:#123A57;color-scheme:dark;}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,44px);font-weight:800}
+.sub{color:var(--muted);margin-top:12px;max-width:62ch;font-size:18px}
+h3{font-size:21px;font-weight:700}
+p{margin:0}
+section{padding:80px 0}
+.alt{background:var(--bg-alt)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;height:74px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.brand img{height:38px;width:auto}
+.brand span{font-weight:800;font-size:20px;color:var(--brand-ink);white-space:nowrap;letter-spacing:-.01em}
+.logo-w{display:none}
+@media not all{:root:not([data-theme="light"]) .logo-b{display:none}:root:not([data-theme="light"]) .logo-w{display:block}}
+:root[data-theme="dark"] .logo-b{display:none}:root[data-theme="dark"] .logo-w{display:block}
+nav.main{display:flex;gap:26px}
+nav.main a{text-decoration:none;font-size:15px;font-weight:600}
+nav.main a:hover{color:var(--brand-ink)}
+.lang{position:relative}
+.lang>button{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font:700 14px var(--sans);padding:9px 12px;border-radius:12px;cursor:pointer}
+.lang>button svg{width:14px;height:14px;transition:transform .2s}
+.lang.open>button svg{transform:rotate(180deg)}
+.lang ul{display:none;position:absolute;right:0;top:calc(100% + 6px);list-style:none;margin:0;padding:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(10,30,45,.12);min-width:130px}
+.lang.open ul{display:block}
+.lang li button{all:unset;display:block;width:100%;box-sizing:border-box;padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:600;font-size:15px}
+.lang li button:hover,.lang li button[aria-current="true"]{background:var(--soft);color:var(--brand-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 16px var(--sans);text-decoration:none;border-radius:14px;padding:15px 26px;border:0;background:var(--brand);color:var(--on-brand);cursor:pointer;transition:background .15s,transform .15s}
+.btn:hover{background:var(--brand-deep)}
+.btn:active{transform:scale(.98)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.light{background:var(--soft);color:var(--brand-ink)}
+.btn.light:hover{background:var(--line)}
+.bar .btn{padding:11px 18px;font-size:15px;border-radius:12px}
+.menu-t{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--text);cursor:pointer}
+@media (max-width:1000px){
+  nav.main{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 20px 16px}
+  nav.main.open{display:flex}
+  nav.main a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}
+  .menu-t{display:grid;place-items:center}
+  .bar{gap:10px}
+  .bar .btn{display:none}
+}
+@media (max-width:400px){.brand span{font-size:18px}.brand img{height:32px}}
+
+/* hero */
+.hero{padding:56px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,5.6vw,66px);font-weight:800;letter-spacing:-.03em}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding:0;list-style:none}
+.chips li{display:flex;align-items:center;gap:8px;background:var(--bg-alt);border-radius:999px;padding:9px 16px;font-weight:600;font-size:15px}
+.chips svg{width:18px;height:18px;color:var(--brand-ink);flex:none}
+.chips .hl{background:var(--brand);color:#fff}
+.chips .hl svg{color:#fff}
+.chips a{text-decoration:none}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.visual{position:relative;background:var(--brand);border-radius:32px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden}
+.visual .a1,.visual .a2,.visual .a3{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border:2px solid rgba(255,255,255,.14);border-bottom:0;border-radius:999px 999px 0 0}
+.visual .a1{width:86%;height:88%}.visual .a2{width:68%;height:72%}.visual .a3{width:50%;height:56%;background:rgba(255,255,255,.06)}
+.visual img{width:30%;position:relative;z-index:1;margin-top:18%}
+@media (max-width:860px){
+  .hero{padding:28px 0 32px}
+  .hero-grid{grid-template-columns:1fr;gap:28px}
+  .visual{order:-1;aspect-ratio:16/10;border-radius:24px}
+  .visual img{width:22%;margin-top:12%}
+  .cta .btn{flex:1 1 240px}
+}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat{background:var(--bg-alt);border-radius:22px;padding:28px}
+.stat b{display:block;font-size:clamp(30px,4vw,46px);font-weight:800;color:var(--brand-ink);line-height:1;letter-spacing:-.03em}
+.stat span{display:block;margin-top:10px;color:var(--muted);font-weight:500}
+@media (max-width:700px){.stats{grid-template-columns:1fr 1fr;gap:12px}.stat{padding:20px}.stat:last-child{grid-column:1/-1}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
+.about-text{background:var(--card);border-radius:28px;padding:40px}
+.about-text p{margin-top:18px;font-size:18px;color:var(--muted);max-width:62ch}
+.video{display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;background:var(--brand-deep);color:#fff;border-radius:28px;padding:36px;position:relative;overflow:hidden;min-height:300px}
+.video .play{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;transition:transform .2s;position:relative;z-index:1}
+.video:hover .play{transform:scale(1.07)}
+.video .play svg{width:32px;height:32px;margin-left:4px}
+.video h3{font-size:26px;color:#fff;position:relative;z-index:1}
+.video p{margin-top:8px;opacity:.8;display:flex;align-items:center;gap:8px;font-weight:600;position:relative;z-index:1}
+.video p svg{width:18px;height:18px}
+.video .ring{position:absolute;right:-60px;bottom:-60px;width:260px;height:340px;border:2px solid rgba(255,255,255,.14);border-bottom:0;border-radius:999px 999px 0 0}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}.video{min-height:240px;padding:28px}}
+
+/* director */
+.dir{display:grid;grid-template-columns:380px 1fr;gap:48px;align-items:center;background:var(--bg-alt);border-radius:32px;padding:32px}
+.dir .ph{border-radius:24px;overflow:hidden;aspect-ratio:4/5}
+.dir .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.dir h2{font-size:clamp(24px,3vw,32px);color:var(--muted);font-weight:700}
+.dir h3{font-size:clamp(26px,3.2vw,38px);font-weight:800;margin-top:10px}
+.role{color:var(--brand-ink);font-weight:700;margin-top:8px}
+.cred{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.cred li{background:var(--card);border-radius:12px;padding:9px 14px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+.cred svg,.chk{width:18px;height:18px;color:var(--brand-ink);flex:none}
+.exp{margin-top:26px;background:var(--card);border-radius:20px;padding:6px 22px}
+.exp h4{margin:16px 0 4px;font-size:15px;color:var(--muted);font-weight:700}
+.exp ol{list-style:none;padding:0;margin:0}
+.exp li{display:grid;grid-template-columns:190px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.exp li span:first-child{color:var(--brand-ink);font-weight:700}
+@media (max-width:860px){.dir{grid-template-columns:1fr;gap:24px;padding:16px;border-radius:24px}.dir>div:last-child{padding:0 6px 10px}.exp li{grid-template-columns:1fr;gap:2px}}
+
+/* why us */
+.advs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.adv{background:var(--bg-alt);border-radius:24px;padding:30px}
+.adv .ic{width:60px;height:60px;border-radius:18px;background:var(--soft);color:var(--brand-ink);display:grid;place-items:center}
+.adv .ic svg{width:28px;height:28px}
+.adv h3{margin-top:22px}
+.adv p{margin-top:8px;color:var(--muted)}
+@media (max-width:900px){
+  .advs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:32px -20px 0;padding:0 20px 8px;scrollbar-width:none}
+  .advs::-webkit-scrollbar{display:none}
+  .adv{flex:0 0 78%;scroll-snap-align:start;padding:26px}
+}
+.dots{display:none;justify-content:center;gap:8px;margin-top:16px}
+.dots span{width:8px;height:8px;border-radius:99px;background:var(--line);transition:width .2s,background .2s}
+.dots span.on{width:24px;background:var(--brand)}
+@media (max-width:900px){.dots{display:flex}}
+
+/* courses */
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.course{background:var(--bg-alt);border-radius:28px;padding:30px;display:flex;flex-direction:column}
+.course .top{display:flex;align-items:center;gap:14px}
+.course .ic{width:56px;height:56px;border-radius:16px;background:var(--brand);color:#fff;display:grid;place-items:center;flex:none}
+.course .ic svg{width:28px;height:28px}
+.course .who{display:inline-block;background:var(--card);color:var(--brand-ink);font-size:13px;font-weight:700;border-radius:999px;padding:6px 12px}
+.course h3{margin-top:22px;font-size:23px}
+.course ul{list-style:none;padding:0;margin:20px 0 28px;display:grid;gap:12px}
+.course li{display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
+.course li .chk{margin-top:3px}
+.course li b{color:var(--text);font-weight:700}
+.course .btn{margin-top:auto;width:100%}
+@media (max-width:900px){.courses{grid-template-columns:1fr}}
+
+/* license */
+.lic{display:grid;grid-template-columns:1fr 1.25fr;gap:44px;align-items:start}
+.lic p{margin-top:16px;color:var(--muted);max-width:52ch}
+.lic dl{margin:24px 0 0;display:grid;grid-template-columns:auto 1fr;gap:10px 20px;background:var(--card);border-radius:18px;padding:18px 22px}
+.lic dt{color:var(--muted);font-size:15px}
+.lic dd{margin:0;font-weight:700}
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.docs button{all:unset;cursor:pointer;display:block;background:var(--card);border-radius:18px;padding:10px}
+.docs button:focus-visible{outline:3px solid var(--brand-ink);outline-offset:3px}
+.docs img{width:100%;aspect-ratio:3/4.2;object-fit:cover;object-position:top;border-radius:10px;background:#fff;transition:transform .2s}
+.docs button:hover img{transform:scale(1.02)}
+.docs small{display:block;margin:10px 4px 2px;font-size:13px;font-weight:600;color:var(--muted);line-height:1.4}
+@media (max-width:860px){.lic{grid-template-columns:1fr}}
+@media (max-width:480px){.docs{grid-template-columns:1fr 1fr}}
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(92vw,760px);max-height:92vh}
+dialog.lb::backdrop{background:rgba(5,15,22,.82)}
+dialog.lb img{max-height:86vh;width:auto;margin:auto;border-radius:10px;background:#fff}
+dialog.lb .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font-size:26px;cursor:pointer}
+
+/* faq */
+.faq{margin-top:36px;display:grid;gap:12px;max-width:900px}
+.faq details{background:var(--bg-alt);border-radius:18px;transition:background .2s}
+.faq details[open]{background:var(--soft)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 24px;position:relative;font-weight:700;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 24px 22px;color:var(--muted);max-width:70ch}
+
+/* form */
+.apply{background:var(--brand);color:#fff;border-radius:32px;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;position:relative;overflow:hidden}
+.apply::before{content:"";position:absolute;left:-80px;bottom:-140px;width:340px;height:420px;border:2px solid rgba(255,255,255,.12);border-bottom:0;border-radius:999px 999px 0 0}
+.apply h2{color:#fff}
+.apply .sub{color:rgba(255,255,255,.82)}
+.apply .side{position:relative;z-index:1}
+.apply .side .btn{margin-top:28px;background:#fff;color:var(--brand-deep)}
+.apply form{background:var(--card);color:var(--text);border-radius:24px;padding:28px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-index:1}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+.f label,.f legend{font-size:14px;font-weight:700}
+.f input,.f select{font:500 16px var(--sans);padding:14px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg-alt);color:var(--text);width:100%}
+.f input:focus,.f select:focus{outline:none;border-color:var(--brand-ink)}
+.f .err{font-size:13px;color:#C23B22;font-weight:600}
+.f.bad input{border-color:#D9533A}
+fieldset.f{border:0;padding:0;margin:0}
+.f legend{margin-bottom:7px}
+.seg{display:flex;gap:10px}
+.seg label{flex:1;cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:13px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg-alt);font-weight:700;font-size:15px}
+.seg input:checked+span{background:var(--brand);color:#fff;border-color:var(--brand)}
+.seg input:focus-visible+span{outline:3px solid var(--brand-ink);outline-offset:2px}
+form .btn{grid-column:1/-1;margin-top:6px}
+@media (max-width:900px){.apply{grid-template-columns:1fr;padding:32px 16px 16px;border-radius:26px;gap:28px}.apply .side{padding:0 8px}.apply form{padding:20px}form{grid-template-columns:1fr}}
+
+dialog.sent{border:0;border-radius:26px;padding:30px;max-width:440px;width:calc(100vw - 32px);background:var(--card);color:var(--text)}
+dialog.sent::backdrop{background:rgba(5,15,22,.6)}
+dialog.sent h3{font-size:24px;font-weight:800}
+dialog.sent ol{padding-left:20px;margin:16px 0;color:var(--muted)}
+dialog.sent ol li{margin:6px 0}
+dialog.sent pre{white-space:pre-wrap;font:500 14px/1.55 var(--sans);background:var(--bg-alt);border-radius:14px;padding:14px;margin:0 0 18px}
+dialog.sent .btn{width:100%}
+dialog.sent .close{margin-top:10px}
+.ok{font-size:14px;color:var(--brand-ink);font-weight:700;margin-top:10px;text-align:center;min-height:1.4em}
+
+/* contacts */
+.contacts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.ct{background:var(--bg-alt);border-radius:22px;padding:26px}
+.ct .ic{width:48px;height:48px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center}
+.ct .ic svg{width:22px;height:22px}
+.ct h3{font-size:15px;color:var(--muted);font-weight:700;margin-top:18px}
+.ct p,.ct a{display:block;margin-top:6px;font-size:17px;text-decoration:none;font-weight:700}
+.ct a:hover{color:var(--brand-ink)}
+.ct .btn{display:inline-flex;margin-top:16px;font-size:15px;padding:11px 18px;border-radius:12px;color:#fff}
+.ct .btn:hover{color:#fff}
+@media (max-width:1000px){.contacts{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.contacts{grid-template-columns:1fr}}
+
+footer{background:var(--brand-deep);color:rgba(255,255,255,.75);padding:56px 0 calc(28px + env(safe-area-inset-bottom,0px));margin-top:80px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.fb{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:20px}
+.fb img{height:36px;width:auto}
+footer h4{color:#fff;margin:0 0 14px;font-size:16px}
+footer a{display:block;text-decoration:none;margin:8px 0}
+footer a:hover{color:#fff}
+.fbot{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:22px;font-size:14px}
+@media (max-width:860px){.fgrid{grid-template-columns:1fr 1fr}.fgrid>div:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="SAID academy">
+      <img class="logo-b" src="assets/logo-dark.png" alt="" width="27" height="38"><img class="logo-w" src="assets/logo-light.png" alt="" width="27" height="38">
+      <span>SAID academy</span>
+    </a>
+    <nav class="main" id="nav">
+      <a href="#about" data-t="nav_about"></a>
+      <a href="#courses" data-t="nav_courses"></a>
+      <a href="#advantages" data-t="nav_adv"></a>
+      <a href="#faq" data-t="nav_faq"></a>
+      <a href="#contacts" data-t="nav_contacts"></a>
+    </nav>
+    <div class="lang" id="lang">
+      <button type="button" aria-haspopup="true" aria-expanded="false"><span id="langCur">Uzb</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <ul><li><button type="button" data-lang="uz">O‘zbekcha</button></li><li><button type="button" data-lang="ru">Русский</button></li><li><button type="button" data-lang="en">English</button></li></ul>
+    </div>
+    <a class="btn" href="#apply" data-t="apply"></a>
+    <button class="menu-t" id="menuT" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 data-t="slogan"></h1>
+      <ul class="chips">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><span data-t="f_subj"></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1-4.3 3-4.8 2 .4 3 2.2 3 4.8"/></svg><span data-t="f_who"></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-t="f_metro"></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><a href="tel:+998958293330">+998 95 829 33 30</a></li>
+        <li class="hl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7C9 7 7.5 3 10 3c1.6 0 2 4 2 4s.4-4 2-4c2.5 0 1 4-2 4"/></svg><span data-t="f_free"></span></li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="#apply"><span data-t="apply"></span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9l-5.7 1.5L12 16l-1.8-5.5L4.5 9l5.7-1.4zM19 15l.9 2.3 2.1.7-2.1.8L19 21l-.9-2.2-2.1-.8 2.1-.7z"/></svg></a>
+        <a class="btn light" href="https://t.me/saidacademy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg><span data-t="contact_tg"></span></a>
+      </div>
+    </div>
+    <div class="visual" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span><img src="assets/logo-light.png" alt=""></div>
+  </div>
+</section>
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>400+</b><span data-t="s_students"></span></div>
+    <div class="stat"><b>10</b><span data-t="s_teachers"></span></div>
+    <div class="stat"><b data-t="s_date"></b><span data-t="s_founded"></span></div>
+  </div>
+</div>
+
+<section id="about" class="alt" style="margin-top:80px">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <h2 data-t="about_h"></h2>
+      <p data-t="about_p"></p>
+    </div>
+    <a class="video" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener">
+      <span class="ring"></span>
+      <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+      <div><h3 data-t="video_h"></h3>
+      <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></p></div>
+    </a>
+  </div>
+</section>
+
+<section id="advantages">
+  <div class="wrap">
+    <h2 data-t="adv_h"></h2>
+    <div class="advs" id="advs">
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div><h3 data-t="a1_h"></h3><p data-t="a1_p"></p></div>
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 2.7-5.5 6-5.5s6 2.5 6 5.5M14 14.6c.6-.1 1.3-.1 2-.1 3.3 0 6 2.5 6 5.5"/></svg></div><h3 data-t="a2_h"></h3><p data-t="a2_p"></p></div>
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3 data-t="a3_h"></h3><p data-t="a3_p"></p></div>
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M9 14l2 2 4-4"/></svg></div><h3 data-t="a4_h"></h3><p data-t="a4_p"></p></div>
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7C9 7 7.5 3 10 3c1.6 0 2 4 2 4s.4-4 2-4c2.5 0 1 4-2 4"/></svg></div><h3 data-t="a5_h"></h3><p data-t="a5_p"></p></div>
+      <div class="adv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><h3 data-t="a6_h"></h3><p data-t="a6_p"></p></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<section id="director" style="padding-top:0">
+  <div class="wrap">
+    <div class="dir">
+      <div class="ph"><img src="assets/director.jpg" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy"></div>
+      <div>
+        <h2 data-t="dir_h"></h2>
+        <h3>Ne’matullayev Saidkamol Mansur o‘g‘li</h3>
+        <p class="role" data-t="dir_role"></p>
+        <ul class="cred">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c1"></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c2"></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c3"></span></li>
+        </ul>
+        <div class="exp">
+          <h4 data-t="dir_exp"></h4>
+          <ol>
+            <li><span>2022–2025</span><span data-t="dir_e1"></span></li>
+            <li><span data-t="dir_e2y"></span><span data-t="dir_e2"></span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="courses" class="alt" style="background:var(--bg)">
+  <div class="wrap">
+    <h2 data-t="courses_h"></h2>
+    <div class="courses" id="courseCards"></div>
+  </div>
+</section>
+
+<section id="license" class="alt">
+  <div class="wrap lic">
+    <div>
+      <h2 data-t="lic_h"></h2>
+      <p data-t="lic_p"></p>
+      <dl>
+        <dt data-t="lic_le"></dt><dd>“SAIDKAMOL ACADEMY” MChJ</dd>
+        <dt data-t="lic_tin"></dt><dd>311 990 924</dd>
+        <dt data-t="lic_no"></dt><dd>№ 681282</dd>
+      </dl>
+    </div>
+    <div class="docs">
+      <button type="button" data-img="assets/license-1.jpg"><img src="assets/license-1.jpg" alt="" loading="lazy"><small data-t="doc1"></small></button>
+      <button type="button" data-img="assets/license-2.jpg"><img src="assets/license-2.jpg" alt="" loading="lazy"><small data-t="doc2"></small></button>
+      <button type="button" data-img="assets/license-3.jpg"><img src="assets/license-3.jpg" alt="" loading="lazy"><small data-t="doc3"></small></button>
+    </div>
+  </div>
+</section>
+<dialog class="lb" id="lb"><button class="x" type="button" aria-label="×">×</button><img alt=""></dialog>
+
+<section id="faq">
+  <div class="wrap">
+    <h2 data-t="faq_h"></h2>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<section id="apply" style="padding-top:0">
+  <div class="wrap">
+    <div class="apply">
+      <div class="side">
+        <h2 data-t="form_h"></h2>
+        <p class="sub" data-t="form_p"></p>
+        <a class="btn" href="tel:+998958293330"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>+998 95 829 33 30</a>
+      </div>
+      <form id="form" novalidate>
+        <div class="f" id="fName"><label for="name" data-t="fl_name"></label><input id="name" autocomplete="name"><span class="err"></span></div>
+        <div class="f" id="fPhone"><label for="phone" data-t="fl_phone"></label><input id="phone" type="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"><span class="err"></span></div>
+        <div class="f full"><label for="course" data-t="fl_course"></label><select id="course"><option value="c1" data-t="c1_h"></option><option value="c2" data-t="c2_h"></option><option value="c3" data-t="c3_h"></option></select></div>
+        <div class="f full" id="fAge"><label for="age" data-t="fl_age"></label><input id="age" type="number" min="4" max="99" inputmode="numeric"><span class="err"></span></div>
+        <fieldset class="f full"><legend data-t="fl_format"></legend>
+          <div class="seg"><label><input type="radio" name="fmt" value="group" checked><span data-t="d_group"></span></label><label><input type="radio" name="fmt" value="ind"><span data-t="d_ind"></span></label></div>
+        </fieldset>
+        <button class="btn" type="submit" data-t="send"></button>
+      </form>
+    </div>
+  </div>
+</section>
+<dialog class="sent" id="sent">
+  <h3 data-t="m_h"></h3>
+  <ol><li data-t="m_1"></li><li data-t="m_2"></li></ol>
+  <pre id="msg"></pre>
+  <a class="btn" id="tgGo" href="https://t.me/Abu_Sofiya24" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg><span data-t="m_btn"></span></a>
+  <p class="ok" id="ok"></p>
+  <button class="btn light close" type="button" id="closeSent" data-t="m_close" style="width:100%"></button>
+</dialog>
+
+<section id="contacts" style="padding-bottom:0">
+  <div class="wrap">
+    <h2 data-t="nav_contacts"></h2>
+    <div class="contacts">
+      <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3 data-t="ct_addr"></h3><p data-t="addr" style="font-weight:600;font-size:16px"></p><a class="btn" href="https://yandex.ru/maps/org/said_academy/196416574583" target="_blank" rel="noopener" data-t="map"></a></div>
+      <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></div><h3 data-t="ct_phone"></h3><a href="tel:+998958293330">+998 95 829 33 30</a></div>
+      <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg></div><h3 data-t="ct_social"></h3><a href="https://t.me/saidacademy" target="_blank" rel="noopener">@saidacademy</a><a href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener">@said_academy_</a></div>
+      <div class="ct"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 data-t="ct_hours"></h3><p data-t="hours"></p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><div class="fb"><img src="assets/logo-light.png" alt="">SAID academy</div></div>
+      <div><h4>SAID academy</h4><a href="#about" data-t="nav_about"></a><a href="#courses" data-t="nav_courses"></a><a href="#advantages" data-t="nav_adv"></a><a href="#faq" data-t="nav_faq"></a></div>
+      <div><h4 data-t="ft_contact"></h4><a href="tel:+998958293330">+998 95 829 33 30</a><a href="#apply" data-t="apply"></a></div>
+      <div><h4 data-t="ct_social"></h4><a href="https://t.me/saidacademy" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+    <div class="fbot">© 2026 SAID academy</div>
+  </div>
+</footer>
+
+<script>
+const T={
+uz:{
+nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
+apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
+slogan:"Bilim yangi imkoniyatlar eshigini ochadi",
+f_subj:"Arab tili | Fonetika | Grammatika",f_who:"Bolalar va kattalar uchun",f_metro:"Tinchlik metro",f_free:"Birinchi dars — bepul",
+s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil topgan sana",
+about_h:"Biz haqimizda",
+about_p:"SAID academy — 2025-yil 1-aprelda Toshkent shahrida tashkil topgan arab tili o‘quv markazi. Bizda arab tili fonetika va grammatikadan boshlab, bosqichma-bosqich o‘rgatiladi. Darslar bolalar uchun ham, kattalar uchun ham tashkil etilgan. Qisqa vaqt ichida markazimizda 400 dan ortiq o‘quvchi tahsil oldi, ularga 10 nafar ustoz dars beradi. Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz, kelib o‘zingiz ko‘ring. Markazimiz Tinchlik metrosi yaqinida joylashgan.",
+video_h:"SAID academy haqida video",video_btn:"Instagramda ko‘rish",
+dir_h:"Markaz rahbari",dir_role:"SAID academy direktori",dir_c1:"Oriental universiteti bitiruvchisi",dir_c2:"Arab tilidan CEFR B2",dir_c3:"4 yillik tajriba",
+dir_exp:"Ish tajribasi",dir_e1:"Habib Academy — arab tili o‘qituvchisi",dir_e2y:"2025 – hozirgacha",dir_e2:"SAID academy — direktor",
+courses_h:"Yo‘nalishlar",
+c1_who:"4 yoshdan katta bolalar",c1_h:"Bolalar uchun arab tili fonetikasi",c1_p:"Arab harflari va to‘g‘ri talaffuz o‘rgatiladi.",
+c2_who:"Kattalar",c2_h:"Kattalar uchun arab tili fonetikasi",c2_p:"Arab harflari va to‘g‘ri talaffuz o‘rgatiladi.",
+c3_who:"Asosan kattalar",c3_h:"Arab tili grammatikasi",c3_p:"Asosan kattalar uchun mo‘ljallangan grammatika darslari.",
+d_group:"Guruh darsi",d_group_v:"1 soat 20 daqiqa",d_ind:"Individual dars",d_ind_v:"40 daqiqa",
+adv_h:"Afzalliklarimiz",
+a1_h:"Tajribali ustozlar",a1_p:"1 yildan 5 yilgacha tajribaga ega ustozlar.",
+a2_h:"Kichik guruhlar",a2_p:"Har bir guruhda ko‘pi bilan 10–12 kishi.",
+a3_h:"Qulay joylashuv",a3_p:"Metro va avtobus bekatlariga juda yaqin.",
+a4_h:"Ota-onalar nazorati",a4_p:"Farzandining darajasi va o‘zlashtirishini onlayn kuzatib borish imkoniyati.",
+a5_h:"Birinchi dars bepul",a5_p:"Kelib, darslarimiz bilan tanishib ko‘ring.",
+a6_h:"Individual darslar",a6_p:"Barcha kurslar bo‘yicha individual darslar mavjud.",
+lic_h:"Litsenziya",
+lic_p:"SAID academy faoliyatini O‘zbekiston Respublikasi Maktabgacha va maktab ta’limi vazirligi tomonidan berilgan № 681282 raqamli tasdiqnoma (24.03.2025) asosida olib boradi.",
+lic_le:"Yuridik shaxs",lic_tin:"STIR",lic_no:"Tasdiqnoma",
+doc1:"Davlat ro‘yxatidan o‘tganlik guvohnomasi",doc2:"Tasdiqnoma № 681282, 1‑bet",doc3:"Tasdiqnoma № 681282, 2‑bet",
+faq_h:"Ko‘p beriladigan savollar",
+faq:[
+["Necha yoshdan qabul qilasiz?","Fonetika kurslariga 4 yoshdan katta bolalar va kattalar qabul qilinadi. Grammatika darslari asosan kattalar uchun."],
+["Qanday kurslar bor?","Bolalar uchun arab tili fonetikasi, kattalar uchun arab tili fonetikasi va arab tili grammatikasi."],
+["Dars qancha davom etadi?","Guruh darsi — 1 soat 20 daqiqa, individual dars — 40 daqiqa."],
+["Individual darslar bormi?","Ha, barcha kurslar bo‘yicha individual darslar mavjud."],
+["Guruhda necha kishi bo‘ladi?","Har bir guruhda ko‘pi bilan 10–12 kishi tahsil oladi."],
+["Birinchi dars haqiqatan bepulmi?","Ha, birinchi dars bepul — kelib, darslarimiz bilan tanishib ko‘rishingiz mumkin."],
+["Ota-onalar farzandining natijasini qanday bilib turadi?","Ota-onalar farzandining darajasi va o‘zlashtirishidan onlayn xabardor bo‘lib turishlari mumkin."],
+["Markaz qayerda joylashgan?","Toshkent shahri, Shayxontohur tumani, Ilg‘or MFY, Matlubot ko‘chasi, 72-uy. Tinchlik metrosi va avtobus bekatlariga juda yaqin."],
+["Markazingiz rasmiy faoliyat yuritadimi?","Ha, faoliyatimiz Maktabgacha va maktab ta’limi vazirligi tomonidan berilgan № 681282 raqamli tasdiqnoma asosida olib boriladi."]],
+form_h:"Ariza qoldirish",form_p:"Formani to‘ldiring va arizangizni Telegram orqali yuboring. Savollar bo‘lsa, qo‘ng‘iroq qiling.",
+fl_name:"Ismingiz",fl_phone:"Telefon raqamingiz",fl_course:"Kurs",fl_age:"O‘quvchi yoshi",fl_format:"Dars formati",send:"Yuborish",
+e_name:"Ismingizni kiriting",e_phone:"Telefon raqamingizni kiriting",e_age:"O‘quvchi yoshini kiriting",
+m_h:"Arizangiz tayyor",m_1:"Quyidagi tugmani bosing — ariza matni nusxalanadi va Telegram ochiladi.",m_2:"Ochilgan chatda xabar maydoniga matnni joylashtiring (Paste) va yuboring.",m_btn:"Nusxalash va Telegramni ochish",m_ok:"Ariza matni nusxalandi",m_close:"Yopish",
+ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot ko‘chasi, 72-uy (Tinchlik metrosi yaqinida)",map:"Xaritada ochish",
+ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00 – 20:00"
+},
+ru:{
+nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
+apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
+slogan:"Знания открывают дверь к новым возможностям",
+f_subj:"Арабский язык | Фонетика | Грамматика",f_who:"Для детей и взрослых",f_metro:"Метро «Тинчлик»",f_free:"Первый урок — бесплатно",
+s_students:"студентов",s_teachers:"преподавателей",s_date:"1 апреля 2025",s_founded:"дата основания",
+about_h:"О нас",
+about_p:"SAID academy — учебный центр арабского языка, основанный 1 апреля 2025 года в Ташкенте. Арабский язык у нас изучается поэтапно, начиная с фонетики и грамматики. Занятия проводятся как для детей, так и для взрослых. За короткое время в нашем центре обучились более 400 учеников, с ними работают 10 преподавателей. Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный: приходите и убедитесь сами. Наш центр находится рядом со станцией метро «Тинчлик».",
+video_h:"Видео о SAID academy",video_btn:"Смотреть в Instagram",
+dir_h:"Руководитель центра",dir_role:"Директор SAID academy",dir_c1:"Выпускник университета Oriental",dir_c2:"CEFR B2 по арабскому языку",dir_c3:"4 года опыта",
+dir_exp:"Опыт работы",dir_e1:"Habib Academy — преподаватель арабского языка",dir_e2y:"2025 – настоящее время",dir_e2:"SAID academy — директор",
+courses_h:"Направления",
+c1_who:"Дети старше 4 лет",c1_h:"Фонетика арабского языка для детей",c1_p:"Изучаются арабские буквы и правильное произношение.",
+c2_who:"Взрослые",c2_h:"Фонетика арабского языка для взрослых",c2_p:"Изучаются арабские буквы и правильное произношение.",
+c3_who:"В основном взрослые",c3_h:"Грамматика арабского языка",c3_p:"Уроки грамматики, рассчитанные в основном на взрослых.",
+d_group:"Групповое занятие",d_group_v:"1 ч 20 мин",d_ind:"Индивидуальное занятие",d_ind_v:"40 мин",
+adv_h:"Наши преимущества",
+a1_h:"Опытные преподаватели",a1_p:"Преподаватели с опытом от 1 до 5 лет.",
+a2_h:"Небольшие группы",a2_p:"В каждой группе не более 10–12 человек.",
+a3_h:"Удобное расположение",a3_p:"Совсем рядом с метро и автобусными остановками.",
+a4_h:"Контроль для родителей",a4_p:"Возможность онлайн следить за уровнем и успеваемостью ребёнка.",
+a5_h:"Первый урок бесплатно",a5_p:"Приходите и познакомьтесь с нашими занятиями.",
+a6_h:"Индивидуальные занятия",a6_p:"Индивидуальные занятия доступны по всем курсам.",
+lic_h:"Лицензия",
+lic_p:"SAID academy ведёт деятельность на основании подтверждения № 681282 (24.03.2025), выданного Министерством дошкольного и школьного образования Республики Узбекистан.",
+lic_le:"Юридическое лицо",lic_tin:"ИНН",lic_no:"Подтверждение",
+doc1:"Свидетельство о государственной регистрации",doc2:"Подтверждение № 681282, стр. 1",doc3:"Подтверждение № 681282, стр. 2",
+faq_h:"Часто задаваемые вопросы",
+faq:[
+["С какого возраста вы принимаете?","На курсы фонетики принимаются дети старше 4 лет и взрослые. Уроки грамматики — в основном для взрослых."],
+["Какие есть курсы?","Фонетика арабского языка для детей, фонетика арабского языка для взрослых и грамматика арабского языка."],
+["Сколько длится занятие?","Групповое занятие — 1 час 20 минут, индивидуальное — 40 минут."],
+["Есть ли индивидуальные занятия?","Да, индивидуальные занятия доступны по всем курсам."],
+["Сколько человек в группе?","В каждой группе обучаются не более 10–12 человек."],
+["Первый урок действительно бесплатный?","Да, первый урок бесплатный — вы можете прийти и познакомиться с нашими занятиями."],
+["Как родители узнают о результатах ребёнка?","Родители могут онлайн следить за уровнем и успеваемостью своего ребёнка."],
+["Где находится центр?","г. Ташкент, Шайхантахурский район, МСГ Илгор, ул. Матлубот, 72. Совсем рядом с метро «Тинчлик» и автобусными остановками."],
+["Ваш центр работает официально?","Да, наша деятельность ведётся на основании подтверждения № 681282, выданного Министерством дошкольного и школьного образования."]],
+form_h:"Оставить заявку",form_p:"Заполните форму и отправьте заявку через Telegram. Если есть вопросы — позвоните нам.",
+fl_name:"Ваше имя",fl_phone:"Номер телефона",fl_course:"Курс",fl_age:"Возраст ученика",fl_format:"Формат занятий",send:"Отправить",
+e_name:"Введите ваше имя",e_phone:"Введите номер телефона",e_age:"Введите возраст ученика",
+m_h:"Заявка готова",m_1:"Нажмите кнопку ниже — текст заявки скопируется и откроется Telegram.",m_2:"В открывшемся чате вставьте текст (Вставить) в поле сообщения и отправьте.",m_btn:"Скопировать и открыть Telegram",m_ok:"Текст заявки скопирован",m_close:"Закрыть",
+ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский район, МСГ Илгор, ул. Матлубот, 72 (рядом с метро «Тинчлик»)",map:"Открыть на карте",
+ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00 – 20:00"
+},
+en:{
+nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
+apply:"Apply now",contact_tg:"Contact us on Telegram",
+slogan:"Knowledge opens the door to new opportunities",
+f_subj:"Arabic | Phonetics | Grammar",f_who:"For children and adults",f_metro:"Tinchlik metro",f_free:"First lesson — free",
+s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"founded",
+about_h:"About us",
+about_p:"SAID academy is an Arabic language learning center founded in Tashkent on April 1, 2025. We teach Arabic step by step, starting with phonetics and grammar. Classes are available for both children and adults. In a short time, more than 400 students have studied at our center, taught by 10 teachers. We believe knowledge opens the door to new opportunities — that’s why your first lesson is free: come and see for yourself. Our center is located near Tinchlik metro station.",
+video_h:"Video about SAID academy",video_btn:"Watch on Instagram",
+dir_h:"Head of the center",dir_role:"Director of SAID academy",dir_c1:"Graduate of Oriental University",dir_c2:"CEFR B2 in Arabic",dir_c3:"4 years of experience",
+dir_exp:"Work experience",dir_e1:"Habib Academy — Arabic teacher",dir_e2y:"2025 – present",dir_e2:"SAID academy — Director",
+courses_h:"Courses",
+c1_who:"Children aged 4+",c1_h:"Arabic phonetics for children",c1_p:"Arabic letters and correct pronunciation.",
+c2_who:"Adults",c2_h:"Arabic phonetics for adults",c2_p:"Arabic letters and correct pronunciation.",
+c3_who:"Mainly adults",c3_h:"Arabic grammar",c3_p:"Grammar lessons designed mainly for adults.",
+d_group:"Group lesson",d_group_v:"1 h 20 min",d_ind:"Individual lesson",d_ind_v:"40 min",
+adv_h:"Our advantages",
+a1_h:"Experienced teachers",a1_p:"Teachers with 1 to 5 years of experience.",
+a2_h:"Small groups",a2_p:"No more than 10–12 people in each group.",
+a3_h:"Convenient location",a3_p:"Very close to the metro and bus stops.",
+a4_h:"Parent updates",a4_p:"Parents can follow their child’s level and progress online.",
+a5_h:"First lesson free",a5_p:"Come and get to know our classes.",
+a6_h:"Individual lessons",a6_p:"Individual lessons are available for all courses.",
+lic_h:"License",
+lic_p:"SAID academy operates on the basis of confirmation No. 681282 (24.03.2025) issued by the Ministry of Preschool and School Education of the Republic of Uzbekistan.",
+lic_le:"Legal entity",lic_tin:"TIN",lic_no:"Confirmation",
+doc1:"Certificate of state registration",doc2:"Confirmation No. 681282, page 1",doc3:"Confirmation No. 681282, page 2",
+faq_h:"Frequently asked questions",
+faq:[
+["What age do you accept students from?","Phonetics courses are open to children over 4 and adults. Grammar lessons are mainly for adults."],
+["What courses do you offer?","Arabic phonetics for children, Arabic phonetics for adults, and Arabic grammar."],
+["How long is a lesson?","A group lesson lasts 1 hour 20 minutes, an individual lesson 40 minutes."],
+["Do you offer individual lessons?","Yes, individual lessons are available for all courses."],
+["How many people are in a group?","Each group has no more than 10–12 students."],
+["Is the first lesson really free?","Yes, the first lesson is free — you can come and get to know our classes."],
+["How do parents keep track of their child’s results?","Parents can follow their child’s level and progress online."],
+["Where is the center located?","72 Matlubot Street, Ilg‘or neighborhood, Shaykhantakhur district, Tashkent. Very close to Tinchlik metro station and bus stops."],
+["Is your center officially registered?","Yes, we operate on the basis of confirmation No. 681282 issued by the Ministry of Preschool and School Education."]],
+form_h:"Apply now",form_p:"Fill in the form and send your application via Telegram. Have questions? Give us a call.",
+fl_name:"Your name",fl_phone:"Phone number",fl_course:"Course",fl_age:"Student’s age",fl_format:"Lesson format",send:"Send",
+e_name:"Enter your name",e_phone:"Enter your phone number",e_age:"Enter the student’s age",
+m_h:"Your application is ready",m_1:"Tap the button below — the application text is copied and Telegram opens.",m_2:"In the chat that opens, paste the text into the message field and send it.",m_btn:"Copy and open Telegram",m_ok:"Application text copied",m_close:"Close",
+ct_addr:"Address",addr:"72 Matlubot Street, Ilg‘or neighborhood, Shaykhantakhur district, Tashkent (near Tinchlik metro)",map:"Open in maps",
+ct_phone:"Phone",ct_social:"Social media",ft_contact:"Contact us",ct_hours:"Opening hours",hours:"Every day 07:00 – 20:00"
+}};
+
+let lang="uz";
+try{const s=localStorage.getItem("said_lang");if(s&&T[s])lang=s}catch(e){}
+const CHK='<svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const CIC=['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M8 21v-6l-2-4h12l-2 4v6"/></svg>','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 8h6M9 12h4"/></svg>'];
+const LN={uz:"Uzb",ru:"Rus",en:"Eng"};
+function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function apply(l){
+  lang=l;const d=T[l];document.documentElement.lang=l;
+  document.querySelectorAll("[data-t]").forEach(el=>{const v=d[el.dataset.t];if(typeof v==="string")el.textContent=v});
+  document.getElementById("langCur").textContent=LN[l];
+  document.querySelectorAll(".lang li button").forEach(b=>b.setAttribute("aria-current",b.dataset.lang===l));
+  const cc=document.getElementById("courseCards");cc.innerHTML="";
+  ["c1","c2","c3"].forEach((c,i)=>{const a=document.createElement("article");a.className="course";
+    a.innerHTML='<div class="top"><div class="ic">'+CIC[i]+'</div><span class="who">'+esc(d[c+"_who"])+'</span></div><h3>'+esc(d[c+"_h"])+'</h3><ul><li>'+CHK+'<span>'+esc(d[c+"_p"])+'</span></li><li>'+CHK+'<span>'+esc(d.d_group)+': <b>'+esc(d.d_group_v)+'</b></span></li><li>'+CHK+'<span>'+esc(d.d_ind)+': <b>'+esc(d.d_ind_v)+'</b></span></li></ul><a class="btn" href="#apply" data-c="'+c+'">'+esc(d.apply)+'</a>';
+    cc.append(a)});
+  const f=document.getElementById("faqList");f.innerHTML="";
+  d.faq.forEach(([q,a])=>{const det=document.createElement("details");const s=document.createElement("summary");s.textContent=q;const p=document.createElement("p");p.textContent=a;det.append(s,p);f.append(det)});
+  document.querySelectorAll(".f.bad").forEach(x=>{x.classList.remove("bad");x.querySelector(".err").textContent=""});
+  try{localStorage.setItem("said_lang",l)}catch(e){}
+}
+const langEl=document.getElementById("lang"),langBtn=langEl.querySelector("button");
+langBtn.addEventListener("click",e=>{e.stopPropagation();const o=langEl.classList.toggle("open");langBtn.setAttribute("aria-expanded",o)});
+document.querySelectorAll(".lang li button").forEach(b=>b.addEventListener("click",()=>{apply(b.dataset.lang);langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)}));
+document.addEventListener("click",()=>{langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)});
+apply(lang);
+document.getElementById("courseCards").addEventListener("click",e=>{const a=e.target.closest("[data-c]");if(a)document.getElementById("course").value=a.dataset.c});
+
+const nav=document.getElementById("nav"),mt=document.getElementById("menuT");
+mt.addEventListener("click",()=>{const o=nav.classList.toggle("open");mt.setAttribute("aria-expanded",o)});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");mt.setAttribute("aria-expanded",false)}));
+
+const advs=document.getElementById("advs"),dots=document.getElementById("dots");
+[...advs.children].forEach((_,i)=>{const s=document.createElement("span");if(!i)s.className="on";dots.append(s)});
+advs.addEventListener("scroll",()=>{const w=advs.children[0].offsetWidth+14;const i=Math.min(advs.children.length-1,Math.round(advs.scrollLeft/w));[...dots.children].forEach((s,j)=>s.classList.toggle("on",j===i))},{passive:true});
+
+const lb=document.getElementById("lb");
+document.querySelectorAll(".docs button").forEach(b=>b.addEventListener("click",()=>{lb.querySelector("img").src=b.dataset.img;lb.showModal()}));
+lb.addEventListener("click",e=>{if(e.target!==lb.querySelector("img"))lb.close()});
+
+const form=document.getElementById("form"),sent=document.getElementById("sent"),msg=document.getElementById("msg"),ok=document.getElementById("ok");
+const UZ=T.uz;
+function setErr(id,key){const w=document.getElementById(id);w.classList.toggle("bad",!!key);w.querySelector(".err").textContent=key?T[lang][key]:""}
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim(),age=document.getElementById("age").value.trim();
+  const pOk=phone.replace(/\D/g,"").length>=7;
+  setErr("fName",name?null:"e_name");setErr("fPhone",pOk?null:"e_phone");setErr("fAge",age?null:"e_age");
+  if(!name||!pOk||!age){form.querySelector(".bad input").focus();return}
+  const c=document.getElementById("course").value,fmt=form.querySelector("input[name=fmt]:checked").value;
+  msg.textContent="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+age+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind);
+  ok.textContent="";sent.showModal();
+});
+function copy(t){
+  try{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,t.length);const r=document.execCommand("copy");ta.remove();if(r)return true}catch(e){}
+  try{navigator.clipboard.writeText(t);return true}catch(e){return false}
+}
+document.getElementById("tgGo").addEventListener("click",()=>{if(copy(msg.textContent))ok.textContent=T[lang].m_ok});
+document.getElementById("closeSent").addEventListener("click",()=>sent.close());
+</script>
+</body>
+</html>

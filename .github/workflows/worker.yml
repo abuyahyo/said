@@ -17,17 +17,23 @@ jobs:
       - name: Check secrets
         id: check
         run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+          # Telefondan nusxalanganda qiymatga bo'sh joy yoki yangi qator kirib qolishi mumkin — tozalaymiz
+          TOKEN="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
+          ACCOUNT="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | tr -d '[:space:]')"
+          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
             echo "::warning::CLOUDFLARE_API_TOKEN yoki CLOUDFLARE_ACCOUNT_ID secret kiritilmagan, deploy o'tkazib yuborildi."
             echo "ready=false" >> "$GITHUB_OUTPUT"
           else
+            echo "::add-mask::$TOKEN"
             echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+            echo "account=$ACCOUNT" >> "$GITHUB_OUTPUT"
           fi
       - name: Deploy
         if: steps.check.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ steps.check.outputs.token }}
+          accountId: ${{ steps.check.outputs.account }}
           workingDirectory: worker
           command: deploy

@@ -278,10 +278,11 @@ footer a:hover{color:#fff}
 /* ===== visual polish ===== */
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-ink);margin:0 0 14px}
 .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--soft);flex:none}
-.hero{position:relative;overflow:hidden}
+.hero{position:relative}
+main{overflow-x:clip}
 .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
 .hero::before{width:460px;height:460px;left:-160px;top:-140px;background:rgba(13,153,255,.16)}
-.hero::after{width:380px;height:380px;right:10%;bottom:-180px;background:rgba(13,153,255,.12)}
+.hero::after{width:380px;height:380px;right:10%;bottom:-120px;background:rgba(13,153,255,.10)}
 .hero-grid{position:relative;z-index:1}
 .hero .eyebrow{margin-bottom:18px}
 .visual{background:linear-gradient(145deg,#2FB0FF 0%,#0D99FF 45%,#0A6FD6 100%);box-shadow:0 30px 60px -26px rgba(13,153,255,.6)}

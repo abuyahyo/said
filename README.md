@@ -68,11 +68,13 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
 
 ## Keyingi rejalar
 
-Quyidagilar uchun markazdan material kerak:
+Markazdan material kerak:
 
-- [ ] **Galereya / "Markaz hayoti"** — darsxona, darslar va ustozlardan 3–6 ta fotosurat
+- [ ] **Kurslar matni va narxlar** — har bir kurs uchun 2–3 jumla (nima o‘rgatiladi, necha oy, haftada necha marta) va narx
 - [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
-- [ ] **Xaritani tekshirish** — jonli saytda Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishini tasdiqlash
+- [ ] **Jonli saytda tekshirish** — Kontaktlar ostidagi Yandex xaritasi to‘g‘ri joyni ko‘rsatishi, videolar ochilishi
 - [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
 - [ ] **Bot tokenini yangilash** — BotFather'da `/revoke`, yangi tokenni Cloudflare'da `BOT_TOKEN` ga yozish
 - [ ] **Ortiqcha Worker'ni o‘chirish** — Cloudflare'dagi `tiny-tooth-0ab0`
+
+Bajarilgan: galereya va videolar, iliq rang, sarlavha urg‘usi, metro ikonkasi, "Yuqoriga" tugmasi, Instagram tugmasi, "Qanday boshlanadi" bo‘limi.

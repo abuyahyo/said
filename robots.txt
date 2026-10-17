@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /worker/
+
+Sitemap: https://abuyahyo.github.io/said/sitemap.xml

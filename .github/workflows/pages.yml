@@ -22,6 +22,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Stamp sitemap lastmod
+        run: sed -i "s|<lastmod>[0-9-]*</lastmod>|<lastmod>$(date -u +%F)</lastmod>|" sitemap.xml
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -419,6 +419,9 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .step:last-child small{color:var(--accent-ink);background:var(--accent-soft)}
 .step .arrow{position:absolute;top:44px;right:-22px;width:24px;height:24px;color:var(--brand);z-index:1}
 @media (max-width:900px){.steps{grid-template-columns:1fr;gap:14px}.step{padding:24px}.step .arrow{top:auto;right:auto;left:38px;bottom:-21px;transform:rotate(90deg)}}
+
+.course .desc{margin-top:12px;color:var(--muted);line-height:1.55;font-size:16px}
+.course ul{margin-top:16px}
 </style>
 </head>
 <body>
@@ -701,9 +704,9 @@ video_h:"SAID academy haqida video",video_btn:"Instagramda ko‘rish",
 dir_h:"Markaz rahbari",dir_role:"SAID academy direktori",dir_c1:"Oriental universiteti bitiruvchisi",dir_c2:"Arab tilidan CEFR B2",dir_c3:"4 yillik tajriba",
 dir_exp:"Ish tajribasi",dir_e1:"Habib Academy — arab tili o‘qituvchisi",dir_e2y:"2025 – hozirgacha",dir_e2:"SAID academy — direktor",
 courses_h:"Yo‘nalishlar",
-c1_who:"4 yoshdan katta bolalar",c1_h:"Bolalar uchun arab tili fonetikasi",c1_p:"Arab harflari va to‘g‘ri talaffuz o‘rgatiladi.",
-c2_who:"Kattalar",c2_h:"Kattalar uchun arab tili fonetikasi",c2_p:"Arab harflari va to‘g‘ri talaffuz o‘rgatiladi.",
-c3_who:"Asosan kattalar",c3_h:"Arab tili grammatikasi",c3_p:"Asosan kattalar uchun mo‘ljallangan grammatika darslari.",
+c1_who:"4 yoshdan katta bolalar",c1_h:"Bolalar uchun arab tili fonetikasi",c1_p:"Bola arab harflarini tanishdan boshlab, ularni to‘g‘ri talaffuz qilishni va bo‘g‘inlab o‘qishni o‘rganadi. Darslar o‘yin va mashqlar bilan qiziqarli o‘tadi, kichik guruhda har bir bolaga alohida e’tibor beriladi. Ota-onalar farzandining o‘zlashtirishini onlayn kuzatib boradi.",
+c2_who:"Kattalar",c2_h:"Kattalar uchun arab tili fonetikasi",c2_p:"Noldan boshlaganlar uchun: harflar, ularning so‘z boshida, o‘rtasida va oxirida yozilishi, to‘g‘ri talaffuz va o‘qish qoidalari. Kurs oxirida arabcha matnni mustaqil va ravon o‘qiy olasiz. Grammatika kursiga o‘tish uchun mustahkam poydevor bo‘ladi.",
+c3_who:"Asosan kattalar",c3_h:"Arab tili grammatikasi",c3_p:"O‘qishni biladiganlar uchun: so‘z turkumlari, gap tuzilishi va fe’l shakllari bosqichma-bosqich o‘rgatiladi. Har bir mavzu matnlar va amaliy mashqlar bilan mustahkamlanadi. Maqsad — arabcha matnni tushunish va o‘z fikrini to‘g‘ri ifodalash.",
 d_group:"Guruh darsi",d_group_v:"1 soat 20 daqiqa",d_ind:"Individual dars",d_ind_v:"40 daqiqa",
 adv_h:"Afzalliklarimiz",
 a1_h:"Tajribali ustozlar",a1_p:"1 yildan 5 yilgacha tajribaga ega ustozlar.",
@@ -747,9 +750,9 @@ video_h:"Видео о SAID academy",video_btn:"Смотреть в Instagram",
 dir_h:"Руководитель центра",dir_role:"Директор SAID academy",dir_c1:"Выпускник университета Oriental",dir_c2:"CEFR B2 по арабскому языку",dir_c3:"4 года опыта",
 dir_exp:"Опыт работы",dir_e1:"Habib Academy — преподаватель арабского языка",dir_e2y:"2025 – настоящее время",dir_e2:"SAID academy — директор",
 courses_h:"Направления",
-c1_who:"Дети старше 4 лет",c1_h:"Фонетика арабского языка для детей",c1_p:"Изучаются арабские буквы и правильное произношение.",
-c2_who:"Взрослые",c2_h:"Фонетика арабского языка для взрослых",c2_p:"Изучаются арабские буквы и правильное произношение.",
-c3_who:"В основном взрослые",c3_h:"Грамматика арабского языка",c3_p:"Уроки грамматики, рассчитанные в основном на взрослых.",
+c1_who:"Дети старше 4 лет",c1_h:"Фонетика арабского языка для детей",c1_p:"Ребёнок начинает со знакомства с арабскими буквами, учится правильно их произносить и читать по слогам. Занятия проходят в игровой форме с упражнениями, в небольшой группе каждому ребёнку уделяется внимание. Родители следят за успехами ребёнка онлайн.",
+c2_who:"Взрослые",c2_h:"Фонетика арабского языка для взрослых",c2_p:"Для начинающих с нуля: буквы, их написание в начале, середине и конце слова, правильное произношение и правила чтения. К концу курса вы сможете самостоятельно и бегло читать арабский текст. Это прочная база для перехода к курсу грамматики.",
+c3_who:"В основном взрослые",c3_h:"Грамматика арабского языка",c3_p:"Для тех, кто уже умеет читать: части речи, строение предложения и формы глагола изучаются шаг за шагом. Каждая тема закрепляется текстами и практическими упражнениями. Цель — понимать арабский текст и правильно выражать свои мысли.",
 d_group:"Групповое занятие",d_group_v:"1 ч 20 мин",d_ind:"Индивидуальное занятие",d_ind_v:"40 мин",
 adv_h:"Наши преимущества",
 a1_h:"Опытные преподаватели",a1_p:"Преподаватели с опытом от 1 до 5 лет.",
@@ -793,9 +796,9 @@ video_h:"Video about SAID academy",video_btn:"Watch on Instagram",
 dir_h:"Head of the center",dir_role:"Director of SAID academy",dir_c1:"Graduate of Oriental University",dir_c2:"CEFR B2 in Arabic",dir_c3:"4 years of experience",
 dir_exp:"Work experience",dir_e1:"Habib Academy — Arabic teacher",dir_e2y:"2025 – present",dir_e2:"SAID academy — Director",
 courses_h:"Courses",
-c1_who:"Children aged 4+",c1_h:"Arabic phonetics for children",c1_p:"Arabic letters and correct pronunciation.",
-c2_who:"Adults",c2_h:"Arabic phonetics for adults",c2_p:"Arabic letters and correct pronunciation.",
-c3_who:"Mainly adults",c3_h:"Arabic grammar",c3_p:"Grammar lessons designed mainly for adults.",
+c1_who:"Children aged 4+",c1_h:"Arabic phonetics for children",c1_p:"Children start by learning the Arabic letters, then how to pronounce them correctly and read syllable by syllable. Lessons are fun, with games and exercises, and every child gets attention in a small group. Parents follow their child’s progress online.",
+c2_who:"Adults",c2_h:"Arabic phonetics for adults",c2_p:"For complete beginners: the letters, how they are written at the beginning, middle and end of a word, correct pronunciation and reading rules. By the end of the course you read Arabic text on your own and fluently. A solid base for moving on to the grammar course.",
+c3_who:"Mainly adults",c3_h:"Arabic grammar",c3_p:"For those who can already read: parts of speech, sentence structure and verb forms, taught step by step. Every topic is reinforced with texts and practical exercises. The goal is to understand Arabic text and express your own thoughts correctly.",
 d_group:"Group lesson",d_group_v:"1 h 20 min",d_ind:"Individual lesson",d_ind_v:"40 min",
 adv_h:"Our advantages",
 a1_h:"Experienced teachers",a1_p:"Teachers with 1 to 5 years of experience.",
@@ -841,7 +844,7 @@ function apply(l){
   document.querySelectorAll(".lang li button").forEach(b=>b.setAttribute("aria-current",b.dataset.lang===l));
   const cc=document.getElementById("courseCards");cc.innerHTML="";
   ["c1","c2","c3"].forEach((c,i)=>{const a=document.createElement("article");a.className="course";
-    a.innerHTML='<div class="top"><div class="ic">'+CIC[i]+'</div><span class="who">'+esc(d[c+"_who"])+'</span></div><h3>'+esc(d[c+"_h"])+'</h3><ul><li>'+CHK+'<span>'+esc(d[c+"_p"])+'</span></li><li>'+CHK+'<span>'+esc(d.d_group)+': <b>'+esc(d.d_group_v)+'</b></span></li><li>'+CHK+'<span>'+esc(d.d_ind)+': <b>'+esc(d.d_ind_v)+'</b></span></li></ul><a class="btn" href="#apply" data-c="'+c+'">'+esc(d.apply)+'</a>';
+    a.innerHTML='<div class="top"><div class="ic">'+CIC[i]+'</div><span class="who">'+esc(d[c+"_who"])+'</span></div><h3>'+esc(d[c+"_h"])+'</h3><p class="desc">'+esc(d[c+"_p"])+'</p><ul><li>'+CHK+'<span>'+esc(d.d_group)+': <b>'+esc(d.d_group_v)+'</b></span></li><li>'+CHK+'<span>'+esc(d.d_ind)+': <b>'+esc(d.d_ind_v)+'</b></span></li></ul><a class="btn" href="#apply" data-c="'+c+'">'+esc(d.apply)+'</a>';
     cc.append(a)});
   const f=document.getElementById("faqList");f.innerHTML="";
   d.faq.forEach(([q,a])=>{const det=document.createElement("details");const s=document.createElement("summary");s.textContent=q;const p=document.createElement("p");p.textContent=a;det.append(s,p);f.append(det)});

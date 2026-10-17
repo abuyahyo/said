@@ -236,6 +236,9 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-ind
 fieldset.f{border:0;padding:0;margin:0}
 .f legend{margin-bottom:7px}
 .seg{display:flex;gap:10px}
+.seg3{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg3 span{padding:11px 6px;font-size:14px}
+@media (max-width:480px){.seg3{grid-template-columns:1fr 1fr}}
 .seg label{flex:1;cursor:pointer}
 .seg input{position:absolute;opacity:0;pointer-events:none}
 .seg span{display:block;text-align:center;padding:13px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg-alt);font-weight:700;font-size:15px}
@@ -622,6 +625,9 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
         <fieldset class="f full"><legend data-t="fl_format"></legend>
           <div class="seg"><label><input type="radio" name="fmt" value="group" checked><span data-t="d_group"></span></label><label><input type="radio" name="fmt" value="ind"><span data-t="d_ind"></span></label></div>
         </fieldset>
+        <fieldset class="f full"><legend data-t="fl_when"></legend>
+          <div class="seg seg3"><label><input type="radio" name="when" value="any" checked><span data-t="w_any"></span></label><label><input type="radio" name="when" value="morning"><span data-t="w_morning"></span></label><label><input type="radio" name="when" value="day"><span data-t="w_day"></span></label><label><input type="radio" name="when" value="evening"><span data-t="w_evening"></span></label></div>
+        </fieldset>
         <button class="btn" type="submit" data-t="send"></button>
       </form>
     </div>
@@ -730,7 +736,7 @@ faq:[
 ["Markaz qayerda joylashgan?","Toshkent shahri, Shayxontohur tumani, Ilg‘or MFY, Matlubot ko‘chasi, 72-uy. Tinchlik metrosi va avtobus bekatlariga juda yaqin."],
 ["Markazingiz rasmiy faoliyat yuritadimi?","Ha, faoliyatimiz Maktabgacha va maktab ta’limi vazirligi tomonidan berilgan № 681282 raqamli tasdiqnoma asosida olib boriladi."]],
 form_h:"Ariza qoldirish",form_p:"Formani to‘ldiring va arizangizni Telegram orqali yuboring. Savollar bo‘lsa, qo‘ng‘iroq qiling.",
-fl_name:"Ismingiz",fl_phone:"Telefon raqamingiz",fl_course:"Kurs",fl_age:"O‘quvchi yoshi",fl_format:"Dars formati",send:"Yuborish",
+fl_when:"Qo‘ng‘iroq uchun qulay vaqt",w_any:"Farqi yo‘q",w_morning:"Ertalab",w_day:"Kunduzi",w_evening:"Kechqurun",fl_name:"Ismingiz",fl_phone:"Telefon raqamingiz",fl_course:"Kurs",fl_age:"O‘quvchi yoshi",fl_format:"Dars formati",send:"Yuborish",
 e_name:"Ismingizni kiriting",e_phone:"Telefon raqamingizni kiriting",e_age:"O‘quvchi yoshini kiriting",
 m_h:"Arizangiz tayyor",m_1:"Quyidagi tugmani bosing — ariza matni nusxalanadi va Telegram ochiladi.",m_2:"Ochilgan chatda xabar maydoniga matnni joylashtiring (Paste) va yuboring.",m_btn:"Nusxalash va Telegramni ochish",m_ok:"Ariza matni nusxalandi",m_close:"Yopish",sending:"Yuborilmoqda…",d_h:"Arizangiz qabul qilindi",d_p:"Rahmat! Tez orada siz bilan bog‘lanamiz.",fail:"Avtomatik yuborib bo‘lmadi. Iltimos, arizani Telegram orqali yuboring:",
 ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot ko‘chasi, 72-uy (Tinchlik metrosi yaqinida)",map:"Xaritada ochish",
@@ -776,7 +782,7 @@ faq:[
 ["Где находится центр?","г. Ташкент, Шайхантахурский район, МСГ Илгор, ул. Матлубот, 72. Совсем рядом с метро «Тинчлик» и автобусными остановками."],
 ["Ваш центр работает официально?","Да, наша деятельность ведётся на основании подтверждения № 681282, выданного Министерством дошкольного и школьного образования."]],
 form_h:"Оставить заявку",form_p:"Заполните форму и отправьте заявку через Telegram. Если есть вопросы — позвоните нам.",
-fl_name:"Ваше имя",fl_phone:"Номер телефона",fl_course:"Курс",fl_age:"Возраст ученика",fl_format:"Формат занятий",send:"Отправить",
+fl_when:"Удобное время для звонка",w_any:"Любое",w_morning:"Утром",w_day:"Днём",w_evening:"Вечером",fl_name:"Ваше имя",fl_phone:"Номер телефона",fl_course:"Курс",fl_age:"Возраст ученика",fl_format:"Формат занятий",send:"Отправить",
 e_name:"Введите ваше имя",e_phone:"Введите номер телефона",e_age:"Введите возраст ученика",
 m_h:"Заявка готова",m_1:"Нажмите кнопку ниже — текст заявки скопируется и откроется Telegram.",m_2:"В открывшемся чате вставьте текст (Вставить) в поле сообщения и отправьте.",m_btn:"Скопировать и открыть Telegram",m_ok:"Текст заявки скопирован",m_close:"Закрыть",sending:"Отправка…",d_h:"Заявка принята",d_p:"Спасибо! Мы скоро свяжемся с вами.",fail:"Не удалось отправить автоматически. Пожалуйста, отправьте заявку через Telegram:",
 ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский район, МСГ Илгор, ул. Матлубот, 72 (рядом с метро «Тинчлик»)",map:"Открыть на карте",
@@ -822,7 +828,7 @@ faq:[
 ["Where is the center located?","72 Matlubot Street, Ilg‘or neighborhood, Shaykhantakhur district, Tashkent. Very close to Tinchlik metro station and bus stops."],
 ["Is your center officially registered?","Yes, we operate on the basis of confirmation No. 681282 issued by the Ministry of Preschool and School Education."]],
 form_h:"Apply now",form_p:"Fill in the form and send your application via Telegram. Have questions? Give us a call.",
-fl_name:"Your name",fl_phone:"Phone number",fl_course:"Course",fl_age:"Student’s age",fl_format:"Lesson format",send:"Send",
+fl_when:"Best time to call",w_any:"Any time",w_morning:"Morning",w_day:"Afternoon",w_evening:"Evening",fl_name:"Your name",fl_phone:"Phone number",fl_course:"Course",fl_age:"Student’s age",fl_format:"Lesson format",send:"Send",
 e_name:"Enter your name",e_phone:"Enter your phone number",e_age:"Enter the student’s age",
 m_h:"Your application is ready",m_1:"Tap the button below — the application text is copied and Telegram opens.",m_2:"In the chat that opens, paste the text into the message field and send it.",m_btn:"Copy and open Telegram",m_ok:"Application text copied",m_close:"Close",sending:"Sending…",d_h:"Application received",d_p:"Thank you! We will contact you shortly.",fail:"Automatic sending failed. Please send your application via Telegram:",
 ct_addr:"Address",addr:"72 Matlubot Street, Ilg‘or neighborhood, Shaykhantakhur district, Tashkent (near Tinchlik metro)",map:"Open in maps",
@@ -888,8 +894,8 @@ form.addEventListener("submit",e=>{
   const pOk=phone.replace(/\D/g,"").length>=12;
   setErr("fName",name?null:"e_name");setErr("fPhone",pOk?null:"e_phone");setErr("fAge",age?null:"e_age");
   if(!name||!pOk||!age){form.querySelector(".bad input").focus();return}
-  const c=document.getElementById("course").value,fmt=form.querySelector("input[name=fmt]:checked").value;
-  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+age+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nTil: "+lang.toUpperCase();
+  const c=document.getElementById("course").value,fmt=form.querySelector("input[name=fmt]:checked").value,when=form.querySelector("input[name=when]:checked").value;
+  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+age+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nQulay vaqt: "+UZ["w_"+when]+"\nTil: "+lang.toUpperCase();
   msg.textContent=text;ok.textContent="";failNote.hidden=true;
   if(document.getElementById("website").value){form.reset();done.showModal();return} // spam-bot
   const auto=TG.endpoint||(TG.botToken&&TG.chatId);

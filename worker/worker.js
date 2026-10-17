@@ -83,13 +83,14 @@ export default {
 
     const name = clean(data.name, 80);
     const phoneDigits = clean(data.phone, 30).replace(/\D/g, "");
-    const age = parseInt(clean(data.age, 3), 10);
+    const ageStr = clean(data.age, 3);
+    const age = ageStr ? parseInt(ageStr, 10) : null;
     const course = COURSES[clean(data.course, 4)];
     const format = FORMATS[clean(data.format, 8)];
     const when = WHEN[clean(data.when, 10)];
     const lang = clean(data.lang, 2).toLowerCase();
 
-    if (!name || !/^998\d{9}$/.test(phoneDigits) || !(age >= 4 && age <= 99) || !course || !format || !when) {
+    if (!name || !/^998\d{9}$/.test(phoneDigits) || (age !== null && !(age >= 4 && age <= 99)) || !course || !format || !when) {
       return reply({ ok: false, description: "Invalid form" }, 400, cors);
     }
 
@@ -100,7 +101,7 @@ export default {
       "Ism: " + name,
       "Telefon: " + phone,
       "Kurs: " + course,
-      "O‘quvchi yoshi: " + age,
+      "O‘quvchi yoshi: " + (age === null ? "—" : age),
       "Dars formati: " + format,
       "Qulay vaqt: " + when,
       "Til: " + (LANGS.has(lang) ? lang.toUpperCase() : "UZ")

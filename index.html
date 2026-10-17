@@ -141,16 +141,20 @@ nav.main a:hover{color:var(--brand-ink)}
 .about-text{background:var(--card);border-radius:28px;padding:40px}
 .about-text p{margin-top:18px;font-size:18px;color:var(--muted);max-width:62ch}
 .about-text p.eyebrow{margin-top:0;font-size:13px;color:var(--brand-ink);max-width:none}
-.video{display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;background:var(--brand-deep) url(assets/video-poster.jpg) center top/cover no-repeat;color:#fff;border-radius:28px;padding:36px;position:relative;overflow:hidden;min-height:340px;cursor:pointer}
-.video::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,.15) 0%,rgba(8,38,61,.35) 45%,rgba(8,38,61,.9) 100%)}
-.video .play{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;transition:transform .2s;position:relative;z-index:1}
-.video:hover .play{transform:scale(1.07)}
-.video .play svg{width:32px;height:32px;margin-left:4px}
-.video h3{font-size:26px;color:#fff;position:relative;z-index:1}
-.video p{margin-top:8px;opacity:.8;display:flex;align-items:center;gap:8px;font-weight:600;position:relative;z-index:1}
-.video p svg{width:18px;height:18px}
-.video .ring{position:absolute;right:-60px;bottom:-60px;width:260px;height:340px;border:2px solid rgba(255,255,255,.14);border-bottom:0;border-radius:999px 999px 0 0}
-@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}.video{min-height:240px;padding:28px}}
+.video{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;position:relative}
+.video .cover{all:unset;cursor:pointer;display:block;position:relative;aspect-ratio:16/10;background:#0B2C47;overflow:hidden}
+.video .cover img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .5s ease;display:block}
+.video .cover:hover img{transform:scale(1.04)}
+.video .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,0) 55%,rgba(8,38,61,.45))}
+.video .cover:focus-visible{outline:3px solid var(--brand-ink);outline-offset:-3px}
+.video .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;transition:transform .2s;z-index:1}
+.video .cover:hover .play{transform:translate(-50%,-50%) scale(1.07)}
+.video .play svg{width:30px;height:30px;margin-left:3px}
+.video .dur{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:700;border-radius:8px;padding:4px 8px;z-index:1}
+.vbody{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.video h3{font-size:21px;margin:0 0 4px}
+.vsub{color:var(--muted);font-size:15px;margin:0 0 14px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}}
 
 /* director */
 .dir{display:grid;grid-template-columns:380px 1fr;gap:48px;align-items:center;background:var(--bg-alt);border-radius:32px;padding:32px}
@@ -337,7 +341,7 @@ main{overflow-x:clip}
 @media (prefers-reduced-motion:reduce){.float{animation:none}}
 
 .stat,.adv,.course,.ct,.about-text,.video,.dir,.faq details,.lic dl,.docs button,.exp,.cred li{border:1px solid var(--line)}
-.video,.dir .ph{border:0}
+.dir .ph{border:0}
 .stat,.adv,.course,.ct{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 .stat:hover,.adv:hover,.course:hover,.ct:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.28);border-color:transparent}
 .adv .ic,.ct .ic,.course .ic{background:linear-gradient(135deg,#2FB0FF,#0A6FD6);color:#fff;box-shadow:0 10px 20px -10px rgba(13,153,255,.8)}
@@ -388,15 +392,20 @@ footer .socials a:hover{background:var(--brand);transform:translateY(-2px)}
 
 /* video + gallery */
 .video .play{box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
-.video:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.vlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1}
-.vchip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:8px 14px 8px 10px;font:600 14px var(--sans);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .15s}
-.vchip:hover{background:rgba(255,255,255,.26)}
-.vchip:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.vchip svg{width:14px;height:14px}
-.vchip em{font-style:normal;opacity:.75;font-weight:600}
-.video p a{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none}
-.video p a:hover{text-decoration:underline}
+.vlist{display:grid;gap:8px}
+.vitem{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:var(--bg-alt);border:1px solid var(--line);transition:border-color .15s,background .15s}
+.vitem:hover{border-color:var(--brand-ink)}
+.vitem.on{border-color:var(--brand);background:var(--soft)}
+.vitem:focus-visible{outline:3px solid var(--brand-ink);outline-offset:2px}
+.vitem .th{width:48px;height:48px;border-radius:10px;background-size:cover;background-position:center 20%;flex:none}
+.vitem>span:nth-child(2){flex:1;min-width:0}
+.vitem b{display:block;font-size:15px;font-weight:700;line-height:1.2}
+.vitem small{color:var(--muted);font-weight:600;font-size:13px}
+.vitem i{width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;flex:none}
+.vitem i svg{width:14px;height:14px;margin-left:2px}
+.vig{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:14px;font-size:14px;font-weight:700;color:var(--brand-ink);text-decoration:none}
+.vig svg{width:16px;height:16px}
+.vig:hover{text-decoration:underline}
 dialog.vd{border:0;padding:0;background:transparent;max-width:min(92vw,440px);max-height:92vh}
 dialog.vd::backdrop{background:rgba(5,15,22,.88)}
 dialog.vd video{display:block;width:100%;max-height:86vh;aspect-ratio:9/16;border-radius:18px;background:#000;object-fit:contain}
@@ -543,15 +552,21 @@ dialog.ap form.open .opt{display:contents}
       <p data-t="about_p"></p>
       <p data-t="about_p2"></p>
     </div>
-    <div class="video" id="videoCard" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg" role="button" tabindex="0" aria-label="Video">
-      <span class="ring"></span>
-      <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
-      <div><h3 data-t="video_h"></h3>
-      <div class="vlist">
-        <button type="button" class="vchip" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v1_t"></span><em>0:50</em></button>
-        <button type="button" class="vchip" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.jpg"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v2_t"></span><em>0:28</em></button>
+    <div class="video" id="videoCard">
+      <button type="button" class="cover" id="videoCover" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg" aria-label="Video">
+        <img src="assets/video-poster.jpg" alt="" width="800" height="800" loading="lazy">
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        <span class="dur" id="coverDur">0:50</span>
+      </button>
+      <div class="vbody">
+        <h3 data-t="video_h"></h3>
+        <p class="vsub" data-t="video_sub"></p>
+        <div class="vlist">
+          <button type="button" class="vitem on" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg" data-dur="0:50"><span class="th" style="background-image:url(assets/video-poster.jpg)"></span><span><b data-t="v1_t"></b><small>0:50</small></span><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i></button>
+          <button type="button" class="vitem" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.jpg" data-dur="0:28"><span class="th" style="background-image:url(assets/video-poster-2.jpg)"></span><span><b data-t="v2_t"></b><small>0:28</small></span><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></i></button>
+        </div>
+        <a class="vig" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></a>
       </div>
-      <p><a href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></a></p></div>
     </div>
   </div>
 </section>
@@ -773,7 +788,7 @@ f_subj:"Arab tili · Fonetika · Grammatika",f_who:"Bolalar va kattalar uchun",f
 s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil topgan sana",
 about_h:"Biz haqimizda",
 about_p:"SAID academy — 2025-yil aprel oyida Toshkentda tashkil topgan arab tili o‘quv markazi. Arab tilini fonetikadan boshlab, bosqichma-bosqich, tushunarli va amaliy tarzda o‘rgatamiz. Darslar bolalar uchun ham, kattalar uchun ham alohida dasturda olib boriladi.",about_p2:"Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz. Kelib, ustozlar va muhit bilan o‘zingiz tanishing.",
-video_h:"SAID academy haqida video",video_btn:"Instagramda ko‘rish",
+video_h:"SAID academy haqida video",video_sub:"Markaz, ustozlar va darslar bilan tanishing",video_btn:"Instagramda ko‘rish",
 dir_h:"Markaz rahbari",dir_role:"SAID academy direktori",dir_c1:"Oriental universiteti bitiruvchisi",dir_c2:"Arab tilidan CEFR B2",dir_c3:"4 yillik tajriba",
 dir_exp:"Ish tajribasi",dir_e1:"Habib Academy — arab tili o‘qituvchisi",dir_e2y:"2025 – hozirgacha",dir_e2:"SAID academy — direktor",
 courses_h:"Yo‘nalishlar",
@@ -819,7 +834,7 @@ f_subj:"Арабский язык · Фонетика · Грамматика",f
 s_students:"студентов",s_teachers:"преподавателей",s_date:"1 апреля 2025",s_founded:"дата основания",
 about_h:"О нас",
 about_p:"SAID academy — учебный центр арабского языка, основанный в апреле 2025 года в Ташкенте. Мы обучаем арабскому поэтапно, начиная с фонетики, понятно и практично. Для детей и для взрослых — отдельные программы.",about_p2:"Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный. Приходите и познакомьтесь с преподавателями и атмосферой сами.",
-video_h:"Видео о SAID academy",video_btn:"Смотреть в Instagram",
+video_h:"Видео о SAID academy",video_sub:"Познакомьтесь с центром, преподавателями и занятиями",video_btn:"Смотреть в Instagram",
 dir_h:"Руководитель центра",dir_role:"Директор SAID academy",dir_c1:"Выпускник университета Oriental",dir_c2:"CEFR B2 по арабскому языку",dir_c3:"4 года опыта",
 dir_exp:"Опыт работы",dir_e1:"Habib Academy — преподаватель арабского языка",dir_e2y:"2025 – настоящее время",dir_e2:"SAID academy — директор",
 courses_h:"Направления",
@@ -865,7 +880,7 @@ f_subj:"Arabic · Phonetics · Grammar",f_who:"For children and adults",f_metro:
 s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"founded",
 about_h:"About us",
 about_p:"SAID academy is an Arabic language center founded in Tashkent in April 2025. We teach Arabic step by step, starting with phonetics, in a clear and practical way. Children and adults follow separate programs.",about_p2:"We believe knowledge opens the door to new opportunities — that’s why your first lesson is free. Come and meet the teachers and the place for yourself.",
-video_h:"Video about SAID academy",video_btn:"Watch on Instagram",
+video_h:"Video about SAID academy",video_sub:"Meet the center, the teachers and the classes",video_btn:"Watch on Instagram",
 dir_h:"Head of the center",dir_role:"Director of SAID academy",dir_c1:"Graduate of Oriental University",dir_c2:"CEFR B2 in Arabic",dir_c3:"4 years of experience",
 dir_exp:"Work experience",dir_e1:"Habib Academy — Arabic teacher",dir_e2y:"2025 – present",dir_e2:"SAID academy — Director",
 courses_h:"Courses",
@@ -953,8 +968,9 @@ lb.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")lbShow(lbIdx-1);if(e.ke
 const vd=document.getElementById("vd"),vdv=vd.querySelector("video"),vcard=document.getElementById("videoCard");
 function playVideo(src,poster){vdv.poster=poster||"";vdv.src=src;vd.showModal();vdv.play().catch(()=>{})}
 function stopVideo(){vdv.pause();vdv.removeAttribute("src");vdv.load()}
-vcard.addEventListener("click",e=>{if(e.target.closest("a"))return;const c=e.target.closest(".vchip")||vcard;playVideo(c.dataset.video,c.dataset.poster)});
-vcard.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target===vcard){e.preventDefault();playVideo(vcard.dataset.video,vcard.dataset.poster)}});
+const vcover=document.getElementById("videoCover");
+vcover.addEventListener("click",()=>playVideo(vcover.dataset.video,vcover.dataset.poster));
+vcard.querySelectorAll(".vitem").forEach(b=>b.addEventListener("click",()=>{vcard.querySelectorAll(".vitem").forEach(x=>x.classList.toggle("on",x===b));vcover.dataset.video=b.dataset.video;vcover.dataset.poster=b.dataset.poster;vcover.querySelector("img").src=b.dataset.poster;document.getElementById("coverDur").textContent=b.dataset.dur;playVideo(b.dataset.video,b.dataset.poster)}));
 vd.querySelector(".x").addEventListener("click",()=>vd.close());
 vd.addEventListener("click",e=>{if(e.target===vd)vd.close()});
 vd.addEventListener("close",stopVideo);

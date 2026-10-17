@@ -916,7 +916,7 @@ form.addEventListener("submit",e=>{
   if(!auto){sent.showModal();return}
   const btn=form.querySelector("button[type=submit]"),label=btn.textContent;
   btn.disabled=true;btn.textContent=T[lang].sending;
-  sendTelegram({text,name,phone,course:UZ[c+"_h"],age,format:fmt,lang}).then(()=>{
+  sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,website:document.getElementById("website").value}).then(()=>{
     form.reset();done.showModal();
   }).catch(()=>{
     failNote.textContent=T[lang].fail;failNote.hidden=false;sent.showModal();

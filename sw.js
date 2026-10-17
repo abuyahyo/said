@@ -1,5 +1,5 @@
 /* SAID academy — offline fallback + asset cache */
-const VERSION = "v1";
+const VERSION = "v2";
 const CORE = ["offline.html", "assets/logo-dark.png", "assets/fonts/manrope-latin.woff2", "assets/fonts/manrope-latin-ext.woff2", "assets/fonts/manrope-cyrillic.woff2"];
 
 self.addEventListener("install", e => {
@@ -13,7 +13,8 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
   if (req.mode === "navigate") {
     // sahifa: avval tarmoq, bo'lmasa oxirgi nusxa, bo'lmasa offline sahifa
-    e.respondWith(fetch(req).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); return r; })
+    // cache:"no-cache" — brauzerning HTTP keshini chetlab, serverdan yangi nusxani tekshiradi
+    e.respondWith(fetch(req, { cache: "no-cache" }).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); return r; })
       .catch(() => caches.match(req).then(r => r || caches.match("offline.html"))));
     return;
   }

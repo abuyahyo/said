@@ -406,6 +406,19 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 
 .cta .ig{padding-left:20px;padding-right:22px}
 @media (max-width:860px){.cta{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cta .btn:first-child{grid-column:1/-1}.cta .btn{flex:none;padding-left:14px;padding-right:14px}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.step{background:var(--bg-alt);border:1px solid var(--line);border-radius:24px;padding:30px;position:relative;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.step:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.28);border-color:transparent}
+.step .n{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#2FB0FF,#0A6FD6);color:#fff;font-weight:800;font-size:22px;display:grid;place-items:center;box-shadow:0 10px 20px -10px rgba(13,153,255,.8)}
+.step:last-child .n{background:linear-gradient(135deg,#FFC257,#E8921A);box-shadow:0 10px 20px -10px rgba(232,146,26,.8)}
+.step h3{margin-top:22px}
+.step p{margin-top:8px;color:var(--muted)}
+.step small{display:inline-block;margin-top:14px;background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--brand-ink)}
+.step:last-child small{color:var(--accent-ink);background:var(--accent-soft)}
+.step .arrow{position:absolute;top:44px;right:-22px;width:24px;height:24px;color:var(--brand);z-index:1}
+@media (max-width:900px){.steps{grid-template-columns:1fr;gap:14px}.step{padding:24px}.step .arrow{top:auto;right:auto;left:38px;bottom:-21px;transform:rotate(90deg)}}
 </style>
 </head>
 <body>
@@ -577,6 +590,19 @@ dialog.vd .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
   </div>
 </section>
 
+<section id="steps" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow" data-t="ey_steps"></p>
+    <h2 data-t="steps_h"></h2>
+    <p class="sub" data-t="steps_sub"></p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3 data-t="st1_h"></h3><p data-t="st1_p"></p><small data-t="st1_t"></small><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><div class="n">2</div><h3 data-t="st2_h"></h3><p data-t="st2_p"></p><small data-t="st2_t"></small><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="step"><div class="n">3</div><h3 data-t="st3_h"></h3><p data-t="st3_p"></p><small data-t="f_free"></small></div>
+    </div>
+  </div>
+</section>
+
 <section id="apply" style="padding-top:0">
   <div class="wrap">
     <div class="apply">
@@ -663,7 +689,7 @@ const TG={
 };
 const T={
 uz:{
-ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
+ey_steps:"Qanday boshlanadi",steps_h:"Uch oddiy qadam",steps_sub:"Ariza qoldirishdan birinchi darsgacha — hammasi bir necha kun ichida.",st1_h:"Ariza qoldirasiz",st1_p:"Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.",st1_t:"1 daqiqa",st2_h:"Biz qo‘ng‘iroq qilamiz",st2_p:"Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.",st2_t:"Shu kuni",st3_h:"Bepul darsga kelasiz",st3_p:"Ustoz va darslar bilan tanishasiz. Yoqsa — guruhda davom etasiz.",ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish. Birinchi dars — bepul.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
 slogan:"Bilim yangi imkoniyatlar eshigini ochadi",slogan_hl:"imkoniyatlar",
@@ -709,7 +735,7 @@ ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot
 ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00 – 20:00"
 },
 ru:{
-ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
+ey_steps:"Как начать",steps_h:"Три простых шага",steps_sub:"От заявки до первого урока — всего несколько дней.",st1_h:"Оставляете заявку",st1_p:"Заполняете форму на сайте или звоните. Это займёт 1 минуту.",st1_t:"1 минута",st2_h:"Мы перезваниваем",st2_p:"В течение дня связываемся, подбираем удобное время и группу.",st2_t:"В тот же день",st3_h:"Приходите на бесплатный урок",st3_p:"Знакомитесь с преподавателем и занятиями. Понравится — продолжаете в группе.",ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню. Первый урок — бесплатно.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
 slogan:"Знания открывают дверь к новым возможностям",slogan_hl:"возможностям",
@@ -755,7 +781,7 @@ ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский р
 ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00 – 20:00"
 },
 en:{
-ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
+ey_steps:"How it starts",steps_h:"Three simple steps",steps_sub:"From your application to the first lesson in just a few days.",st1_h:"Apply",st1_p:"Fill in the form on the site or give us a call. It takes 1 minute.",st1_t:"1 minute",st2_h:"We call you back",st2_p:"We get in touch the same day to agree on a convenient time and group.",st2_t:"Same day",st3_h:"Come to a free lesson",st3_p:"Meet the teacher and see how classes go. If you like it, continue in a group.",ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level. The first lesson is free.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 apply:"Apply now",contact_tg:"Contact us on Telegram",
 slogan:"Knowledge opens the door to new opportunities",slogan_hl:"opportunities",
@@ -931,7 +957,7 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
 /* reveal on scroll */
 (function(){
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,.gal button,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
+  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,.gal button,.step,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -6% 0px",threshold:.06});
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();

@@ -1,5 +1,5 @@
 name = "said-form"
 main = "worker.js"
-compatibility_date = "2025-01-01"
+compatibility_date = "2025-06-01"
 # Cloudflare panelida kiritilgan BOT_TOKEN, CHAT_ID, ALLOWED_ORIGIN saqlanib qolsin
 keep_vars = true

@@ -52,6 +52,7 @@ html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 html{-webkit-text-size-adjust:100%}
 @media (pointer:coarse){input,select,textarea{font-size:16px!important}}
+html{-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -251,7 +252,7 @@ dialog.lb .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 @media (min-width:900px){.faq{max-width:none;grid-template-columns:1fr 1fr;align-items:start}}
 .faq details{background:var(--bg-alt);border-radius:18px;transition:background .2s}
 .faq details[open]{background:var(--soft)}
-.faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 24px;position:relative;font-weight:700;font-size:17px}
+.faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 24px;position:relative;font-weight:700;font-size:17px;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
 .faq summary::after{content:"";background-color:var(--card);background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);background-size:12px 2px,2px 12px;background-position:center,center;background-repeat:no-repeat;transition:transform .35s cubic-bezier(.2,.8,.2,1),background-size .3s ease,background-color .2s}

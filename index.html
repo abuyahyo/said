@@ -155,7 +155,7 @@ body.menu-open{overflow:hidden}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.stat{background:var(--bg-alt);border-radius:22px;padding:28px}
+.stat{background:var(--bg-alt);border-radius:22px;padding:28px;contain:layout paint}.stat b{font-variant-numeric:tabular-nums}
 .stat b{display:block;font-size:clamp(30px,4vw,46px);font-weight:800;color:var(--brand-ink);line-height:1;letter-spacing:-.03em;white-space:nowrap}
 @media (min-width:701px) and (max-width:1000px){.stat b{font-size:clamp(24px,3.3vw,40px)}}
 .stat span{display:block;margin-top:10px;color:var(--muted);font-weight:500}
@@ -565,7 +565,7 @@ dialog.ap form.open .opt{display:contents}
 <header>
   <div class="wrap bar">
     <a class="brand" href="#home" aria-label="SAID academy">
-      <img class="logo-b" src="assets/logo-dark.png" alt="" width="27" height="38"><img class="logo-w" src="assets/logo-light.png" alt="" width="27" height="38">
+      <img class="logo-b" src="assets/logo-dark-96.png" alt="" width="27" height="38"><img class="logo-w" src="assets/logo-light-96.png" alt="" width="27" height="38">
       <span>SAID academy</span>
     </a>
     <nav class="main" id="nav">
@@ -606,7 +606,7 @@ dialog.ap form.open .opt{display:contents}
         <a class="btn light ig" href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
       </div>
     </div>
-    <div class="visual"><button type="button" class="hplay" id="heroPlay" data-video="assets/video-1.mp4" data-poster="assets/video-poster.jpg" aria-label="Video"><img src="assets/video-poster.jpg" alt="" width="800" height="800" fetchpriority="high"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span><span class="hdur" aria-hidden="true">0:50</span><span class="hlabel" data-t="v1_t"></span></button><div class="float f1"><span class="fi metro"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.5 17V7.2h2.6L12 12.4l2.9-5.2h2.6V17h-2.3v-5.6L12.8 15.6h-1.6L8.8 11.4V17z" fill="#fff"/></svg></span><span><b data-t="f_metro"></b><small data-t="f_metro_s"></small></span></div><div class="float f2"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4 3.5-4S22 17.8 22 20"/></svg></span><span><b>400+ <span data-t="s_students"></span></b><small>10 <span data-t="s_teachers"></span></small></span></div></div>
+    <div class="visual"><button type="button" class="hplay" id="heroPlay" data-video="assets/video-1.mp4" data-poster="assets/video-poster.webp" aria-label="Video"><img src="assets/video-poster.webp" srcset="assets/video-poster-480.webp 480w, assets/video-poster.webp 800w" sizes="(max-width:860px) calc(100vw - 40px), 500px" alt="" width="800" height="800" fetchpriority="high"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span><span class="hdur" aria-hidden="true">0:50</span><span class="hlabel" data-t="v1_t"></span></button><div class="float f1"><span class="fi metro"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.5 17V7.2h2.6L12 12.4l2.9-5.2h2.6V17h-2.3v-5.6L12.8 15.6h-1.6L8.8 11.4V17z" fill="#fff"/></svg></span><span><b data-t="f_metro"></b><small data-t="f_metro_s"></small></span></div><div class="float f2"><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4 3.5-4S22 17.8 22 20"/></svg></span><span><b>400+ <span data-t="s_students"></span></b><small>10 <span data-t="s_teachers"></span></small></span></div></div>
   </div>
 </section>
 <div class="wrap">
@@ -654,8 +654,8 @@ dialog.ap form.open .opt{display:contents}
       <p data-t="about_p2"></p>
     </div>
     <div class="video" id="videoCard">
-      <button type="button" class="cover" id="videoCover" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.jpg" aria-label="Video">
-        <img src="assets/video-poster-2.jpg" alt="" width="640" height="400" loading="lazy">
+      <button type="button" class="cover" id="videoCover" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.webp" aria-label="Video">
+        <img src="assets/video-poster-2.webp" alt="" width="640" height="400" loading="lazy">
         <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
         <span class="dur" id="coverDur">0:28</span>
       </button>
@@ -672,7 +672,7 @@ dialog.ap form.open .opt{display:contents}
 <section id="director" style="padding-top:0">
   <div class="wrap">
     <div class="dir">
-      <div class="ph"><img src="assets/director.jpg" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy" width="560" height="560"></div>
+      <div class="ph"><img src="assets/director.webp" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy" width="560" height="560"></div>
       <div>
         <h2 data-t="dir_h"></h2>
         <h3>Ne’matullayev Saidkamol Mansur o‘g‘li</h3>
@@ -700,9 +700,9 @@ dialog.ap form.open .opt{display:contents}
     <h2 data-t="res_h"></h2>
     <p class="sub" data-t="res_sub"></p>
     <div class="certs">
-      <article class="cert"><button type="button" data-img="assets/cert-1.jpg" aria-label="Sertifikat"><img src="assets/cert-1-thumb.jpg" alt="Omina Xolmurodova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Omina Xolmurodova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2026</small></div></article>
-      <article class="cert"><button type="button" data-img="assets/cert-2.jpg" aria-label="Sertifikat"><img src="assets/cert-2-thumb.jpg" alt="Solixabonu Olimjonova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Solixabonu Olimjonova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2025</small></div></article>
-      <article class="cert"><button type="button" data-img="assets/cert-3.jpg" aria-label="Sertifikat"><img src="assets/cert-3-thumb.jpg" alt="Mavludaxon Muxammadjonova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Mavludaxon Muxammadjonova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2025</small></div></article>
+      <article class="cert"><button type="button" data-img="assets/cert-1.webp" aria-label="Sertifikat"><img src="assets/cert-1-thumb.webp" alt="Omina Xolmurodova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Omina Xolmurodova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2026</small></div></article>
+      <article class="cert"><button type="button" data-img="assets/cert-2.webp" aria-label="Sertifikat"><img src="assets/cert-2-thumb.webp" alt="Solixabonu Olimjonova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Solixabonu Olimjonova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2025</small></div></article>
+      <article class="cert"><button type="button" data-img="assets/cert-3.webp" aria-label="Sertifikat"><img src="assets/cert-3-thumb.webp" alt="Mavludaxon Muxammadjonova — arab tili, B2 sertifikati" loading="lazy" width="360" height="450"></button><div class="cb"><b>Mavludaxon Muxammadjonova</b><span class="lvl">B2</span><small><span data-t="res_arab"></span> · <span data-t="res_state"></span> · 2025</small></div></article>
     </div>
     <p class="res-note" data-t="res_note"></p>
   </div>
@@ -713,11 +713,11 @@ dialog.ap form.open .opt{display:contents}
     <h2 data-t="gal_h"></h2>
     <p class="sub" data-t="gal_sub"></p>
     <div class="gal">
-      <button type="button" data-img="assets/gallery-1.jpg"><img src="assets/gallery-1.jpg" alt="SAID academy — bolalar xonasi" loading="lazy" width="600" height="800"></button>
-      <button type="button" data-img="assets/gallery-2.jpg"><img src="assets/gallery-2.jpg" alt="SAID academy — darsxona" loading="lazy" width="600" height="800"></button>
-      <button type="button" data-img="assets/gallery-3.jpg"><img src="assets/gallery-3.jpg" alt="SAID academy — yo‘lak" loading="lazy" width="600" height="800"></button>
-      <button type="button" data-img="assets/gallery-4.jpg"><img src="assets/gallery-4.jpg" alt="SAID academy — qabulxona" loading="lazy" width="600" height="800"></button>
-      <button type="button" data-img="assets/gallery-5.jpg"><img src="assets/gallery-5.jpg" alt="SAID academy — ish stollari" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-1.webp"><img src="assets/gallery-1.webp" alt="SAID academy — bolalar xonasi" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-2.webp"><img src="assets/gallery-2.webp" alt="SAID academy — darsxona" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-3.webp"><img src="assets/gallery-3.webp" alt="SAID academy — yo‘lak" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-4.webp"><img src="assets/gallery-4.webp" alt="SAID academy — qabulxona" loading="lazy" width="600" height="800"></button>
+      <button type="button" data-img="assets/gallery-5.webp"><img src="assets/gallery-5.webp" alt="SAID academy — ish stollari" loading="lazy" width="600" height="800"></button>
     </div>
   </div>
 </section>
@@ -735,9 +735,9 @@ dialog.ap form.open .opt{display:contents}
       </dl>
     </div>
     <div class="docs">
-      <button type="button" data-img="assets/license-1.jpg"><img src="assets/license-1.jpg" alt="" loading="lazy" width="682" height="964"><small data-t="doc1"></small></button>
-      <button type="button" data-img="assets/license-2.jpg"><img src="assets/license-2.jpg" alt="" loading="lazy" width="496" height="702"><small data-t="doc2"></small></button>
-      <button type="button" data-img="assets/license-3.jpg"><img src="assets/license-3.jpg" alt="" loading="lazy" width="496" height="702"><small data-t="doc3"></small></button>
+      <button type="button" data-img="assets/license-1.webp"><img src="assets/license-1.webp" alt="" loading="lazy" width="682" height="964"><small data-t="doc1"></small></button>
+      <button type="button" data-img="assets/license-2.webp"><img src="assets/license-2.webp" alt="" loading="lazy" width="496" height="702"><small data-t="doc2"></small></button>
+      <button type="button" data-img="assets/license-3.webp"><img src="assets/license-3.webp" alt="" loading="lazy" width="496" height="702"><small data-t="doc3"></small></button>
     </div>
   </div>
 </section>
@@ -843,7 +843,7 @@ dialog.ap form.open .opt{display:contents}
 <footer>
   <div class="wrap">
     <div class="fgrid">
-      <div><div class="fb"><img src="assets/logo-light.png" alt="">SAID academy</div><p class="ftag" data-t="slogan"></p><div class="socials"><a href="https://t.me/saidacademy" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg></a><a href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="tel:+998958293330" aria-label="+998 95 829 33 30"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a></div></div>
+      <div><div class="fb"><img src="assets/logo-light-96.png" alt="" width="27" height="38">SAID academy</div><p class="ftag" data-t="slogan"></p><div class="socials"><a href="https://t.me/saidacademy" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2 11.4c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg></a><a href="https://www.instagram.com/said_academy_/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="tel:+998958293330" aria-label="+998 95 829 33 30"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a></div></div>
       <div><h4 data-t="ft_sections"></h4><a href="#courses" data-t="nav_courses"></a><a href="#advantages" data-t="nav_adv"></a><a href="#about" data-t="nav_about"></a><a href="#faq" data-t="nav_faq"></a></div>
       <div><h4 data-t="ft_contact"></h4><a href="tel:+998958293330">+998 95 829 33 30</a><a href="#apply" data-t="apply"></a></div>
     </div>
@@ -1054,7 +1054,7 @@ document.getElementById("faqList").addEventListener("click",e=>{const sm=e.targe
 // Statistika raqamlari ko‘ringanda sanab chiqadi
 (function(){if(RM||!("IntersectionObserver" in window))return;const els=[...document.querySelectorAll(".stat b")].filter(b=>/^\d+\+?$/.test(b.textContent.trim()));if(!els.length)return;
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const b=en.target,m=b.textContent.trim().match(/^(\d+)(\+?)$/),n=+m[1],suf=m[2],t0=performance.now(),dur=900;
-    (function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);b.textContent=Math.round(n*e)+suf;if(k<1)requestAnimationFrame(tick)})(t0)}),{threshold:.4});
+    let last=0;(function tick(now){if(now-last<32&&now-t0<dur){requestAnimationFrame(tick);return}last=now;const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);b.textContent=Math.round(n*e)+suf;if(k<1)requestAnimationFrame(tick)})(t0)}),{threshold:.4});
   els.forEach(b=>io.observe(b))})();
 // Telefonda "Orqaga" tugmasi ochiq oynani yopadi (saytdan chiqib ketmaydi)
 (function(){let pushed=false,ignorePop=false;
@@ -1259,9 +1259,10 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
 (function(){
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
   const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,.gal button,.cert,.step,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
-  let first=true;setTimeout(()=>{first=false},300);
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
-    if(first){el.style.transition="none";el.classList.add("in");requestAnimationFrame(()=>requestAnimationFrame(()=>{el.style.transition=""}))}else el.classList.add("in")}),{rootMargin:"0px 0px -6% 0px",threshold:.06});
+  let first=true;
+  const io=new IntersectionObserver(es=>{const batch=[];es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
+    if(first){el.style.transition="none";el.style.transitionDelay="0ms";el.classList.add("in");batch.push(el)}else el.classList.add("in")});
+    if(first){first=false;requestAnimationFrame(()=>requestAnimationFrame(()=>batch.forEach(el=>{el.style.transition="";el.style.transitionDelay=""})))}},{rootMargin:"0px 0px -6% 0px",threshold:.06});
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));

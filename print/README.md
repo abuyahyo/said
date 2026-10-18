@@ -1,6 +1,6 @@
 # Chop etish uchun materiallar
 
-Barcha QR-kodlar https://abuyahyo.github.io/said/ manziliga olib boradi.
+Barcha QR-kodlar https://abuyahyo.github.io/said/?ref=qr manziliga olib boradi. `?ref=qr` qismi tufayli QR orqali kelgan arizalarda "Manba: QR-kod (flayer)" qatori chiqadi.
 
 - `qr-plain.png` — oddiy QR, 2000×2000 px. Vizitka, flayer, e’lonlarga qo‘yish uchun.
 - `qr.svg` — vektor QR, istalgan o‘lchamga sifat yo‘qotmasdan kattalashadi. Dizaynerga berish uchun.

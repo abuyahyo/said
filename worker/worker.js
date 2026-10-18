@@ -22,6 +22,7 @@ const COURSES = {
 const FORMATS = { group: "Guruh darsi", ind: "Individual dars" };
 const WHEN = { any: "Farqi yo‘q", morning: "Ertalab", day: "Kunduzi", evening: "Kechqurun" };
 const LANGS = new Set(["uz", "ru", "en"]);
+const REFS = { qr: "QR-kod (flayer)", instagram: "Instagram", telegram: "Telegram", site: "Sayt" };
 
 const LIMIT = 5;
 const WINDOW_MS = 10 * 60 * 1000;
@@ -89,6 +90,8 @@ export default {
     const format = FORMATS[clean(data.format, 8)];
     const when = WHEN[clean(data.when, 10)];
     const lang = clean(data.lang, 2).toLowerCase();
+    const refRaw = clean(data.ref, 24).toLowerCase().replace(/[^a-z0-9_-]/g, "");
+    const ref = refRaw ? (REFS[refRaw] || refRaw) : "";
 
     if (!name || !/^998\d{9}$/.test(phoneDigits) || (age !== null && !(age >= 4 && age <= 99)) || !course || !format || !when) {
       return reply({ ok: false, description: "Invalid form" }, 400, cors);
@@ -105,7 +108,10 @@ export default {
       "Dars formati: " + format,
       "Qulay vaqt: " + when,
       "Til: " + (LANGS.has(lang) ? lang.toUpperCase() : "UZ")
-    ].join("\n");
+    ].concat(ref ? ["Manba: " + ref] : []).join("\n");
+
+    // Xabar ostidagi tugma: arizachi bilan Telegramda yozishish (raqam Telegramda ro‘yxatdan o‘tgan bo‘lsa ochiladi)
+    const keyboard = { inline_keyboard: [[{ text: "Telegramda yozish", url: "https://t.me/+" + phoneDigits }]] };
 
     const url = "https://api.telegram.org/bot" + env.BOT_TOKEN + "/sendMessage";
     let j;
@@ -113,7 +119,7 @@ export default {
       const r = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: env.CHAT_ID, text: text, disable_web_page_preview: true })
+        body: JSON.stringify({ chat_id: env.CHAT_ID, text: text, disable_web_page_preview: true, reply_markup: keyboard })
       });
       j = await r.json();
     } catch (e) {

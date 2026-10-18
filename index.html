@@ -1159,7 +1159,7 @@ document.addEventListener("click",e=>{
 document.addEventListener("click",e=>{
   if(e.defaultPrevented)return;const a=e.target.closest('a[href^="#"]');if(!a||a.getAttribute("href").length<2)return;
   const t=document.querySelector(a.getAttribute("href"));if(!t)return;
-  e.preventDefault();t.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});try{history.replaceState(history.state,"",a.getAttribute("href"))}catch(x){}
+  e.preventDefault();t.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});
 });
 
 /* phone mask: +998 XX XXX XX XX */
@@ -1209,22 +1209,25 @@ if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWor
    yuklanib balandlik o‘zgarsa ham o‘sha blok joyida qoladi. */
 (function(){const KEY="said_scroll";let t=0,moved=false;
   const anchors=()=>document.querySelectorAll("main section[id],.stat,.course,.adv,.about-text,.video,.dir,.gal button,.lic>div,.faq details,.step,.apply,.ct,footer");
-  const save=()=>{try{const y=scrollY;if(y<2){sessionStorage.setItem(KEY,"0");return}let best=-1,bt=0;anchors().forEach((el,i)=>{const top=el.getBoundingClientRect().top+y;if(top<=y+1&&top>=bt){bt=top;best=i}});
+  const absTop=el=>{let t=0;while(el){t+=el.offsetTop;el=el.offsetParent}return t};/* transform (reveal) hisobga olinmaydi */
+  const save=()=>{try{const y=scrollY;if(y<2){sessionStorage.setItem(KEY,"0");return}let best=-1,bt=0;anchors().forEach((el,i)=>{const top=absTop(el);if(top<=y+1&&top>=bt){bt=top;best=i}});
     sessionStorage.setItem(KEY,JSON.stringify({i:best,o:Math.round(y-bt),y:Math.round(y)}))}catch(e){}};
   const restore=()=>{try{const v=sessionStorage.getItem(KEY);if(!v||v==="0")return;const st=JSON.parse(v);if(typeof st==="number"){scrollTo(0,st);return}if(!st||st.y<2)return;
-    const el=st.i>=0?anchors()[st.i]:null;const y=el?el.getBoundingClientRect().top+scrollY+st.o:st.y;scrollTo(0,Math.max(0,Math.round(y)))}catch(e){}};
+    const el=st.i>=0?anchors()[st.i]:null;const y=el?absTop(el)+st.o:st.y;scrollTo(0,Math.max(0,Math.round(y)))}catch(e){}};
   ["touchstart","wheel","keydown","pointerdown"].forEach(ev=>addEventListener(ev,()=>{moved=true},{passive:true,once:true}));
-  addEventListener("scroll",()=>{if(!t)t=setTimeout(()=>{t=0;save()},120)},{passive:true});addEventListener("pagehide",save);
-  let type="navigate";try{const nav=performance.getEntriesByType("navigation")[0];if(nav)type=nav.type}catch(e){}
-  const isBack=type==="reload"||type==="back_forward";
+  addEventListener("scroll",()=>{if(!t)t=setTimeout(()=>{t=0;save()},120)},{passive:true});addEventListener("pagehide",save);addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")save()});
+  let type="navigate";try{const nav=performance.getEntriesByType("navigation")[0];if(nav&&nav.type)type=nav.type}catch(e){}
+  let legacy=0;try{legacy=performance.navigation?performance.navigation.type:0}catch(e){}
+  const isBack=type==="reload"||type==="back_forward"||legacy===1||legacy===2;
   const show=()=>document.documentElement.classList.remove("boot");
-  const first=()=>{if(isBack)restore();else if(location.hash&&location.hash.length>1){try{const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}catch(e){}}show()};
+  if(isBack&&location.hash){try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}}
+  const first=()=>{if(location.hash&&location.hash.length>1&&!isBack){try{const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}catch(e){}}else restore();show()};
   // shriftlar (Manrope, kerakli subsetlar) haqiqatan yuklanishini kutamiz, ko‘pi bilan 500 ms
   let done=false;const go=()=>{if(!done){done=true;first()}};
   try{const sample="Bilim imkoniyatlar o‘quv "+(lang==="ru"?"Знания":"")+" 0123";Promise.all([document.fonts.load("400 1em Manrope",sample),document.fonts.load("700 1em Manrope",sample),document.fonts.load("800 1em Manrope",sample)]).then(go,go)}catch(e){go()}
   setTimeout(go,500);
   // rasmlar va qolgan shriftlar yuklangach, foydalanuvchi hali surmagan bo‘lsa, joyni yana bir bor to‘g‘rilaymiz
-  if(isBack)addEventListener("load",()=>{const fix=()=>{if(!moved)restore()};fix();setTimeout(fix,150);if(document.fonts)document.fonts.ready.then(fix)});
+  if(isBack||!location.hash)addEventListener("load",()=>{const fix=()=>{if(!moved)restore()};fix();setTimeout(fix,150);if(document.fonts)document.fonts.ready.then(fix)});
   window.__saidRestore=restore;
 })();
 </script>

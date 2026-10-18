@@ -1,6 +1,6 @@
 /* SAID academy — offline fallback + asset cache */
-const VERSION = "v2";
-const CORE = ["offline.html", "assets/logo-dark.png", "assets/fonts/manrope-latin.woff2", "assets/fonts/manrope-latin-ext.woff2", "assets/fonts/manrope-cyrillic.woff2"];
+const VERSION = "v3";
+const CORE = ["offline.html", "assets/logo-dark-96.png", "assets/fonts/manrope-latin.woff2", "assets/fonts/manrope-latin-ext.woff2", "assets/fonts/manrope-cyrillic.woff2"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

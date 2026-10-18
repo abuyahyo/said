@@ -77,9 +77,16 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
 
 Markazdan material kerak:
 
-- [ ] **Kurslar matni** — har bir kurs uchun 2–3 jumla (nima o‘rgatiladi, necha oy, haftada necha marta). Narxlar saytda ko‘rsatilmaydi
+- [ ] **Yandex Metrika** — hisoblagich raqami
 - [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
+- [ ] **O‘qituvchilar** — ism, rasm, qisqa ma’lumot
 - [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
-- [ ] **Bot tokenini yangilash** — BotFather'da `/revoke`, yangi tokenni Cloudflare'da `BOT_TOKEN` ga yozish
+- [ ] **Yangi sertifikatlar** — talabalar natijasi bo‘limiga qo‘shish uchun rasm
 
-Bajarilgan: galereya va videolar, iliq rang, sarlavha urg‘usi, metro ikonkasi, "Yuqoriga" tugmasi, Instagram tugmasi, "Qanday boshlanadi" bo‘limi.
+Materialsiz qilsa bo‘ladi:
+
+- [ ] Mobil menyuga barcha bo‘limlar
+- [ ] Telegram botga `/start` javobi
+- [ ] Sayt xatolarini Telegramga yuborish
+
+Qilinmaydi (egasining qarori): dars jadvali, email, bot tokenini yangilash, Google Sheets, narxlar, tilni avtomatik tanlash, haftalik hisobot, ruscha promo video, Instagram post rasmlari, Google Maps, header'da telefon, "Ulashish" tugmasi, alifbo bo‘limi.

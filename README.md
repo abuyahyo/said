@@ -66,6 +66,12 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
    - `ALLOWED_ORIGIN` — `https://abuyahyo.github.io`
 5. Worker manzilini (`https://....workers.dev`) `index.html` dagi `endpoint` ga yozing.
 
+## E’lon qatori va havolalar
+
+- **E’lon** — `news.json` faylini GitHub'da tahrirlang: `uz`, `ru`, `en` matnlari, `link` (masalan `#apply` yoki to‘liq URL), `until` (`2026-12-31` ko‘rinishida, shu kundan keyin e’lon o‘zi yo‘qoladi). Matn bo‘sh bo‘lsa, qator ko‘rinmaydi. Saqlagandan 1–2 daqiqa o‘tib saytda chiqadi.
+- **Kurs havolasi** — `https://abuyahyo.github.io/said/?kurs=bolalar` (yoki `kattalar`, `grammatika`) ochilganda ariza oynasi shu kurs tanlangan holda ochiladi. Instagram bio va postlar uchun.
+- **Kontakt fayli** — `said-academy.vcf`, "Kontaktni saqlash" tugmasi shu faylni yuklaydi.
+
 ## Keyingi rejalar
 
 Markazdan material kerak:

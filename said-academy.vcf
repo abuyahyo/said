@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;SAID academy;;;
+FN:SAID academy
+ORG:SAID academy
+TITLE:Arab tili o‘quv markazi
+TEL;TYPE=CELL,VOICE:+998958293330
+ADR;TYPE=WORK:;;Matlubot ko‘chasi 72-uy, Ilg‘or MFY, Shayxontohur tumani;Toshkent;;;Uzbekistan
+URL:https://abuyahyo.github.io/said/
+X-SOCIALPROFILE;TYPE=telegram:https://t.me/saidacademy
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/said_academy_/
+NOTE:Har kuni 07:00–20:00. Tinchlik metrosi yaqinida. Telegram: @saidacademy
+END:VCARD

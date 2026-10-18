@@ -83,7 +83,7 @@ nav.main a.mo{display:none}
 nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 @media (hover:hover){nav.main a:hover{color:var(--brand-ink)}}
 .lang{position:relative}
-.lang>button{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font:700 14px var(--sans);padding:9px 12px;border-radius:12px;cursor:pointer}
+.lang>button{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font:700 14px var(--sans);padding:0 12px;height:44px;border-radius:12px;cursor:pointer}
 .lang>button svg{width:14px;height:14px;transition:transform .2s}
 .lang.open>button svg{transform:rotate(180deg)}
 .lang ul{display:none;position:absolute;right:0;top:calc(100% + 6px);list-style:none;margin:0;padding:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(10,30,45,.12);min-width:130px}
@@ -100,12 +100,12 @@ nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 .menu-t{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
 .menu-t .hb{position:relative;width:20px;height:16px;display:block}
 .menu-t .hb i{position:absolute;left:0;width:20px;height:2.2px;border-radius:2px;background:currentColor;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s,width .25s}
-.menu-t .hb i:nth-child(1){top:0}.menu-t .hb i:nth-child(2){top:7px;width:14px}.menu-t .hb i:nth-child(3){top:14px}
+.menu-t .hb i:nth-child(1){top:0}.menu-t .hb i:nth-child(2){top:7px}.menu-t .hb i:nth-child(3){top:14px}
 .menu-t[aria-expanded="true"]{background:var(--brand);border-color:transparent;color:#fff}
 .menu-t[aria-expanded="true"] .hb i:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .menu-t[aria-expanded="true"] .hb i:nth-child(2){opacity:0;transform:translateX(-6px)}
 .menu-t[aria-expanded="true"] .hb i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media (hover:hover){.menu-t:hover .hb i:nth-child(2){width:20px}}
+@media (hover:hover){.menu-t:hover .hb i:nth-child(2){width:14px}}
 .scrim{position:fixed;inset:0;background:rgba(8,38,61,.35);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);z-index:40;opacity:0;transition:opacity .25s}.scrim.on{opacity:1}
 body.menu-open{overflow:hidden}
 @media (max-width:1000px){
@@ -120,7 +120,7 @@ body.menu-open{overflow:hidden}
   .bar .btn{display:none}
 }
 @media (max-width:400px){.brand span{font-size:18px}.brand img{height:32px}}
-@media (max-width:360px){.bar{gap:8px}.brand span{font-size:17px}.brand{gap:8px}.lang>button{padding:8px 9px;font-size:13px}.menu-t{width:40px;height:40px}}
+@media (max-width:360px){.bar{gap:8px}.brand span{font-size:17px}.brand{gap:8px}.lang>button{padding:0 9px;height:40px;font-size:13px}.menu-t{width:40px;height:40px}}
 @media (max-width:340px){.brand span{display:none}.brand img{height:36px}}
 
 /* hero */

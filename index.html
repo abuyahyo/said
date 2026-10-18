@@ -79,6 +79,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:va
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-b{display:none}:root:not([data-theme="light"]) .logo-w{display:block}}
 :root[data-theme="dark"] .logo-b{display:none}:root[data-theme="dark"] .logo-w{display:block}
 nav.main{display:flex;gap:26px}
+nav.main a.mo{display:none}
 nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 @media (hover:hover){nav.main a:hover{color:var(--brand-ink)}}
 .lang{position:relative}
@@ -100,7 +101,7 @@ nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 @media (max-width:1000px){
   nav.main{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 20px 16px}
   nav.main.open{display:flex}
-  nav.main a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}
+  nav.main a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}nav.main a.mo{display:block}
   .menu-t{display:grid;place-items:center}
   .bar{gap:10px}
   .bar .btn{display:none}
@@ -557,7 +558,11 @@ dialog.ap form.open .opt{display:contents}
       <a href="#courses" data-t="nav_courses"></a>
       <a href="#advantages" data-t="nav_adv"></a>
       <a href="#about" data-t="nav_about"></a>
+      <a href="#results" class="mo" data-t="ey_res"></a>
+      <a href="#gallery" class="mo" data-t="ey_gal"></a>
+      <a href="#license" class="mo" data-t="lic_h"></a>
       <a href="#faq" data-t="nav_faq"></a>
+      <a href="#steps" class="mo" data-t="ey_steps"></a>
       <a href="#contacts" data-t="nav_contacts"></a>
     </nav>
     <div class="lang" id="lang">
@@ -1239,6 +1244,13 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+/* JavaScript xatolari adminga Telegram orqali boradi (sessiyada ko‘pi bilan 3 ta, faqat jonli saytdan) */
+(function(){if(!TG.endpoint||location.hostname!=="abuyahyo.github.io")return;let n=0;const seen=new Set();
+  const send=(msg,src,line)=>{msg=String(msg||"").slice(0,300);if(!msg||seen.has(msg)||n>=3)return;seen.add(msg);n++;
+    try{fetch(TG.endpoint.replace(/\/$/,"")+"/err",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({msg,src:String(src||"").replace(location.origin,"").slice(0,200),line:line||"",page:location.pathname+location.search,ua:navigator.userAgent.slice(0,160)}),keepalive:true}).catch(()=>{})}catch(e){}};
+  addEventListener("error",e=>{if(e.message)send(e.message,e.filename,e.lineno)});
+  addEventListener("unhandledrejection",e=>{const r=e.reason;send("Promise: "+(r&&r.message||r),r&&r.stack&&r.stack.split("\n")[1]||"","")});
+})();
 /* Sahifa to‘liq tayyor bo‘lgach ko‘rsatiladi va yangilanganda aynan eski joyga qaytariladi (sakrashsiz).
    Joy raqam bilan emas, "ekran tepasidagi blok + undan siljish" ko‘rinishida saqlanadi — shrift yoki rasm
    yuklanib balandlik o‘zgarsa ham o‘sha blok joyida qoladi. */

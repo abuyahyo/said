@@ -42,3 +42,13 @@ jobs:
           accountId: ${{ steps.check.outputs.account }}
           workingDirectory: worker
           command: deploy
+      - name: Register Telegram webhook
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          for i in 1 2 3 4 5; do
+            out="$(curl -s --max-time 20 https://said-form.saidacademy2025.workers.dev/tg-setup || true)"
+            echo "$out"
+            case "$out" in *'"ok":true'*) exit 0;; esac
+            sleep 10
+          done
+          echo "::warning::Webhook ro'yxatdan o'tmadi (BOT_TOKEN Cloudflare'da kiritilganini tekshiring)."

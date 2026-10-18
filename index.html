@@ -962,6 +962,10 @@ langBtn.addEventListener("click",e=>{e.stopPropagation();const o=langEl.classLis
 document.querySelectorAll(".lang li button").forEach(b=>b.addEventListener("click",()=>{apply(b.dataset.lang);langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)}));
 document.addEventListener("click",()=>{langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)});
 var NEWS=null;
+// Manba: ?ref=qr | instagram | telegram ... (yoki utm_source) — arizaga qo‘shiladi
+(function(){try{const q=new URLSearchParams(location.search);const r=(q.get("ref")||q.get("utm_source")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,24);
+  if(r){localStorage.setItem("said_ref",r);if(history.replaceState){q.delete("ref");q.delete("utm_source");q.delete("utm_medium");q.delete("utm_campaign");const qs=q.toString();history.replaceState(null,"",location.pathname+(qs?"?"+qs:"")+location.hash)}}}catch(e){}})();
+function getRef(){try{return localStorage.getItem("said_ref")||""}catch(e){return ""}}
 apply(lang);
 // Hozir ochiq / yopiq — Toshkent vaqti bo‘yicha (07:00–20:00)
 function tashkentHour(){try{const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Tashkent",hour:"numeric",hourCycle:"h23"}).formatToParts(new Date());return +p.find(x=>x.type==="hour").value}catch(e){return new Date(Date.now()+(300+new Date().getTimezoneOffset())*60000).getHours()}}
@@ -1022,14 +1026,14 @@ form.addEventListener("submit",e=>{
   setErr("fName",name?null:"e_name");setErr("fPhone",pOk?null:"e_phone");setErr("fAge",aOk?null:"e_age_r");
   if(!name||!pOk||!aOk){if(!aOk)openOpt();form.querySelector(".bad input").focus();return}
   const c=document.getElementById("course").value,fmt=form.querySelector("input[name=fmt]:checked").value,when=form.querySelector("input[name=when]:checked").value;
-  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+(age||"—")+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nQulay vaqt: "+UZ["w_"+when]+"\nTil: "+lang.toUpperCase();
+  const text="Yangi ariza — SAID academy sayti\n\nIsm: "+name+"\nTelefon: "+phone+"\nKurs: "+UZ[c+"_h"]+"\nO‘quvchi yoshi: "+(age||"—")+"\nDars formati: "+(fmt==="group"?UZ.d_group:UZ.d_ind)+"\nQulay vaqt: "+UZ["w_"+when]+"\nTil: "+lang.toUpperCase()+(getRef()?"\nManba: "+getRef():"");
   msg.textContent=text;ok.textContent="";failNote.hidden=true;
   if(document.getElementById("website").value){form.reset();clearDraft();closeApply();done.showModal();return} // spam-bot
   const auto=TG.endpoint||(TG.botToken&&TG.chatId);
   if(!auto){sent.showModal();return}
   const btn=form.querySelector("button[type=submit]"),label=btn.textContent;
   btn.disabled=true;btn.textContent=T[lang].sending;
-  sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,website:document.getElementById("website").value}).then(()=>{
+  sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,ref:getRef(),website:document.getElementById("website").value}).then(()=>{
     form.reset();clearDraft();closeApply();done.showModal();
   }).catch(()=>{
     failNote.textContent=T[lang].fail;failNote.hidden=false;sent.showModal();

@@ -70,6 +70,7 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
 
 - **E’lon** — `news.json` faylini GitHub'da tahrirlang: `uz`, `ru`, `en` matnlari, `link` (masalan `#apply` yoki to‘liq URL), `until` (`2026-12-31` ko‘rinishida, shu kundan keyin e’lon o‘zi yo‘qoladi). Matn bo‘sh bo‘lsa, qator ko‘rinmaydi. Saqlagandan 1–2 daqiqa o‘tib saytda chiqadi.
 - **Kurs havolasi** — `https://abuyahyo.github.io/said/?kurs=bolalar` (yoki `kattalar`, `grammatika`) ochilganda ariza oynasi shu kurs tanlangan holda ochiladi. Instagram bio va postlar uchun.
+- **Manba kuzatuvi** — havola oxiriga `?ref=instagram`, `?ref=telegram` yoki `?ref=qr` qo‘shing (masalan Instagram bio uchun `https://abuyahyo.github.io/said/?ref=instagram`). Shu havoladan kelgan odamning arizasida "Manba: Instagram" qatori chiqadi. Kerak bo‘lsa boshqa so‘z ham yozsa bo‘ladi (`?ref=reklama1`), u xabarda xuddi shunday ko‘rinadi.
 - **Kontakt fayli** — `said-academy.vcf`, "Kontaktni saqlash" tugmasi shu faylni yuklaydi.
 
 ## Keyingi rejalar

@@ -976,6 +976,14 @@ langBtn.addEventListener("click",e=>{e.stopPropagation();const o=langEl.classLis
 document.querySelectorAll(".lang li button").forEach(b=>b.addEventListener("click",()=>{apply(b.dataset.lang);langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)}));
 document.addEventListener("click",()=>{langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)});
 var NEWS=null;
+// Telefonda "Orqaga" tugmasi ochiq oynani yopadi (saytdan chiqib ketmaydi)
+(function(){let pushed=false,ignorePop=false;
+  try{if(history.state&&history.state.dlg)history.replaceState(null,"")}catch(e){}
+  const sm=HTMLDialogElement.prototype.showModal;
+  HTMLDialogElement.prototype.showModal=function(){sm.call(this);if(!pushed){try{history.pushState({dlg:1},"");pushed=true}catch(e){}}};
+  document.querySelectorAll("dialog").forEach(d=>d.addEventListener("close",()=>{if(pushed&&!document.querySelector("dialog[open]")){pushed=false;ignorePop=true;history.back()}}));
+  addEventListener("popstate",()=>{if(ignorePop){ignorePop=false;return}pushed=false;document.querySelectorAll("dialog[open]").forEach(d=>d.close())});
+})();
 // "Qaysi kurs menga mos?" — 3 savollik test
 const quiz=document.getElementById("quiz");var qzStep=0,qzA={};
 function qzResult(){if(qzA.who==="kid")return{c:"c1"};if(qzA.read==="good"&&qzA.goal==="gram")return{c:"c3"};return{c:"c2",note:qzA.goal==="gram"}}

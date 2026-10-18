@@ -119,15 +119,15 @@ nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 .chips .hl svg{color:#fff}
 .chips a{text-decoration:none}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.visual{position:relative;background:var(--brand);border-radius:32px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden}
-.hplay{all:unset;cursor:pointer;position:absolute;inset:0;display:block;z-index:0}
-.hplay img.poster,.visual .hplay>img{position:absolute;inset:0;width:100%;height:100%;margin:0;object-fit:cover;object-position:center 30%;transition:transform .5s ease}
-.hplay::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,.08) 45%,rgba(8,38,61,.6))}
+.visual{position:relative;background:var(--brand);border-radius:32px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0)}
+.hplay{all:unset;cursor:pointer;position:absolute;inset:0;display:block;z-index:0;border-radius:inherit;overflow:hidden}
+.visual .hplay>img{position:absolute;inset:0;width:100%;height:100%;margin:0;object-fit:cover;object-position:center 30%;border-radius:inherit;transition:transform .5s ease}
+.hplay::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(8,38,61,.08) 45%,rgba(8,38,61,.6))}
 .hplay .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;z-index:2;box-shadow:0 18px 40px -12px rgba(0,0,0,.5);transition:transform .2s}
 .hplay .play svg{width:34px;height:34px;margin-left:4px}
 .hplay .hdur{position:absolute;right:16px;top:16px;z-index:2;background:rgba(8,38,61,.7);color:#fff;font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px}
 .hplay .hlabel{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff;font-weight:700;font-size:16px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-.hplay:focus-visible{outline:3px solid #fff;outline-offset:-6px;border-radius:32px}
+.hplay:focus-visible{outline:3px solid #fff;outline-offset:-6px}
 @media (hover:hover){.hplay:hover .play{transform:translate(-50%,-50%) scale(1.07)}.hplay:hover>img{transform:scale(1.03)}}
 .visual .float{z-index:3}
 @media (max-width:860px){.hplay .play{width:66px;height:66px}.hplay .play svg{width:28px;height:28px}.hplay .hlabel{left:16px;bottom:14px;font-size:14px}.hplay .hdur{right:12px;top:12px;font-size:12px}}

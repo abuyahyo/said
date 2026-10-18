@@ -348,6 +348,18 @@ main{overflow-x:clip}
 @media (max-width:860px){.f1{left:4%;top:8%}.f2{right:3%;bottom:7%}.visual img{width:20%;margin-top:4%}.float{padding:8px 12px 8px 8px;border-radius:13px;gap:8px}.float b{font-size:13px}.float small{font-size:11px}.float .fi{width:30px;height:30px}.float .fi svg{width:15px;height:15px}}
 @media (max-width:380px){.float small{display:none}.visual{aspect-ratio:4/3}.visual img{width:30%;margin-top:0}.f1{top:6%}.f2{bottom:6%}}
 @media (prefers-reduced-motion:reduce){.float{animation:none}}
+@keyframes dlgIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes dlgOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px) scale(.985)}}
+@keyframes bdIn{from{opacity:0}to{opacity:1}}
+@keyframes bdOut{from{opacity:1}to{opacity:0}}
+@keyframes sheetIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes sheetOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(30px)}}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+dialog[open]{animation:dlgIn .28s cubic-bezier(.2,.8,.2,1)}dialog[open]::backdrop{animation:bdIn .25s ease}
+dialog.closing{animation:dlgOut .17s ease-in forwards}dialog.closing::backdrop{animation:bdOut .17s ease-in forwards}
+@media (max-width:700px){dialog.ap[open]{animation-name:sheetIn;animation-duration:.32s}dialog.ap.closing{animation-name:sheetOut}}
+@media (max-width:900px){nav.main.open{animation:menuIn .22s cubic-bezier(.2,.8,.2,1)}}
+@media (prefers-reduced-motion:reduce){dialog[open],dialog.ap[open],dialog[open]::backdrop,dialog.closing,dialog.ap.closing,dialog.closing::backdrop,nav.main.open{animation:none!important}}
 
 .stat,.adv,.course,.ct,.about-text,.video,.dir,.faq details,.lic dl,.docs button,.exp,.cred li{border:1px solid var(--line)}
 .dir .ph{border:0}
@@ -976,6 +988,23 @@ langBtn.addEventListener("click",e=>{e.stopPropagation();const o=langEl.classLis
 document.querySelectorAll(".lang li button").forEach(b=>b.addEventListener("click",()=>{apply(b.dataset.lang);langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)}));
 document.addEventListener("click",()=>{langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)});
 var NEWS=null;
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+// Oynalar yumshoq yopiladi (Escape ham shu yo‘ldan o‘tadi)
+(function(){const cl=HTMLDialogElement.prototype.close;
+  HTMLDialogElement.prototype.close=function(rv){if(RM||!this.open||this.classList.contains("closing"))return cl.call(this,rv);
+    const d=this;d.classList.add("closing");setTimeout(()=>{d.classList.remove("closing");if(d.open)cl.call(d,rv)},170)};
+  document.querySelectorAll("dialog").forEach(d=>d.addEventListener("cancel",e=>{e.preventDefault();d.close()}));
+})();
+// Savol-javob: javob yumshoq ochilib-yopiladi
+document.getElementById("faqList").addEventListener("click",e=>{const sm=e.target.closest("summary");if(!sm||RM||!("animate" in Element.prototype))return;
+  e.preventDefault();const d=sm.parentElement,p=d.querySelector("p");if(!p||p.getAnimations().length)return;
+  if(d.open){const h=p.offsetHeight;p.style.overflow="hidden";const a=p.animate([{height:h+"px",opacity:1},{height:"0px",opacity:0}],{duration:200,easing:"ease"});a.onfinish=()=>{d.open=false;p.style.overflow=""}}
+  else{d.open=true;const h=p.offsetHeight;p.style.overflow="hidden";const a=p.animate([{height:"0px",opacity:0},{height:h+"px",opacity:1}],{duration:260,easing:"cubic-bezier(.2,.8,.2,1)"});a.onfinish=()=>{p.style.overflow=""}}});
+// Statistika raqamlari ko‘ringanda sanab chiqadi
+(function(){if(RM||!("IntersectionObserver" in window))return;const els=[...document.querySelectorAll(".stat b")].filter(b=>/^\d+\+?$/.test(b.textContent.trim()));if(!els.length)return;
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const b=en.target,m=b.textContent.trim().match(/^(\d+)(\+?)$/),n=+m[1],suf=m[2],t0=performance.now(),dur=900;
+    (function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);b.textContent=Math.round(n*e)+suf;if(k<1)requestAnimationFrame(tick)})(t0)}),{threshold:.4});
+  els.forEach(b=>io.observe(b))})();
 // Telefonda "Orqaga" tugmasi ochiq oynani yopadi (saytdan chiqib ketmaydi)
 (function(){let pushed=false,ignorePop=false;
   try{if(history.state&&history.state.dlg)history.replaceState(null,"")}catch(e){}

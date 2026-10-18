@@ -25,6 +25,8 @@
 </script>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/manrope-latin.woff2" crossorigin>
 <link rel="manifest" href="manifest.webmanifest">
+<style>html.boot body{visibility:hidden}</style>
+<script>document.documentElement.classList.add("boot");try{history.scrollRestoration="manual"}catch(e){}setTimeout(function(){document.documentElement.classList.remove("boot")},2500);</script>
 <style>
 @font-face{font-family:"Manrope";font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fonts/manrope-cyrillic-ext.woff2) format("woff2");unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
 @font-face{font-family:"Manrope";font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fonts/manrope-cyrillic.woff2) format("woff2");unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
@@ -1208,6 +1210,17 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+/* Sahifa to‘liq tayyor bo‘lgach ko‘rsatiladi va yangilanganda aynan eski joyga qaytariladi (sakrashsiz) */
+(function(){const KEY="said_scroll";let t=0;
+  const save=()=>{try{sessionStorage.setItem(KEY,String(Math.round(scrollY)))}catch(e){}};
+  addEventListener("scroll",()=>{if(!t)t=setTimeout(()=>{t=0;save()},120)},{passive:true});addEventListener("pagehide",save);
+  const show=()=>document.documentElement.classList.remove("boot");
+  const done=()=>{try{const nav=performance.getEntriesByType("navigation")[0],type=nav?nav.type:"navigate";let saved=0;try{saved=+(sessionStorage.getItem(KEY)||0)}catch(e){}
+      if((type==="reload"||type==="back_forward")&&saved>0)scrollTo(0,saved);
+      else if(location.hash&&location.hash.length>1){const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}
+    }catch(e){}show()};
+  if(document.fonts&&document.fonts.status!=="loaded"){let d=false;const f=()=>{if(!d){d=true;done()}};document.fonts.ready.then(f);setTimeout(f,400)}else done();
+})();
 </script>
 </body>
 </html>

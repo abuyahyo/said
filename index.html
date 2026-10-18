@@ -170,7 +170,7 @@ nav.main a:hover{color:var(--brand-ink)}
 .exp summary{list-style:none;cursor:default;position:relative}
 .exp summary::-webkit-details-marker{display:none}
 .exp h4{margin:16px 0 4px;font-size:15px;color:var(--muted);font-weight:700}
-@media (max-width:860px){.exp summary{cursor:pointer;padding-right:36px}.exp summary::after{content:"+";position:absolute;right:0;top:12px;width:28px;height:28px;border-radius:50%;background:var(--bg-alt);color:var(--brand-ink);display:grid;place-items:center;font-size:20px;font-weight:700}.exp[open] summary::after{content:"−"}.exp:not([open]) h4{margin-bottom:16px}}
+@media (max-width:860px){.exp summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}.exp summary h4{margin:0}.exp summary::after{content:"+";flex:0 0 28px;width:28px;height:28px;border-radius:50%;background:var(--bg-alt);color:var(--brand-ink);display:grid;place-items:center;font-size:20px;line-height:1;font-weight:700}.exp[open] summary::after{content:"−"}.exp[open] summary{padding-bottom:10px}}
 .exp ol{list-style:none;padding:0;margin:0}
 .exp li{display:grid;grid-template-columns:190px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
 .exp li span:first-child{color:var(--brand-ink);font-weight:700}

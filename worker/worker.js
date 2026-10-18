@@ -52,10 +52,10 @@ const BOT_TEXT = {
   ru: "Здравствуйте! Это SAID academy — центр арабского языка в Ташкенте.\n\n• Фонетика и грамматика для детей и взрослых\n• Первый урок — бесплатно\n• Ежедневно 07:00–20:00\n• Рядом с метро Тинчлик: Шайхантахурский район, ул. Матлубот, 72\n• Телефон: +998 95 829 33 30\n\nЧтобы оставить заявку, нажмите кнопку ниже или напишите здесь — сообщение получит администратор."
 };
 const BOT_KB = {
-  uz: { inline_keyboard: [[{ text: "Ariza qoldirish", url: SITE + "?ref=bot#apply" }], [{ text: "Sayt", url: SITE + "?ref=bot" }, { text: "Kanal", url: "https://t.me/saidacademy" }]] },
-  ru: { inline_keyboard: [[{ text: "Оставить заявку", url: SITE + "?ref=bot#apply" }], [{ text: "Сайт", url: SITE + "?ref=bot" }, { text: "Канал", url: "https://t.me/saidacademy" }]] }
+  uz: { inline_keyboard: [[{ text: "Ariza qoldirish", url: SITE + "?ref=bot#apply" }], [{ text: "Sayt", url: SITE + "?ref=bot" }, { text: "Kanal", url: "https://t.me/saidacademy" }], [{ text: "🇷🇺 Русский", callback_data: "lang_ru" }]] },
+  ru: { inline_keyboard: [[{ text: "Оставить заявку", url: SITE + "?ref=bot#apply" }], [{ text: "Сайт", url: SITE + "?ref=bot" }, { text: "Канал", url: "https://t.me/saidacademy" }], [{ text: "🇺🇿 O‘zbekcha", callback_data: "lang_uz" }]] }
 };
-const BOT_ACK = { uz: "Rahmat! Xabaringiz adminga yetkazildi, tez orada javob beramiz.", ru: "Спасибо! Сообщение передано администратору, скоро ответим." };
+const BOT_ACK = "Rahmat! Xabaringiz adminga yetkazildi, tez orada javob beramiz.\nСпасибо! Сообщение передано администратору, скоро ответим.";
 
 async function sha256hex(s) {
   const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
@@ -72,7 +72,7 @@ function tg(env, method, body) {
 async function setupWebhook(env, request) {
   const url = new URL(request.url);
   const hook = url.origin + "/tg";
-  const j = await tg(env, "setWebhook", { url: hook, secret_token: await webhookSecret(env), allowed_updates: ["message"], drop_pending_updates: false });
+  const j = await tg(env, "setWebhook", { url: hook, secret_token: await webhookSecret(env), allowed_updates: ["message", "callback_query"], drop_pending_updates: false });
   return reply({ ok: !!j.ok, url: hook, description: j.description }, j.ok ? 200 : 502, {});
 }
 
@@ -81,19 +81,29 @@ async function handleTelegram(request, env) {
     return new Response("Forbidden", { status: 403 });
   }
   let u; try { u = await request.json(); } catch (e) { return new Response("ok"); }
+  // Til tugmasi: xabarni o‘sha tilga almashtiramiz
+  const cq = u && u.callback_query;
+  if (cq) {
+    const lang = cq.data === "lang_ru" ? "ru" : "uz";
+    if (cq.message && cq.message.chat) {
+      await tg(env, "editMessageText", { chat_id: cq.message.chat.id, message_id: cq.message.message_id, text: BOT_TEXT[lang], reply_markup: BOT_KB[lang], disable_web_page_preview: true });
+    }
+    await tg(env, "answerCallbackQuery", { callback_query_id: cq.id });
+    return new Response("ok");
+  }
   const m = u && u.message;
   if (!m || !m.chat || m.chat.type !== "private") return new Response("ok");
-  const lang = (m.from && String(m.from.language_code || "").toLowerCase().startsWith("ru")) ? "ru" : "uz";
   const text = typeof m.text === "string" ? m.text.trim() : "";
   if (/^\/start/.test(text) || /^\/help/.test(text) || !text) {
-    await tg(env, "sendMessage", { chat_id: m.chat.id, text: BOT_TEXT[lang], reply_markup: BOT_KB[lang], disable_web_page_preview: true });
+    // Har doim o‘zbekcha; pastdagi tugma bilan ruschaga o‘tiladi
+    await tg(env, "sendMessage", { chat_id: m.chat.id, text: BOT_TEXT.uz, reply_markup: BOT_KB.uz, disable_web_page_preview: true });
     return new Response("ok");
   }
   // Oddiy xabar: adminga uzatamiz, foydalanuvchiga tasdiq
   if (String(m.chat.id) !== String(env.CHAT_ID)) {
     const who = [m.from && m.from.first_name, m.from && m.from.last_name].filter(Boolean).join(" ") + (m.from && m.from.username ? " (@" + m.from.username + ")" : "");
     await tg(env, "sendMessage", { chat_id: env.CHAT_ID, text: "Botga xabar — " + who + "\n\n" + text.slice(0, 1500), reply_markup: m.from && m.from.username ? { inline_keyboard: [[{ text: "Javob yozish", url: "https://t.me/" + m.from.username }]] } : undefined });
-    await tg(env, "sendMessage", { chat_id: m.chat.id, text: BOT_ACK[lang] });
+    await tg(env, "sendMessage", { chat_id: m.chat.id, text: BOT_ACK });
   }
   return new Response("ok");
 }
@@ -120,7 +130,7 @@ async function handleError(request, env, cors) {
 export default {
   async scheduled(event, env) {
     // Har kuni webhook'ni qayta tasdiqlaymiz (deploy URL o‘zgarsa ham ishlayversin)
-    await tg(env, "setWebhook", { url: (env.WORKER_URL || "https://said-form.saidacademy2025.workers.dev").replace(/\/$/, "") + "/tg", secret_token: await webhookSecret(env), allowed_updates: ["message"] });
+    await tg(env, "setWebhook", { url: (env.WORKER_URL || "https://said-form.saidacademy2025.workers.dev").replace(/\/$/, "") + "/tg", secret_token: await webhookSecret(env), allowed_updates: ["message", "callback_query"] });
   },
   async fetch(request, env) {
     const path = new URL(request.url).pathname;

@@ -254,8 +254,10 @@ dialog.lb .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:
 .faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 24px;position:relative;font-weight:700;font-size:17px}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
-.faq details[open] summary::after{content:"−"}
-.faq details p{padding:0 24px 22px;color:var(--muted);max-width:70ch}
+.faq summary::after{content:"";background-color:var(--card);background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);background-size:12px 2px,2px 12px;background-position:center,center;background-repeat:no-repeat;transition:transform .35s cubic-bezier(.2,.8,.2,1),background-size .3s ease,background-color .2s}
+.faq details[open] summary::after{background-size:12px 2px,2px 0;transform:translateY(-50%) rotate(180deg);background-color:var(--brand);color:#fff}
+.faq summary{transition:color .2s}.faq details[open] summary{color:var(--brand-ink)}
+.faq details p{box-sizing:border-box;padding:0 24px 22px;margin:0;color:var(--muted);max-width:70ch;will-change:height}
 
 /* form */
 .apply{background:var(--brand);color:#fff;border-radius:32px;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;position:relative;overflow:hidden}
@@ -993,9 +995,17 @@ const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 })();
 // Savol-javob: javob yumshoq ochilib-yopiladi
 document.getElementById("faqList").addEventListener("click",e=>{const sm=e.target.closest("summary");if(!sm||RM||!("animate" in Element.prototype))return;
-  e.preventDefault();const d=sm.parentElement,p=d.querySelector("p");if(!p||p.getAnimations().length)return;
-  if(d.open){const h=p.offsetHeight;p.style.overflow="hidden";const a=p.animate([{height:h+"px",opacity:1},{height:"0px",opacity:0}],{duration:200,easing:"ease"});a.onfinish=()=>{d.open=false;p.style.overflow=""}}
-  else{d.open=true;const h=p.offsetHeight;p.style.overflow="hidden";const a=p.animate([{height:"0px",opacity:0},{height:h+"px",opacity:1}],{duration:260,easing:"cubic-bezier(.2,.8,.2,1)"});a.onfinish=()=>{p.style.overflow=""}}});
+  e.preventDefault();const d=sm.parentElement;if(d.querySelector("p").getAnimations().length)return;
+  const PB="22px",EASE="cubic-bezier(.2,.8,.2,1)";
+  const closeIt=det=>{const p=det.querySelector("p");const h=p.offsetHeight;p.style.overflow="hidden";
+    const a=p.animate([{height:h+"px",paddingBottom:PB,opacity:1,transform:"none"},{height:"0px",paddingBottom:"0px",opacity:0,transform:"translateY(-4px)"}],{duration:220,easing:"ease-in"});
+    a.onfinish=()=>{det.open=false;p.style.overflow=""}};
+  if(d.open){closeIt(d);return}
+  // bitta vaqtda bitta javob ochiq turadi
+  d.parentElement.querySelectorAll("details[open]").forEach(o=>{if(o!==d&&!o.querySelector("p").getAnimations().length)closeIt(o)});
+  d.open=true;const p=d.querySelector("p"),h=p.offsetHeight;p.style.overflow="hidden";
+  const a=p.animate([{height:"0px",paddingBottom:"0px",opacity:0,transform:"translateY(-6px)"},{height:h+"px",paddingBottom:PB,opacity:1,transform:"none"}],{duration:320,easing:EASE});
+  a.onfinish=()=>{p.style.overflow="";const r=d.getBoundingClientRect(),lim=innerHeight-(matchMedia("(max-width:900px)").matches?90:16);if(r.bottom>lim)d.scrollIntoView({block:"nearest",behavior:RM?"auto":"smooth"})}});
 // Statistika raqamlari ko‘ringanda sanab chiqadi
 (function(){if(RM||!("IntersectionObserver" in window))return;const els=[...document.querySelectorAll(".stat b")].filter(b=>/^\d+\+?$/.test(b.textContent.trim()));if(!els.length)return;
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const b=en.target,m=b.textContent.trim().match(/^(\d+)(\+?)$/),n=+m[1],suf=m[2],t0=performance.now(),dur=900;

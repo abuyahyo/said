@@ -97,11 +97,24 @@ nav.main a{text-decoration:none;font-size:15px;font-weight:600}
 .btn.light{background:var(--soft);color:var(--brand-ink)}
 @media (hover:hover){.btn.light:hover{background:var(--line)}}
 .bar .btn{padding:11px 18px;font-size:15px;border-radius:12px}
-.menu-t{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--text);cursor:pointer}
+.menu-t{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.menu-t .hb{position:relative;width:20px;height:16px;display:block}
+.menu-t .hb i{position:absolute;left:0;width:20px;height:2.2px;border-radius:2px;background:currentColor;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s,width .25s}
+.menu-t .hb i:nth-child(1){top:0}.menu-t .hb i:nth-child(2){top:7px;width:14px}.menu-t .hb i:nth-child(3){top:14px}
+.menu-t[aria-expanded="true"]{background:var(--brand);border-color:transparent;color:#fff}
+.menu-t[aria-expanded="true"] .hb i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-t[aria-expanded="true"] .hb i:nth-child(2){opacity:0;transform:translateX(-6px)}
+.menu-t[aria-expanded="true"] .hb i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (hover:hover){.menu-t:hover .hb i:nth-child(2){width:20px}}
+.scrim{position:fixed;inset:0;background:rgba(8,38,61,.35);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);z-index:40;opacity:0;transition:opacity .25s}.scrim.on{opacity:1}
+body.menu-open{overflow:hidden}
 @media (max-width:1000px){
-  nav.main{display:none;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 20px 16px}
+  nav.main{display:none;position:absolute;top:calc(100% + 8px);left:12px;right:12px;flex-direction:column;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:8px;box-shadow:0 30px 60px -20px rgba(8,38,61,.35);transform-origin:top right}
   nav.main.open{display:flex}
-  nav.main a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line)}nav.main a.mo{display:block}
+  nav.main a{padding:13px 14px;font-size:17px;border-radius:12px;border:0;opacity:0;transform:translateY(-6px);animation:navItem .35s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0)*35ms + 60ms)}nav.main a.mo{display:block}
+  nav.main a:active{background:var(--soft)}
+  nav.main a::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brand);margin-right:12px;vertical-align:2px;opacity:.9}
+  @keyframes navItem{to{opacity:1;transform:none}}
   .menu-t{display:grid;place-items:center}
   .bar{gap:10px}
   .bar .btn{display:none}
@@ -367,12 +380,12 @@ main{overflow-x:clip}
 @keyframes bdOut{from{opacity:1}to{opacity:0}}
 @keyframes sheetIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 @keyframes sheetOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(30px)}}
-@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes menuIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
 dialog[open]{animation:dlgIn .28s cubic-bezier(.2,.8,.2,1)}dialog[open]::backdrop{animation:bdIn .25s ease}
 dialog.closing{animation:dlgOut .17s ease-in forwards}dialog.closing::backdrop{animation:bdOut .17s ease-in forwards}
 @media (max-width:700px){dialog.ap[open]{animation-name:sheetIn;animation-duration:.32s}dialog.ap.closing{animation-name:sheetOut}}
-@media (max-width:900px){nav.main.open{animation:menuIn .22s cubic-bezier(.2,.8,.2,1)}}
-@media (prefers-reduced-motion:reduce){dialog[open],dialog.ap[open],dialog[open]::backdrop,dialog.closing,dialog.ap.closing,dialog.closing::backdrop,nav.main.open{animation:none!important}}
+@media (max-width:900px){nav.main.open{animation:menuIn .28s cubic-bezier(.2,.8,.2,1)}}
+@media (prefers-reduced-motion:reduce){dialog[open],dialog.ap[open],dialog[open]::backdrop,dialog.closing,dialog.ap.closing,dialog.closing::backdrop,nav.main.open,nav.main a{animation:none!important;opacity:1!important;transform:none!important}}
 
 .stat,.adv,.course,.ct,.about-text,.video,.dir,.faq details,.lic dl,.docs button,.exp,.cred li{border:1px solid var(--line)}
 .dir .ph{border:0}
@@ -570,9 +583,10 @@ dialog.ap form.open .opt{display:contents}
       <ul><li><button type="button" data-lang="uz">O‘zbekcha</button></li><li><button type="button" data-lang="ru">Русский</button></li><li><button type="button" data-lang="en">English</button></li></ul>
     </div>
     <a class="btn" href="#apply" data-t="apply"></a>
-    <button class="menu-t" id="menuT" aria-label="Menyu" aria-expanded="false" aria-controls="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <button class="menu-t" id="menuT" aria-label="Menyu" aria-expanded="false" aria-controls="nav"><span class="hb" aria-hidden="true"><i></i><i></i><i></i></span></button>
   </div>
 </header>
+<div class="scrim" id="scrim" hidden></div>
 <div class="news" id="news" hidden><div class="wrap"><span id="newsText"></span><a id="newsLink" hidden></a><button type="button" id="newsX" aria-label="Yopish">×</button></div></div>
 
 <main id="home">
@@ -1089,8 +1103,14 @@ setTimeout(()=>{try{const k=new URLSearchParams(location.search).get("kurs");con
 document.getElementById("courseCards").addEventListener("click",e=>{const a=e.target.closest("[data-c]");if(a)document.getElementById("course").value=a.dataset.c});
 
 const nav=document.getElementById("nav"),mt=document.getElementById("menuT");
-mt.addEventListener("click",()=>{const o=nav.classList.toggle("open");mt.setAttribute("aria-expanded",o)});
-nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");mt.setAttribute("aria-expanded",false)}));
+const scrim=document.getElementById("scrim");
+function setMenu(o){nav.classList.toggle("open",o);mt.setAttribute("aria-expanded",o);document.body.classList.toggle("menu-open",o);
+  if(o){scrim.hidden=false;requestAnimationFrame(()=>scrim.classList.add("on"))}else{scrim.classList.remove("on");setTimeout(()=>{if(!nav.classList.contains("open"))scrim.hidden=true},260)}}
+[...nav.querySelectorAll("a")].forEach((a,i)=>a.style.setProperty("--i",i));
+mt.addEventListener("click",e=>{e.stopPropagation();setMenu(!nav.classList.contains("open"))});
+scrim.addEventListener("click",()=>setMenu(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&nav.classList.contains("open"))setMenu(false)});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
 
 const advs=document.getElementById("advs"),dots=document.getElementById("dots");
 [...advs.children].forEach((_,i)=>{const s=document.createElement("span");if(!i)s.className="on";dots.append(s)});
@@ -1193,7 +1213,7 @@ moreBtn.addEventListener("click",()=>{if(form.classList.contains("open")){form.c
 document.addEventListener("click",e=>{
   const a=e.target.closest('a[href="#apply"]');if(!a)return;
   if(a.dataset.c){document.getElementById("course").value=a.dataset.c;syncAge()}
-  e.preventDefault();const nav=document.getElementById("nav");if(nav)nav.classList.remove("open");openApply();
+  e.preventDefault();if(typeof setMenu==="function")setMenu(false);openApply();
 });
 /* in-page links scroll smoothly (done in JS: CSS scroll-behavior makes Chrome animate scroll restoration on reload) */
 document.addEventListener("click",e=>{

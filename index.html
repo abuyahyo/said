@@ -1210,16 +1210,28 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
   els.forEach(el=>{el.classList.add("reveal");const i=[...el.parentElement.children].indexOf(el);el.style.transitionDelay=Math.min(i,5)*70+"ms";io.observe(el)});
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-/* Sahifa to‘liq tayyor bo‘lgach ko‘rsatiladi va yangilanganda aynan eski joyga qaytariladi (sakrashsiz) */
-(function(){const KEY="said_scroll";let t=0;
-  const save=()=>{try{sessionStorage.setItem(KEY,String(Math.round(scrollY)))}catch(e){}};
+/* Sahifa to‘liq tayyor bo‘lgach ko‘rsatiladi va yangilanganda aynan eski joyga qaytariladi (sakrashsiz).
+   Joy raqam bilan emas, "ekran tepasidagi blok + undan siljish" ko‘rinishida saqlanadi — shrift yoki rasm
+   yuklanib balandlik o‘zgarsa ham o‘sha blok joyida qoladi. */
+(function(){const KEY="said_scroll";let t=0,moved=false;
+  const anchors=()=>document.querySelectorAll("main section[id],.stat,.course,.adv,.about-text,.video,.dir,.gal button,.lic>div,.faq details,.step,.apply,.ct,footer");
+  const save=()=>{try{const y=scrollY;if(y<2){sessionStorage.setItem(KEY,"0");return}let best=-1,bt=0;anchors().forEach((el,i)=>{const top=el.getBoundingClientRect().top+y;if(top<=y+1&&top>=bt){bt=top;best=i}});
+    sessionStorage.setItem(KEY,JSON.stringify({i:best,o:Math.round(y-bt),y:Math.round(y)}))}catch(e){}};
+  const restore=()=>{try{const v=sessionStorage.getItem(KEY);if(!v||v==="0")return;const st=JSON.parse(v);if(typeof st==="number"){scrollTo(0,st);return}if(!st||st.y<2)return;
+    const el=st.i>=0?anchors()[st.i]:null;const y=el?el.getBoundingClientRect().top+scrollY+st.o:st.y;scrollTo(0,Math.max(0,Math.round(y)))}catch(e){}};
+  ["touchstart","wheel","keydown","pointerdown"].forEach(ev=>addEventListener(ev,()=>{moved=true},{passive:true,once:true}));
   addEventListener("scroll",()=>{if(!t)t=setTimeout(()=>{t=0;save()},120)},{passive:true});addEventListener("pagehide",save);
+  let type="navigate";try{const nav=performance.getEntriesByType("navigation")[0];if(nav)type=nav.type}catch(e){}
+  const isBack=type==="reload"||type==="back_forward";
   const show=()=>document.documentElement.classList.remove("boot");
-  const done=()=>{try{const nav=performance.getEntriesByType("navigation")[0],type=nav?nav.type:"navigate";let saved=0;try{saved=+(sessionStorage.getItem(KEY)||0)}catch(e){}
-      if((type==="reload"||type==="back_forward")&&saved>0)scrollTo(0,saved);
-      else if(location.hash&&location.hash.length>1){const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}
-    }catch(e){}show()};
-  if(document.fonts&&document.fonts.status!=="loaded"){let d=false;const f=()=>{if(!d){d=true;done()}};document.fonts.ready.then(f);setTimeout(f,400)}else done();
+  const first=()=>{if(isBack)restore();else if(location.hash&&location.hash.length>1){try{const el=document.querySelector(location.hash);if(el)el.scrollIntoView()}catch(e){}}show()};
+  // shriftlar (Manrope, kerakli subsetlar) haqiqatan yuklanishini kutamiz, ko‘pi bilan 500 ms
+  let done=false;const go=()=>{if(!done){done=true;first()}};
+  try{const sample="Bilim imkoniyatlar o‘quv "+(lang==="ru"?"Знания":"")+" 0123";Promise.all([document.fonts.load("400 1em Manrope",sample),document.fonts.load("700 1em Manrope",sample),document.fonts.load("800 1em Manrope",sample)]).then(go,go)}catch(e){go()}
+  setTimeout(go,500);
+  // rasmlar va qolgan shriftlar yuklangach, foydalanuvchi hali surmagan bo‘lsa, joyni yana bir bor to‘g‘rilaymiz
+  if(isBack)addEventListener("load",()=>{const fix=()=>{if(!moved)restore()};fix();setTimeout(fix,150);if(document.fonts)document.fonts.ready.then(fix)});
+  window.__saidRestore=restore;
 })();
 </script>
 </body>

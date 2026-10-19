@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /worker/
 Disallow: /offline.html
+Disallow: /kun/
 
 Sitemap: https://saidacademy.uz/sitemap.xml

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="uz"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Amiri";font-weight:700;src:url(../../assets/fonts/amiri-full.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-weight:400 800;src:url(../../assets/fonts/manrope-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+02BB-02BC,U+2000-206F}
+@font-face{font-family:"Manrope";font-weight:400 800;src:url(../../assets/fonts/manrope-latin-ext.woff2) format("woff2");unicode-range:U+0100-02AF,U+1E00-1EFF}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1080px;overflow:hidden}
+body{font-family:"Manrope",sans-serif;color:#fff;background:linear-gradient(155deg,#1AA3FF 0%,#0D7FE6 42%,#0A4E95 75%,#0B2C47 100%);position:relative}
+.big{position:absolute;right:-60px;top:-140px;font-family:"Amiri",serif;font-weight:700;font-size:820px;line-height:1;color:#fff;opacity:.07;direction:rtl}
+.frame{position:absolute;inset:34px;border:2px solid rgba(255,255,255,.22);border-radius:44px}
+.top{position:absolute;left:84px;right:84px;top:82px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:16px;font-weight:800;font-size:34px}
+.brand img{height:54px}
+.pill{background:#F7A928;color:#0B2C47;font-weight:800;font-size:24px;letter-spacing:.14em;text-transform:uppercase;padding:14px 24px;border-radius:999px}
+.mid{position:absolute;left:84px;right:84px;top:170px;height:470px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ar{font-family:"Amiri",serif;font-weight:700;font-size:160px;line-height:1.8;direction:rtl;white-space:nowrap;text-shadow:0 10px 40px rgba(8,38,61,.35)}
+.tr{margin-top:-14px;font-size:40px;font-weight:600;font-style:italic;color:#CFE8FF}
+.uz{margin-top:14px;font-size:60px;font-weight:800;line-height:1.15}
+.ex{position:absolute;left:84px;right:84px;bottom:146px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.28);border-radius:32px;padding:30px 40px 30px;text-align:center}
+.exl{position:absolute;left:50%;top:-17px;transform:translateX(-50%);background:#0D7FE6;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 16px;font-size:18px;font-weight:800;letter-spacing:.18em;color:#DCEEFF;text-transform:uppercase}
+.exa{font-family:"Amiri",serif;font-weight:700;font-size:54px;line-height:1.9;direction:rtl}
+.exu{margin-top:-6px;font-size:32px;font-weight:600;color:#E3F1FF}
+.foot{position:absolute;left:84px;right:84px;bottom:80px;display:flex;justify-content:space-between;font-size:26px;font-weight:700;color:#CFE8FF}
+</style></head>
+<body>
+<div class="big" id="big"></div>
+<div class="frame"></div>
+<div class="top"><div class="brand"><img src="../../assets/logo-light.png" alt=""><span>SAID academy</span></div><div class="pill">Kunning so‘zi</div></div>
+<div class="mid"><div class="ar" id="ar"></div><div class="tr" id="tr"></div><div class="uz" id="uz"></div></div>
+<div class="ex"><div class="exl">Misol</div><div class="exa" id="exa"></div><div class="exu" id="exu"></div></div>
+<div class="foot"><span>saidacademy.uz</span><span>Arab tili o‘quv markazi · Toshkent</span></div>
+<script>
+// Kartochkani to‘ldirish: render.mjs window.fill([...]) ni chaqiradi
+function fit(el,max,min){let s=max;el.style.fontSize=s+"px";while(el.scrollWidth>el.parentElement.clientWidth&&s>min){s-=4;el.style.fontSize=s+"px"}}
+window.fill=function(w){
+  document.getElementById("ar").textContent=w[0];
+  document.getElementById("tr").textContent=w[1];
+  document.getElementById("uz").textContent=w[2];
+  document.getElementById("exa").textContent=w[3];
+  document.getElementById("exu").textContent=w[4];
+  document.getElementById("big").textContent=w[0].replace(/[ً-ْٰ]/g,"").replace(/^ال/,"").trim().charAt(0);
+  fit(document.getElementById("ar"),160,80);
+  const exa=document.getElementById("exa");exa.style.whiteSpace="nowrap";fit(exa,54,32);if(exa.scrollWidth>exa.parentElement.clientWidth){exa.style.whiteSpace="normal"}
+  const uz=document.getElementById("uz");uz.style.whiteSpace="nowrap";fit(uz,60,36);
+};
+</script>
+</body></html>

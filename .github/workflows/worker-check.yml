@@ -1,0 +1,13 @@
+name: Worker check
+on: { workflow_dispatch: {} }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe worker from the site origin (no message is sent)
+        run: |
+          set -x
+          curl -sS -m 20 -o /dev/null -w 'OPTIONS %{http_code} %{time_total}s\n' -X OPTIONS https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: content-type' -D /tmp/h1; cat /tmp/h1
+          curl -sS -m 20 -o /dev/null -w 'GET %{http_code} %{time_total}s\n' https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -D /tmp/h2; cat /tmp/h2
+          curl -sS -m 20 -w '\nPOST-honeypot %{http_code} %{time_total}s\n' -X POST https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -H 'Content-Type: application/json' -d '{"website":"x","name":"probe"}'
+          curl -sS -m 20 -o /dev/null -w 'TG-SETUP-GET %{http_code}\n' https://said-form.saidacademy2025.workers.dev/tg-setup || true

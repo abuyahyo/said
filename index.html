@@ -263,17 +263,17 @@ dialog.lb .cnt{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16
 dialog.lb .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font-size:26px;cursor:pointer}
 
 /* faq */
-.faq{margin-top:36px;display:grid;gap:12px;max-width:900px}
+.faq{margin-top:28px;display:grid;gap:8px;max-width:900px}
 @media (min-width:900px){.faq{max-width:none;grid-template-columns:1fr 1fr;align-items:start}}
-.faq details{background:var(--bg-alt);border-radius:18px;transition:background .2s}
+.faq details{background:var(--bg-alt);border-radius:14px;transition:background .2s}
 .faq details[open]{background:var(--soft)}
-.faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 24px;position:relative;font-weight:700;font-size:17px;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.faq summary{list-style:none;cursor:pointer;padding:14px 52px 14px 18px;position:relative;font-weight:700;font-size:15.5px;line-height:1.35;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
+.faq summary::after{content:"+";position:absolute;right:12px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--card);color:var(--brand-ink);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
 .faq summary::after{content:"";background-color:var(--card);background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor);background-size:12px 2px,2px 12px;background-position:center,center;background-repeat:no-repeat;transition:transform .35s cubic-bezier(.2,.8,.2,1),background-size .3s ease,background-color .2s}
 .faq details[open] summary::after{background-size:12px 2px,2px 0;transform:translateY(-50%) rotate(180deg);background-color:var(--brand);color:#fff}
 .faq summary{transition:color .2s}.faq details[open] summary{color:var(--brand-ink)}
-.faq details p{box-sizing:border-box;padding:0 24px 22px;margin:0;color:var(--muted);max-width:70ch;will-change:height}
+.faq details p{box-sizing:border-box;padding:0 18px 16px;margin:0;color:var(--muted);font-size:15px;line-height:1.55;max-width:70ch;will-change:height}
 
 /* form */
 .apply{background:var(--brand);color:#fff;border-radius:32px;padding:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;position:relative;overflow:hidden}
@@ -1037,7 +1037,7 @@ const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 // Savol-javob: javob yumshoq ochilib-yopiladi
 document.getElementById("faqList").addEventListener("click",e=>{const sm=e.target.closest("summary");if(!sm||RM||!("animate" in Element.prototype))return;
   e.preventDefault();const d=sm.parentElement;if(d.querySelector("p").getAnimations().length)return;
-  const PB="22px",EASE="cubic-bezier(.2,.8,.2,1)";
+  const PB="16px",EASE="cubic-bezier(.2,.8,.2,1)";
   const closeIt=det=>{const p=det.querySelector("p");const h=p.offsetHeight;p.style.overflow="hidden";
     const a=p.animate([{height:h+"px",paddingBottom:PB,opacity:1,transform:"none"},{height:"0px",paddingBottom:"0px",opacity:0,transform:"translateY(-4px)"}],{duration:220,easing:"ease-in"});
     a.onfinish=()=>{det.open=false;p.style.overflow=""}};

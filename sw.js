@@ -1,5 +1,5 @@
 /* SAID academy — offline fallback + asset cache */
-const VERSION = "v7";
+const VERSION = "v8";
 const CORE = ["offline.html", "assets/logo-dark-96.png", "assets/fonts/manrope-latin.woff2", "assets/fonts/manrope-latin-ext.woff2", "assets/fonts/manrope-cyrillic.woff2"];
 
 self.addEventListener("install", e => {

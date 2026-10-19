@@ -768,14 +768,14 @@ dialog.ap form.open .opt{display:contents}
     <div class="ism">
       <div class="ism-in">
         <label for="ismIn" data-t="ism_l"></label>
-        <input id="ismIn" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Dilnoza">
+        <input id="ismIn" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Said">
         <button type="button" class="btn" id="ismShare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg><span data-t="ism_save"></span></button>
         <small data-t="ism_note"></small>
       </div>
       <div class="ism-card" id="ismCard" aria-live="polite">
         <div class="ism-top" data-t="ism_card_t"></div>
-        <div class="ism-ar" id="ismAr" lang="ar" dir="rtl">دلنوزا</div>
-        <div class="ism-lat" id="ismLat">Dilnoza</div>
+        <div class="ism-ar" id="ismAr" lang="ar" dir="rtl">سعيد</div>
+        <div class="ism-lat" id="ismLat">Said</div>
         <div class="ism-brand"><img src="assets/logo-light-96.png" alt="" width="18" height="24"><span>SAID academy · saidacademy.uz</span></div>
       </div>
     </div>
@@ -1420,7 +1420,7 @@ function goal(n){try{if(typeof ym==="function")ym(YM_ID,"reachGoal",n)}catch(e){
     return rules(w)}
   function translit(v){return norm(v).split(/[\s-]+/).filter(Boolean).map(word).join(" ")}
   let full=false;function loadFont(){if(full)return;full=true;try{const f=new FontFace("AmiriFull","url(assets/fonts/amiri-full.woff2)",{weight:"700"});f.load().then(ff=>document.fonts.add(ff)).catch(()=>{})}catch(e){}}
-  function upd(){const v=inp.value.trim();const lat=v||"Dilnoza";LAT.textContent=lat.replace(/\s+/g," ");AR.textContent=translit(lat)||"…"}
+  function upd(){const v=inp.value.trim();const lat=v||"Said";LAT.textContent=lat.replace(/\s+/g," ");AR.textContent=translit(lat)||"…"}
   inp.addEventListener("input",()=>{loadFont();upd()});inp.addEventListener("focus",loadFont);upd();
   // rasm sifatida saqlash
   btn.addEventListener("click",async()=>{loadFont();const ar=AR.textContent,lat=LAT.textContent;

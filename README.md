@@ -1,7 +1,7 @@
 # SAID academy — sayt
 
 Toshkentdagi SAID academy arab tili o‘quv markazining rasmiy sayti.
-Jonli manzil: https://abuyahyo.github.io/said/
+Jonli manzil: https://saidacademy.uz/
 
 ## Tuzilishi
 
@@ -63,14 +63,14 @@ Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
 4. **Settings → Variables and Secrets** da qo‘shing:
    - `BOT_TOKEN` (Secret) — bot tokeni
    - `CHAT_ID` (Secret) — chat ID
-   - `ALLOWED_ORIGIN` — `https://abuyahyo.github.io`
+   - `ALLOWED_ORIGIN` — ixtiyoriy; `saidacademy.uz` va `abuyahyo.github.io` kodda oldindan ruxsatda
 5. Worker manzilini (`https://....workers.dev`) `index.html` dagi `endpoint` ga yozing.
 
 ## E’lon qatori va havolalar
 
 - **E’lon** — `news.json` faylini GitHub'da tahrirlang: `uz`, `ru`, `en` matnlari, `link` (masalan `#apply` yoki to‘liq URL), `until` (`2026-12-31` ko‘rinishida, shu kundan keyin e’lon o‘zi yo‘qoladi). Matn bo‘sh bo‘lsa, qator ko‘rinmaydi. Saqlagandan 1–2 daqiqa o‘tib saytda chiqadi.
-- **Kurs havolasi** — `https://abuyahyo.github.io/said/?kurs=bolalar` (yoki `kattalar`, `grammatika`) ochilganda ariza oynasi shu kurs tanlangan holda ochiladi. Instagram bio va postlar uchun.
-- **Manba kuzatuvi** — havola oxiriga `?ref=instagram`, `?ref=telegram` yoki `?ref=qr` qo‘shing (masalan Instagram bio uchun `https://abuyahyo.github.io/said/?ref=instagram`). Shu havoladan kelgan odamning arizasida "Manba: Instagram" qatori chiqadi. Kerak bo‘lsa boshqa so‘z ham yozsa bo‘ladi (`?ref=reklama1`), u xabarda xuddi shunday ko‘rinadi.
+- **Kurs havolasi** — `https://saidacademy.uz/?kurs=bolalar` (yoki `kattalar`, `grammatika`) ochilganda ariza oynasi shu kurs tanlangan holda ochiladi. Instagram bio va postlar uchun.
+- **Manba kuzatuvi** — havola oxiriga `?ref=instagram`, `?ref=telegram` yoki `?ref=qr` qo‘shing (masalan Instagram bio uchun `https://saidacademy.uz/?ref=instagram`). Shu havoladan kelgan odamning arizasida "Manba: Instagram" qatori chiqadi. Kerak bo‘lsa boshqa so‘z ham yozsa bo‘ladi (`?ref=reklama1`), u xabarda xuddi shunday ko‘rinadi.
 - **Kontakt fayli** — `said-academy.vcf`, "Kontaktni saqlash" tugmasi shu faylni yuklaydi.
 
 ## Keyingi rejalar
@@ -80,7 +80,6 @@ Markazdan material kerak:
 - [ ] **Yandex Metrika** — hisoblagich raqami
 - [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
 - [ ] **O‘qituvchilar** — ism, rasm, qisqa ma’lumot
-- [ ] **O‘z domen** — masalan `saidacademy.uz` bo‘lsa, GitHub Pages'ga ulash
 - [ ] **Yangi sertifikatlar** — talabalar natijasi bo‘limiga qo‘shish uchun rasm
 
 Materialsiz qilsa bo‘ladi:

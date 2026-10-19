@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://abuyahyo.github.io/said/</loc>
+    <loc>https://saidacademy.uz/</loc>
     <lastmod>2026-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image><image:loc>https://abuyahyo.github.io/said/assets/og.png</image:loc><image:title>SAID academy</image:title></image:image>
-    <image:image><image:loc>https://abuyahyo.github.io/said/assets/gallery-1.jpg</image:loc><image:title>SAID academy — bolalar xonasi</image:title></image:image>
-    <image:image><image:loc>https://abuyahyo.github.io/said/assets/gallery-2.jpg</image:loc><image:title>SAID academy — darsxona</image:title></image:image>
+    <image:image><image:loc>https://saidacademy.uz/assets/og.png</image:loc><image:title>SAID academy</image:title></image:image>
+    <image:image><image:loc>https://saidacademy.uz/assets/gallery-1.webp</image:loc><image:title>SAID academy — bolalar xonasi</image:title></image:image>
+    <image:image><image:loc>https://saidacademy.uz/assets/gallery-2.webp</image:loc><image:title>SAID academy — darsxona</image:title></image:image>
   </url>
 </urlset>

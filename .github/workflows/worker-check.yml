@@ -1,4 +1,5 @@
 name: Worker check
+# run 2026-10-19T21:41:40Z
 on:
   workflow_dispatch: {}
   push:
@@ -14,4 +15,5 @@ jobs:
           curl -sS -m 20 -o /dev/null -w 'OPTIONS %{http_code} %{time_total}s\n' -X OPTIONS https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: content-type' -D /tmp/h1; cat /tmp/h1
           curl -sS -m 20 -o /dev/null -w 'GET %{http_code} %{time_total}s\n' https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -D /tmp/h2; cat /tmp/h2
           curl -sS -m 20 -w '\nPOST-honeypot %{http_code} %{time_total}s\n' -X POST https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -H 'Content-Type: application/json' -d '{"website":"x","name":"probe"}'
-          curl -sS -m 20 -o /dev/null -w 'TG-SETUP-GET %{http_code}\n' https://said-form.saidacademy2025.workers.dev/tg-setup || true
+          curl -sS -m 20 -w '\nTG-SETUP %{http_code}\n' https://said-form.saidacademy2025.workers.dev/tg-setup || true
+          curl -sS -m 20 -w '\nPOST-test %{http_code} %{time_total}s\n' -X POST https://said-form.saidacademy2025.workers.dev/ -H 'Origin: https://saidacademy.uz' -H 'Content-Type: application/json' -d '{"name":"TEST (Claude tekshiruvi, e\u2019tibor bermang)","phone":"+998 00 000 00 00","course":"c2","format":"group","when":"any","lang":"uz","ref":"site"}'

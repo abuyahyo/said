@@ -11,3 +11,7 @@ Chop etishda QR hech bo‘lmaganda 3×3 sm bo‘lsin, atrofida oq bo‘sh joy qo
 ## Reklama videosi
 
 - `promo-uz.mp4` — 25 soniya, vertikal 1080×1920 (Instagram Reels / Stories, Telegram), ovozsiz. Musiqani Instagram'ning o‘zida qo‘shing.
+
+## Broshyura
+
+- `said-academy-broshyura.pdf` — 9 sahifali A4 broshyura: muqova, markaz haqida, direktor, kurslar, o‘qish tizimi, afzalliklar, natijalar, ustozlar, orqa muqovada QR-kodlar (sayt `?ref=qr`, Telegram, Instagram). Telegram’da yuborish va chop etish uchun. Sayt ma’lumotlari o‘zgarganda qayta yaratiladi.

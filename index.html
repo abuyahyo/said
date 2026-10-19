@@ -1248,8 +1248,10 @@ form.addEventListener("submit",e=>{
   btn.disabled=true;btn.textContent=T[lang].sending;
   sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,ref:getRef(),website:document.getElementById("website").value}).then(()=>{
     form.reset();clearDraft();closeApply();done.showModal();goal("lead");
-  }).catch(()=>{
-    failNote.textContent=T[lang].fail;failNote.hidden=false;sent.showModal();
+  }).catch(e=>{
+    const why=e&&e.name==="AbortError"?"timeout":(e&&e.message||"network");
+    failNote.textContent=T[lang].fail+" ("+why+")";failNote.hidden=false;sent.showModal();
+    try{if(TG.endpoint&&/^(www\.)?saidacademy\.uz$/.test(location.hostname))fetch(TG.endpoint.replace(/\/$/,"")+"/err",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({msg:"Form send failed: "+why,src:"form",line:"",page:location.pathname,ua:navigator.userAgent.slice(0,120)})}).catch(()=>{})}catch(_){}
   }).finally(()=>{btn.disabled=false;btn.textContent=label});
 });
 async function sendTelegram(data){
@@ -1262,8 +1264,8 @@ async function sendTelegram(data){
       const body=new URLSearchParams({chat_id:TG.chatId,text:data.text});
       r=await fetch("https://api.telegram.org/bot"+TG.botToken+"/sendMessage",{method:"POST",body,signal:ctl.signal});
     }
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    const j=await r.json().catch(()=>({ok:true}));
+    const j=await r.json().catch(()=>({ok:r.ok}));
+    if(!r.ok)throw new Error("HTTP "+r.status+(j&&j.description?": "+j.description:""));
     if(j.ok===false)throw new Error(j.description||"send failed");
   }finally{clearTimeout(t)}
 }

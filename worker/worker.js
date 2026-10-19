@@ -107,7 +107,8 @@ async function handleTelegram(request, env) {
       const j = await postWord(env, new Date(), true);
       await tg(env, "sendMessage", { chat_id: m.chat.id, text: j.ok ? "✅ Bugungi so‘z kanalga yuborildi." : "❌ Yuborilmadi: " + (j.description || "javob yo‘q") });
     } else {
-      await tg(env, "sendMessage", { chat_id: m.chat.id, text: wordPost(WORDS[wordIndex(new Date())]) + "\n\n(Bu ko‘rinish. Kanalga hozir yuborish: /soz_kanal)", parse_mode: "HTML", disable_web_page_preview: true });
+      await sendWord(env, m.chat.id, WORDS[wordIndex(new Date())]);
+      await tg(env, "sendMessage", { chat_id: m.chat.id, text: "Bu bugungi post ko‘rinishi. Kanalga hozir yuborish: /soz_kanal" });
     }
     return new Response("ok");
   }
@@ -135,10 +136,25 @@ function wordPost(w) {
     "Misol: " + w[3] + "\n" + w[4] + "\n\n" +
     "#kunning_sozi · <a href=\"" + SITE + "?ref=telegram\">saidacademy.uz</a>";
 }
+// Rasm nomi: so‘z qatorining SHA-256 xeshi (tools/word-cards/render.mjs bilan bir xil)
+async function wordImage(w) {
+  return SITE + "kun/" + (await sha256hex(JSON.stringify(w))).slice(0, 12) + ".jpg";
+}
+function wordCaption(w) {
+  return "📖 <b>Kunning so‘zi:</b> " + w[0] + " — <i>" + w[1] + "</i> — " + w[2] + "\n\n" +
+    w[3] + "\n" + w[4] + "\n\n" +
+    "#kunning_sozi · <a href=\"" + SITE + "?ref=telegram\">saidacademy.uz</a>";
+}
+// Avval rasm bilan; rasm topilmasa yoki Telegram rad etsa — matnli post
+async function sendWord(env, chat, w) {
+  let j = await tg(env, "sendPhoto", { chat_id: chat, photo: await wordImage(w), caption: wordCaption(w), parse_mode: "HTML" });
+  if (!j.ok) j = await tg(env, "sendMessage", { chat_id: chat, text: wordPost(w), parse_mode: "HTML", disable_web_page_preview: true });
+  return j;
+}
 async function postWord(env, now, quiet) {
   const w = WORDS[wordIndex(now || new Date())];
   const chat = (env.CHANNEL || CHANNEL_DEFAULT).trim();
-  const j = await tg(env, "sendMessage", { chat_id: chat, text: wordPost(w), parse_mode: "HTML", disable_web_page_preview: true });
+  const j = await sendWord(env, chat, w);
   if (!j.ok && env.CHAT_ID && !quiet) {
     await tg(env, "sendMessage", { chat_id: env.CHAT_ID, text: "⚠️ «Kunning so‘zi» kanalga yuborilmadi (" + chat + "): " + (j.description || "javob yo‘q") + "\n\nBot kanalda admin bo‘lishi va «Xabar joylash» huquqiga ega bo‘lishi kerak." });
   }

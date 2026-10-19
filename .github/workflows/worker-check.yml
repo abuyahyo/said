@@ -1,5 +1,9 @@
 name: Worker check
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["claude/**"]
+    paths: [".github/workflows/worker-check.yml"]
 jobs:
   check:
     runs-on: ubuntu-latest

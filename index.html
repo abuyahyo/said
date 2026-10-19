@@ -183,24 +183,21 @@ body.menu-open{overflow:hidden}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}}
 
 /* director */
-.dir{display:grid;grid-template-columns:380px 1fr;gap:48px;align-items:center;background:var(--bg-alt);border-radius:32px;padding:32px}
-.dir .ph{border-radius:24px;overflow:hidden;aspect-ratio:4/5}
-.dir .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.dir h2{font-size:clamp(24px,3vw,32px);color:var(--muted);font-weight:700}
-.dir h3{font-size:clamp(26px,3.2vw,38px);font-weight:800;margin-top:10px;text-wrap:balance}
-.role{color:var(--brand-ink);font-weight:700;margin-top:8px}
-.cred{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:10px}
-.cred li{background:var(--card);border-radius:12px;padding:9px 14px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
-.cred svg,.chk{width:18px;height:18px;color:var(--brand-ink);flex:none}
-.exp{margin-top:26px;background:var(--card);border-radius:20px;padding:6px 22px}
-.exp summary{list-style:none;cursor:default;position:relative}
-.exp summary::-webkit-details-marker{display:none}
-.exp h4{margin:16px 0 4px;font-size:15px;color:var(--muted);font-weight:700}
-@media (max-width:860px){.exp summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}.exp summary h4{margin:0}.exp summary::after{content:"+";flex:0 0 28px;width:28px;height:28px;border-radius:50%;background:var(--bg-alt);color:var(--brand-ink);display:grid;place-items:center;font-size:20px;line-height:1;font-weight:700}.exp[open] summary::after{content:"−"}.exp[open] summary{padding-bottom:10px}}
-.exp ol{list-style:none;padding:0;margin:0}
-.exp li{display:grid;grid-template-columns:190px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
-.exp li span:first-child{color:var(--brand-ink);font-weight:700}
-@media (max-width:860px){.dir{grid-template-columns:1fr;gap:24px;padding:16px;border-radius:24px}.dir>div:last-child{padding:0 6px 10px}.exp li{grid-template-columns:1fr;gap:2px}}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:32px}
+.tcard{background:var(--bg-alt);border:1px solid var(--line);border-radius:24px;padding:14px 14px 20px;max-width:420px;transition:transform .25s ease,box-shadow .25s ease}
+@media (hover:hover){.tcard:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.28)}}
+.tcard .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/4.4;background:var(--soft);box-shadow:0 24px 50px -24px rgba(8,38,61,.45)}
+.tcard .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+.tcard .tb{padding:16px 6px 0}
+.tcard .role{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.tcard .role.lead{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
+.tcard h3{font-size:20px;line-height:1.25;margin:10px 0 4px;letter-spacing:-.01em}
+.tcard .teach{color:var(--muted);font-size:14.5px;font-weight:600;margin:0}
+.tcard .tags{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.tcard .tags li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.tcard .tags svg{width:15px;height:15px;color:var(--brand-ink);flex:none}
+.tcard .bio{color:var(--muted);font-size:14.5px;line-height:1.55;margin:12px 0 0}
+@media (max-width:700px){.team{grid-template-columns:1fr}.tcard{max-width:none}}
 
 /* why us */
 .advs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
@@ -388,8 +385,7 @@ dialog.closing{animation:dlgOut .17s ease-in forwards}dialog.closing::backdrop{a
 @media (max-width:900px){nav.main.open{animation:menuIn .28s cubic-bezier(.2,.8,.2,1)}}
 @media (prefers-reduced-motion:reduce){dialog[open],dialog.ap[open],dialog[open]::backdrop,dialog.closing,dialog.ap.closing,dialog.closing::backdrop,nav.main.open,nav.main a{animation:none!important;opacity:1!important;transform:none!important}}
 
-.stat,.adv,.course,.ct,.about-text,.video,.dir,.faq details,.lic dl,.docs button,.exp,.cred li{border:1px solid var(--line)}
-.dir .ph{border:0}
+.stat,.adv,.course,.ct,.about-text,.video,.faq details,.lic dl,.docs button{border:1px solid var(--line)}
 .stat,.adv,.course,.ct{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 @media (hover:hover){.stat:hover,.adv:hover,.course:hover,.ct:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.28);border-color:transparent}}
 .adv .ic,.ct .ic,.course .ic{background:linear-gradient(135deg,#2FB0FF,#0A6FD6);color:#fff;box-shadow:0 10px 20px -10px rgba(13,153,255,.8)}
@@ -402,7 +398,6 @@ dialog.closing{animation:dlgOut .17s ease-in forwards}dialog.closing::backdrop{a
 .faq details{transition:background .2s,border-color .2s}
 @media (hover:hover){.faq details:hover{border-color:var(--brand-ink)}}
 .faq details[open]{border-color:transparent}
-.dir .ph{box-shadow:0 24px 50px -24px rgba(8,38,61,.45)}
 .about-text h2{margin-top:2px}
 
 header{background:var(--bg);background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:box-shadow .2s}
@@ -572,6 +567,7 @@ dialog.ap form.open .opt{display:contents}
       <a href="#courses" data-t="nav_courses"></a>
       <a href="#advantages" data-t="nav_adv"></a>
       <a href="#about" data-t="nav_about"></a>
+      <a href="#teachers" class="mo" data-t="team_h"></a>
       <a href="#results" class="mo" data-t="ey_res"></a>
       <a href="#gallery" class="mo" data-t="ey_gal"></a>
       <a href="#license" class="mo" data-t="lic_h"></a>
@@ -669,28 +665,12 @@ dialog.ap form.open .opt{display:contents}
   </div>
 </section>
 
-<section id="director" style="padding-top:0">
+<section id="teachers" style="padding-top:0">
   <div class="wrap">
-    <div class="dir">
-      <div class="ph"><img src="assets/director.webp" alt="Ne’matullayev Saidkamol Mansur o‘g‘li" loading="lazy" width="560" height="560"></div>
-      <div>
-        <h2 data-t="dir_h"></h2>
-        <h3>Ne’matullayev Saidkamol Mansur o‘g‘li</h3>
-        <p class="role" data-t="dir_role"></p>
-        <ul class="cred">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c1"></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c2"></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-t="dir_c3"></span></li>
-        </ul>
-        <details class="exp" open>
-          <summary><h4 data-t="dir_exp"></h4></summary>
-          <ol>
-            <li><span>2022 – 2025</span><span data-t="dir_e1"></span></li>
-            <li><span data-t="dir_e2y"></span><span data-t="dir_e2"></span></li>
-          </ol>
-        </details>
-      </div>
-    </div>
+    <p class="eyebrow" data-t="ey_team"></p>
+    <h2 data-t="team_h"></h2>
+    <p class="sub" data-t="team_sub"></p>
+    <div class="team" id="teamGrid"></div>
   </div>
 </section>
 
@@ -864,7 +844,7 @@ const TG={
 };
 const T={
 uz:{
-ft_sections:"Bo‘limlar",ey_res:"Natijalar",res_h:"O‘quvchilarimiz yutuqlari",res_sub:"Markazimizda o‘qigan talabalar arab tilidan davlat sertifikatini qo‘lga kiritdi.",res_arab:"Arab tili",res_state:"Davlat sertifikati",res_note:"Sertifikatlar Bilim va malakalarni baholash agentligi tomonidan berilgan. Haqiqiyligini sertifikat.uzbmb.uz saytida tekshirish mumkin.",qz_btn:"Qaysi kurs menga mos?",qz_q1:"Kim o‘qiydi?",qz_q1a:"Bola (4–12 yosh)",qz_q1b:"O‘smir yoki katta odam",qz_q2:"Arabcha o‘qiy olasizmi?",qz_q2a:"Yo‘q, noldan boshlayman",qz_q2b:"Harflarni bilaman, sekin o‘qiyman",qz_q2c:"Bemalol o‘qiyman",qz_q3:"Asosiy maqsadingiz nima?",qz_q3a:"To‘g‘ri talaffuz va ravon o‘qish",qz_q3b:"Grammatika: matnni tushunish va gapirish",qz_res:"Sizga mos kurs",qz_r1:"Bolalar uchun fonetika: harflar, talaffuz va bo‘g‘inlab o‘qish o‘yin tarzida, kichik guruhda. Ota-onalar natijani onlayn kuzatib boradi.",qz_r2:"Kattalar uchun fonetika: harflardan boshlab to‘g‘ri talaffuz va ravon o‘qishgacha. Grammatika kursiga mustahkam poydevor bo‘ladi.",qz_r3:"Grammatika kursi: so‘z turkumlari, gap tuzilishi va fe’l shakllari — matnni tushunish va o‘z fikrini to‘g‘ri ifodalash uchun.",qz_note:"Avval fonetikani mustahkamlab, keyin grammatikaga o‘tasiz. Ikkalasini ketma-ket rejalashtirib beramiz.",qz_again:"Qayta boshlash",qz_back:"Orqaga",open_now:"Hozir ochiq · 20:00 gacha",closed_now:"Hozir yopiq · 07:00 da ochiladi",save_contact:"Kontaktni saqlash",news_more:"Batafsil",a_close:"Yopish",a_prev:"Oldingi rasm",a_next:"Keyingi rasm",a_menu:"Menyu",taxi:"Taksi chaqirish",d_tg:"Telegram kanalimizga obuna bo‘ling",form_hint:"Ism va telefon kifoya — qolganini qo‘ng‘iroqda aniqlaymiz.",more_t:"Qo‘shimcha: yosh, dars formati, qulay vaqt",opt_l:"(ixtiyoriy)",meta_t:"SAID academy — arab tili o‘quv markazi, Toshkent",meta_d:"Bolalar va kattalar uchun arab tili fonetikasi va grammatikasi. Tinchlik metrosi yaqinida. Birinchi dars — bepul.",f_metro_s:"Metro yaqinida",ey_steps:"Qanday boshlanadi",steps_h:"Uch oddiy qadam",steps_sub:"Ariza qoldirishdan birinchi darsgacha — hammasi bir necha kun ichida.",st1_h:"Ariza qoldirasiz",st1_p:"Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.",st1_t:"1 daqiqa",st2_h:"Biz qo‘ng‘iroq qilamiz",st2_p:"Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.",st2_t:"Shu kuni",st3_h:"Bepul darsga kelasiz",st3_p:"Ustoz va darslar bilan tanishasiz. Yoqsa — guruhda davom etasiz.",ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
+ft_sections:"Bo‘limlar",ey_team:"Jamoa",team_h:"Ustozlarimiz",team_sub:"Darslarni tajribali, arab tilini chuqur biladigan ustozlar olib boradi.",team_teaches:"O‘qitadi",ey_res:"Natijalar",res_h:"O‘quvchilarimiz yutuqlari",res_sub:"Markazimizda o‘qigan talabalar arab tilidan davlat sertifikatini qo‘lga kiritdi.",res_arab:"Arab tili",res_state:"Davlat sertifikati",res_note:"Sertifikatlar Bilim va malakalarni baholash agentligi tomonidan berilgan. Haqiqiyligini sertifikat.uzbmb.uz saytida tekshirish mumkin.",qz_btn:"Qaysi kurs menga mos?",qz_q1:"Kim o‘qiydi?",qz_q1a:"Bola (4–12 yosh)",qz_q1b:"O‘smir yoki katta odam",qz_q2:"Arabcha o‘qiy olasizmi?",qz_q2a:"Yo‘q, noldan boshlayman",qz_q2b:"Harflarni bilaman, sekin o‘qiyman",qz_q2c:"Bemalol o‘qiyman",qz_q3:"Asosiy maqsadingiz nima?",qz_q3a:"To‘g‘ri talaffuz va ravon o‘qish",qz_q3b:"Grammatika: matnni tushunish va gapirish",qz_res:"Sizga mos kurs",qz_r1:"Bolalar uchun fonetika: harflar, talaffuz va bo‘g‘inlab o‘qish o‘yin tarzida, kichik guruhda. Ota-onalar natijani onlayn kuzatib boradi.",qz_r2:"Kattalar uchun fonetika: harflardan boshlab to‘g‘ri talaffuz va ravon o‘qishgacha. Grammatika kursiga mustahkam poydevor bo‘ladi.",qz_r3:"Grammatika kursi: so‘z turkumlari, gap tuzilishi va fe’l shakllari — matnni tushunish va o‘z fikrini to‘g‘ri ifodalash uchun.",qz_note:"Avval fonetikani mustahkamlab, keyin grammatikaga o‘tasiz. Ikkalasini ketma-ket rejalashtirib beramiz.",qz_again:"Qayta boshlash",qz_back:"Orqaga",open_now:"Hozir ochiq · 20:00 gacha",closed_now:"Hozir yopiq · 07:00 da ochiladi",save_contact:"Kontaktni saqlash",news_more:"Batafsil",a_close:"Yopish",a_prev:"Oldingi rasm",a_next:"Keyingi rasm",a_menu:"Menyu",taxi:"Taksi chaqirish",d_tg:"Telegram kanalimizga obuna bo‘ling",form_hint:"Ism va telefon kifoya — qolganini qo‘ng‘iroqda aniqlaymiz.",more_t:"Qo‘shimcha: yosh, dars formati, qulay vaqt",opt_l:"(ixtiyoriy)",meta_t:"SAID academy — arab tili o‘quv markazi, Toshkent",meta_d:"Bolalar va kattalar uchun arab tili fonetikasi va grammatikasi. Tinchlik metrosi yaqinida. Birinchi dars — bepul.",f_metro_s:"Metro yaqinida",ey_steps:"Qanday boshlanadi",steps_h:"Uch oddiy qadam",steps_sub:"Ariza qoldirishdan birinchi darsgacha — hammasi bir necha kun ichida.",st1_h:"Ariza qoldirasiz",st1_p:"Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.",st1_t:"1 daqiqa",st2_h:"Biz qo‘ng‘iroq qilamiz",st2_p:"Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.",st2_t:"Shu kuni",st3_h:"Bepul darsga kelasiz",st3_p:"Ustoz va darslar bilan tanishasiz. Yoqsa — guruhda davom etasiz.",ey_gal:"Galereya",gal_h:"Markaz hayoti",gal_sub:"Darsxonalarimiz, bolalar xonasi va markaz muhiti.",v1_t:"Markaz bilan tanishuv",v2_t:"Yo‘nalishlar haqida",s_hours:"har kuni ochiqmiz",qb_call:"Qo‘ng‘iroq",hero_ey:"Arab tili o‘quv markazi · Toshkent",ey_about:"Markaz haqida",ey_adv:"Nega aynan biz",adv_sub:"Natija beradigan darslar uchun hamma narsa bor: tajribali ustozlar, kichik guruhlar va qulay joylashuv.",ey_courses:"Kurslar",courses_sub:"Yoshga va darajaga qarab uch yo‘nalish.",ey_lic:"Rasmiy faoliyat",ey_faq:"Savol-javob",faq_sub:"Eng ko‘p so‘raladigan savollarga javoblar. Boshqa savol bo‘lsa, qo‘ng‘iroq qiling.",ey_ct:"Aloqa",ct_sub:"Har kuni 07:00 dan 20:00 gacha ochiqmiz. Kelib ko‘ring yoki qo‘ng‘iroq qiling.",
 nav_about:"Biz haqimizda",nav_courses:"Yo‘nalishlar",nav_adv:"Afzalliklar",nav_faq:"Savollar",nav_contacts:"Kontaktlar",
 enroll:"Shu kursga yozilish",apply:"Ariza qoldirish",contact_tg:"Telegram orqali bog‘lanish",
 slogan:"Bilim yangi imkoniyatlar eshigini ochadi",slogan_hl:"imkoniyatlar",
@@ -873,8 +853,6 @@ s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil 
 about_h:"Biz haqimizda",
 about_p:"SAID academy — 2025-yil aprel oyida Toshkentda tashkil topgan arab tili o‘quv markazi. Arab tilini fonetikadan boshlab, bosqichma-bosqich, tushunarli va amaliy tarzda o‘rgatamiz. Darslar bolalar uchun ham, kattalar uchun ham alohida dasturda olib boriladi.",about_p2:"Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz. Kelib, ustozlar va muhit bilan o‘zingiz tanishing.",
 video_h:"SAID academy haqida video",video_sub:"Markaz, ustozlar va darslar bilan tanishing",video_btn:"Instagramda ko‘rish",
-dir_h:"Markaz rahbari",dir_role:"SAID academy direktori",dir_c1:"Oriental universiteti bitiruvchisi",dir_c2:"Arab tilidan CEFR B2",dir_c3:"4 yillik tajriba",
-dir_exp:"Ish tajribasi",dir_e1:"Habib Academy — arab tili o‘qituvchisi",dir_e2y:"2025 – hozirgacha",dir_e2:"SAID academy — direktor",
 courses_h:"Yo‘nalishlar",
 c1_s:"Bolalar — fonetika",c2_s:"Kattalar — fonetika",c3_s:"Grammatika",c1_who:"4 yoshdan katta bolalar",c1_h:"Bolalar uchun arab tili fonetikasi",c1_p:"Bola arab harflarini tanishdan boshlab, ularni to‘g‘ri talaffuz qilishni va bo‘g‘inlab o‘qishni o‘rganadi. Darslar o‘yin va mashqlar bilan qiziqarli o‘tadi, kichik guruhda har bir bolaga alohida e’tibor beriladi. Ota-onalar farzandining o‘zlashtirishini onlayn kuzatib boradi.",
 c2_who:"Kattalar",c2_h:"Kattalar uchun arab tili fonetikasi",c2_p:"Noldan boshlaganlar uchun: harflar, ularning so‘z boshida, o‘rtasida va oxirida yozilishi, to‘g‘ri talaffuz va o‘qish qoidalari. Kurs oxirida arabcha matnni mustaqil va ravon o‘qiy olasiz. Grammatika kursiga o‘tish uchun mustahkam poydevor bo‘ladi.",
@@ -910,7 +888,7 @@ ct_addr:"Manzil",addr:"Toshkent sh., Shayxontohur tumani, Ilg‘or MFY, Matlubot
 ct_phone:"Telefon",ct_social:"Ijtimoiy tarmoqlar",ft_contact:"Biz bilan bog‘laning",ct_hours:"Ish vaqti",hours:"Har kuni 07:00–20:00"
 },
 ru:{
-ft_sections:"Разделы",ey_res:"Результаты",res_h:"Достижения наших учеников",res_sub:"Студенты нашего центра получили государственный сертификат по арабскому языку.",res_arab:"Арабский язык",res_state:"Государственный сертификат",res_note:"Сертификаты выданы Агентством по оценке знаний и компетенций. Подлинность можно проверить на сайте sertifikat.uzbmb.uz.",qz_btn:"Какой курс мне подходит?",qz_q1:"Кто будет учиться?",qz_q1a:"Ребёнок (4–12 лет)",qz_q1b:"Подросток или взрослый",qz_q2:"Вы умеете читать по-арабски?",qz_q2a:"Нет, начинаю с нуля",qz_q2b:"Знаю буквы, читаю медленно",qz_q2c:"Читаю свободно",qz_q3:"Какая главная цель?",qz_q3a:"Правильное произношение и беглое чтение",qz_q3b:"Грамматика: понимать текст и говорить",qz_res:"Вам подходит курс",qz_r1:"Фонетика для детей: буквы, произношение и чтение по слогам в игровой форме, в небольшой группе. Родители следят за результатом онлайн.",qz_r2:"Фонетика для взрослых: от букв до правильного произношения и беглого чтения. Прочная база для курса грамматики.",qz_r3:"Курс грамматики: части речи, строение предложения и формы глагола — чтобы понимать текст и правильно выражать мысли.",qz_note:"Сначала закрепите фонетику, затем перейдёте к грамматике. Спланируем оба курса подряд.",qz_again:"Начать заново",qz_back:"Назад",open_now:"Сейчас открыто · до 20:00",closed_now:"Сейчас закрыто · откроется в 07:00",save_contact:"Сохранить контакт",news_more:"Подробнее",a_close:"Закрыть",a_prev:"Предыдущее фото",a_next:"Следующее фото",a_menu:"Меню",taxi:"Вызвать такси",d_tg:"Подпишитесь на наш Telegram-канал",form_hint:"Достаточно имени и телефона — остальное уточним по звонку.",more_t:"Дополнительно: возраст, формат, удобное время",opt_l:"(необязательно)",meta_t:"SAID academy — центр арабского языка, Ташкент",meta_d:"Фонетика и грамматика арабского языка для детей и взрослых. Рядом с метро Тинчлик. Первый урок — бесплатно.",f_metro_s:"Рядом с метро",ey_steps:"Как начать",steps_h:"Три простых шага",steps_sub:"От заявки до первого урока — всего несколько дней.",st1_h:"Оставляете заявку",st1_p:"Заполняете форму на сайте или звоните. Это займёт 1 минуту.",st1_t:"1 минута",st2_h:"Мы перезваниваем",st2_p:"В течение дня связываемся, подбираем удобное время и группу.",st2_t:"В тот же день",st3_h:"Приходите на бесплатный урок",st3_p:"Знакомитесь с преподавателем и занятиями. Понравится — продолжаете в группе.",ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
+ft_sections:"Разделы",ey_team:"Команда",team_h:"Наши преподаватели",team_sub:"Занятия ведут опытные преподаватели, глубоко знающие арабский язык.",team_teaches:"Преподаёт",ey_res:"Результаты",res_h:"Достижения наших учеников",res_sub:"Студенты нашего центра получили государственный сертификат по арабскому языку.",res_arab:"Арабский язык",res_state:"Государственный сертификат",res_note:"Сертификаты выданы Агентством по оценке знаний и компетенций. Подлинность можно проверить на сайте sertifikat.uzbmb.uz.",qz_btn:"Какой курс мне подходит?",qz_q1:"Кто будет учиться?",qz_q1a:"Ребёнок (4–12 лет)",qz_q1b:"Подросток или взрослый",qz_q2:"Вы умеете читать по-арабски?",qz_q2a:"Нет, начинаю с нуля",qz_q2b:"Знаю буквы, читаю медленно",qz_q2c:"Читаю свободно",qz_q3:"Какая главная цель?",qz_q3a:"Правильное произношение и беглое чтение",qz_q3b:"Грамматика: понимать текст и говорить",qz_res:"Вам подходит курс",qz_r1:"Фонетика для детей: буквы, произношение и чтение по слогам в игровой форме, в небольшой группе. Родители следят за результатом онлайн.",qz_r2:"Фонетика для взрослых: от букв до правильного произношения и беглого чтения. Прочная база для курса грамматики.",qz_r3:"Курс грамматики: части речи, строение предложения и формы глагола — чтобы понимать текст и правильно выражать мысли.",qz_note:"Сначала закрепите фонетику, затем перейдёте к грамматике. Спланируем оба курса подряд.",qz_again:"Начать заново",qz_back:"Назад",open_now:"Сейчас открыто · до 20:00",closed_now:"Сейчас закрыто · откроется в 07:00",save_contact:"Сохранить контакт",news_more:"Подробнее",a_close:"Закрыть",a_prev:"Предыдущее фото",a_next:"Следующее фото",a_menu:"Меню",taxi:"Вызвать такси",d_tg:"Подпишитесь на наш Telegram-канал",form_hint:"Достаточно имени и телефона — остальное уточним по звонку.",more_t:"Дополнительно: возраст, формат, удобное время",opt_l:"(необязательно)",meta_t:"SAID academy — центр арабского языка, Ташкент",meta_d:"Фонетика и грамматика арабского языка для детей и взрослых. Рядом с метро Тинчлик. Первый урок — бесплатно.",f_metro_s:"Рядом с метро",ey_steps:"Как начать",steps_h:"Три простых шага",steps_sub:"От заявки до первого урока — всего несколько дней.",st1_h:"Оставляете заявку",st1_p:"Заполняете форму на сайте или звоните. Это займёт 1 минуту.",st1_t:"1 минута",st2_h:"Мы перезваниваем",st2_p:"В течение дня связываемся, подбираем удобное время и группу.",st2_t:"В тот же день",st3_h:"Приходите на бесплатный урок",st3_p:"Знакомитесь с преподавателем и занятиями. Понравится — продолжаете в группе.",ey_gal:"Галерея",gal_h:"Жизнь центра",gal_sub:"Наши классы, детская комната и атмосфера центра.",v1_t:"Знакомство с центром",v2_t:"О направлениях",s_hours:"открыты ежедневно",qb_call:"Позвонить",hero_ey:"Центр арабского языка · Ташкент",ey_about:"О центре",ey_adv:"Почему мы",adv_sub:"Всё для результата: опытные преподаватели, небольшие группы и удобное расположение.",ey_courses:"Курсы",courses_sub:"Три направления по возрасту и уровню.",ey_lic:"Официальная деятельность",ey_faq:"Вопросы и ответы",faq_sub:"Ответы на самые частые вопросы. Остались вопросы — позвоните нам.",ey_ct:"Связь",ct_sub:"Мы открыты ежедневно с 07:00 до 20:00. Приходите или позвоните.",
 nav_about:"О нас",nav_courses:"Направления",nav_adv:"Преимущества",nav_faq:"Вопросы",nav_contacts:"Контакты",
 enroll:"Записаться на этот курс",apply:"Оставить заявку",contact_tg:"Связаться в Telegram",
 slogan:"Знания открывают дверь к новым возможностям",slogan_hl:"возможностям",
@@ -919,8 +897,6 @@ s_students:"студентов",s_teachers:"преподавателей",s_date
 about_h:"О нас",
 about_p:"SAID academy — учебный центр арабского языка, основанный в апреле 2025 года в Ташкенте. Мы обучаем арабскому поэтапно, начиная с фонетики, понятно и практично. Для детей и для взрослых — отдельные программы.",about_p2:"Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный. Приходите и познакомьтесь с преподавателями и атмосферой сами.",
 video_h:"Видео о SAID academy",video_sub:"Познакомьтесь с центром, преподавателями и занятиями",video_btn:"Смотреть в Instagram",
-dir_h:"Руководитель центра",dir_role:"Директор SAID academy",dir_c1:"Выпускник университета Oriental",dir_c2:"CEFR B2 по арабскому языку",dir_c3:"4 года опыта",
-dir_exp:"Опыт работы",dir_e1:"Habib Academy — преподаватель арабского языка",dir_e2y:"2025 – настоящее время",dir_e2:"SAID academy — директор",
 courses_h:"Направления",
 c1_s:"Дети — фонетика",c2_s:"Взрослые — фонетика",c3_s:"Грамматика",c1_who:"Дети старше 4 лет",c1_h:"Фонетика арабского языка для детей",c1_p:"Ребёнок начинает со знакомства с арабскими буквами, учится правильно их произносить и читать по слогам. Занятия проходят в игровой форме с упражнениями, в небольшой группе каждому ребёнку уделяется внимание. Родители следят за успехами ребёнка онлайн.",
 c2_who:"Взрослые",c2_h:"Фонетика арабского языка для взрослых",c2_p:"Для начинающих с нуля: буквы, их написание в начале, середине и конце слова, правильное произношение и правила чтения. К концу курса вы сможете самостоятельно и бегло читать арабский текст. Это прочная база для перехода к курсу грамматики.",
@@ -956,7 +932,7 @@ ct_addr:"Адрес",addr:"г. Ташкент, Шайхантахурский р
 ct_phone:"Телефон",ct_social:"Соцсети",ft_contact:"Свяжитесь с нами",ct_hours:"Время работы",hours:"Ежедневно 07:00–20:00"
 },
 en:{
-ft_sections:"Sections",ey_res:"Results",res_h:"Our students’ achievements",res_sub:"Students of our center have earned the state certificate in Arabic.",res_arab:"Arabic",res_state:"State certificate",res_note:"Certificates are issued by the Agency for Assessment of Knowledge and Competences and can be verified at sertifikat.uzbmb.uz.",qz_btn:"Which course suits me?",qz_q1:"Who will study?",qz_q1a:"A child (4–12)",qz_q1b:"A teenager or an adult",qz_q2:"Can you read Arabic?",qz_q2a:"No, I am starting from zero",qz_q2b:"I know the letters, I read slowly",qz_q2c:"I read fluently",qz_q3:"What is your main goal?",qz_q3a:"Correct pronunciation and fluent reading",qz_q3b:"Grammar: understanding texts and speaking",qz_res:"Your course",qz_r1:"Phonetics for children: letters, pronunciation and syllable reading through games, in a small group. Parents follow progress online.",qz_r2:"Phonetics for adults: from the letters to correct pronunciation and fluent reading. A solid base for the grammar course.",qz_r3:"The grammar course: parts of speech, sentence structure and verb forms, so you understand texts and express yourself correctly.",qz_note:"Strengthen phonetics first, then move on to grammar. We will plan both courses back to back.",qz_again:"Start again",qz_back:"Back",open_now:"Open now · until 20:00",closed_now:"Closed now · opens at 07:00",save_contact:"Save contact",news_more:"Details",a_close:"Close",a_prev:"Previous photo",a_next:"Next photo",a_menu:"Menu",taxi:"Call a taxi",d_tg:"Follow our Telegram channel",form_hint:"Name and phone are enough — we will sort out the rest on the call.",more_t:"More: age, lesson format, best time",opt_l:"(optional)",meta_t:"SAID academy — Arabic language center, Tashkent",meta_d:"Arabic phonetics and grammar for children and adults. Near Tinchlik metro. The first lesson is free.",f_metro_s:"Near the metro",ey_steps:"How it starts",steps_h:"Three simple steps",steps_sub:"From your application to the first lesson in just a few days.",st1_h:"Apply",st1_p:"Fill in the form on the site or give us a call. It takes 1 minute.",st1_t:"1 minute",st2_h:"We call you back",st2_p:"We get in touch the same day to agree on a convenient time and group.",st2_t:"Same day",st3_h:"Come to a free lesson",st3_p:"Meet the teacher and see how classes go. If you like it, continue in a group.",ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
+ft_sections:"Sections",ey_team:"Team",team_h:"Our teachers",team_sub:"Classes are taught by experienced teachers with a deep knowledge of Arabic.",team_teaches:"Teaches",ey_res:"Results",res_h:"Our students’ achievements",res_sub:"Students of our center have earned the state certificate in Arabic.",res_arab:"Arabic",res_state:"State certificate",res_note:"Certificates are issued by the Agency for Assessment of Knowledge and Competences and can be verified at sertifikat.uzbmb.uz.",qz_btn:"Which course suits me?",qz_q1:"Who will study?",qz_q1a:"A child (4–12)",qz_q1b:"A teenager or an adult",qz_q2:"Can you read Arabic?",qz_q2a:"No, I am starting from zero",qz_q2b:"I know the letters, I read slowly",qz_q2c:"I read fluently",qz_q3:"What is your main goal?",qz_q3a:"Correct pronunciation and fluent reading",qz_q3b:"Grammar: understanding texts and speaking",qz_res:"Your course",qz_r1:"Phonetics for children: letters, pronunciation and syllable reading through games, in a small group. Parents follow progress online.",qz_r2:"Phonetics for adults: from the letters to correct pronunciation and fluent reading. A solid base for the grammar course.",qz_r3:"The grammar course: parts of speech, sentence structure and verb forms, so you understand texts and express yourself correctly.",qz_note:"Strengthen phonetics first, then move on to grammar. We will plan both courses back to back.",qz_again:"Start again",qz_back:"Back",open_now:"Open now · until 20:00",closed_now:"Closed now · opens at 07:00",save_contact:"Save contact",news_more:"Details",a_close:"Close",a_prev:"Previous photo",a_next:"Next photo",a_menu:"Menu",taxi:"Call a taxi",d_tg:"Follow our Telegram channel",form_hint:"Name and phone are enough — we will sort out the rest on the call.",more_t:"More: age, lesson format, best time",opt_l:"(optional)",meta_t:"SAID academy — Arabic language center, Tashkent",meta_d:"Arabic phonetics and grammar for children and adults. Near Tinchlik metro. The first lesson is free.",f_metro_s:"Near the metro",ey_steps:"How it starts",steps_h:"Three simple steps",steps_sub:"From your application to the first lesson in just a few days.",st1_h:"Apply",st1_p:"Fill in the form on the site or give us a call. It takes 1 minute.",st1_t:"1 minute",st2_h:"We call you back",st2_p:"We get in touch the same day to agree on a convenient time and group.",st2_t:"Same day",st3_h:"Come to a free lesson",st3_p:"Meet the teacher and see how classes go. If you like it, continue in a group.",ey_gal:"Gallery",gal_h:"Life at the center",gal_sub:"Our classrooms, the kids’ room and the atmosphere of the center.",v1_t:"Meet the center",v2_t:"About our courses",s_hours:"open every day",qb_call:"Call",hero_ey:"Arabic language center · Tashkent",ey_about:"About the center",ey_adv:"Why us",adv_sub:"Everything for real results: experienced teachers, small groups and a convenient location.",ey_courses:"Courses",courses_sub:"Three tracks by age and level.",ey_lic:"Officially licensed",ey_faq:"Q&A",faq_sub:"Answers to the most common questions. Still have one? Give us a call.",ey_ct:"Get in touch",ct_sub:"We are open every day from 07:00 to 20:00. Visit us or give us a call.",
 nav_about:"About us",nav_courses:"Courses",nav_adv:"Advantages",nav_faq:"FAQ",nav_contacts:"Contacts",
 enroll:"Enroll in this course",apply:"Apply now",contact_tg:"Contact us on Telegram",
 slogan:"Knowledge opens the door to new opportunities",slogan_hl:"opportunities",
@@ -965,8 +941,6 @@ s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"fo
 about_h:"About us",
 about_p:"SAID academy is an Arabic language center founded in Tashkent in April 2025. We teach Arabic step by step, starting with phonetics, in a clear and practical way. Children and adults follow separate programs.",about_p2:"We believe knowledge opens the door to new opportunities — that’s why your first lesson is free. Come and meet the teachers and the place for yourself.",
 video_h:"Video about SAID academy",video_sub:"Meet the center, the teachers and the classes",video_btn:"Watch on Instagram",
-dir_h:"Head of the center",dir_role:"Director of SAID academy",dir_c1:"Graduate of Oriental University",dir_c2:"CEFR B2 in Arabic",dir_c3:"4 years of experience",
-dir_exp:"Work experience",dir_e1:"Habib Academy — Arabic teacher",dir_e2y:"2025 – present",dir_e2:"SAID academy — Director",
 courses_h:"Courses",
 c1_s:"Children — phonetics",c2_s:"Adults — phonetics",c3_s:"Grammar",c1_who:"Children aged 4+",c1_h:"Arabic phonetics for children",c1_p:"Children start by learning the Arabic letters, then how to pronounce them correctly and read syllable by syllable. Lessons are fun, with games and exercises, and every child gets attention in a small group. Parents follow their child’s progress online.",
 c2_who:"Adults",c2_h:"Arabic phonetics for adults",c2_p:"For complete beginners: the letters, how they are written at the beginning, middle and end of a word, correct pronunciation and reading rules. By the end of the course you read Arabic text on your own and fluently. A solid base for moving on to the grammar course.",
@@ -1015,7 +989,7 @@ function apply(l){
   document.getElementById("langCur").textContent=LN[l];
   document.title=d.meta_t;const md=document.querySelector("meta[name=description]");if(md)md.content=d.meta_d;
   document.querySelectorAll(".lang li button").forEach(b=>b.setAttribute("aria-current",b.dataset.lang===l));
-  nowBadge();renderNews();if(quiz.open)qzRender();
+  nowBadge();renderNews();renderTeam();if(quiz.open)qzRender();
   document.querySelectorAll("dialog .x").forEach(b=>b.setAttribute("aria-label",d.a_close));const hpb=document.getElementById("heroPlay");if(hpb)hpb.setAttribute("aria-label",d.v1_t);document.getElementById("lbPrev").setAttribute("aria-label",d.a_prev);document.getElementById("lbNext").setAttribute("aria-label",d.a_next);document.getElementById("menuT").setAttribute("aria-label",d.a_menu);
   const cc=document.getElementById("courseCards");cc.innerHTML="";
   ["c1","c2","c3"].forEach((c,i)=>{const a=document.createElement("article");a.className="course";
@@ -1031,6 +1005,16 @@ langBtn.addEventListener("click",e=>{e.stopPropagation();const o=langEl.classLis
 document.querySelectorAll(".lang li button").forEach(b=>b.addEventListener("click",()=>{apply(b.dataset.lang);langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)}));
 document.addEventListener("click",()=>{langEl.classList.remove("open");langBtn.setAttribute("aria-expanded",false)});
 var NEWS=null;
+// Ustozlar: har biri uchun surat, ism, lavozim, yo‘nalish, ma’lumot va qisqa izoh (uz/ru/en)
+const TEAM=[
+ {photo:"assets/director.webp",name:"Ne’matullayev Saidkamol Mansur o‘g‘li",lead:true,
+  role:{uz:"Direktor · Arab tili ustozi",ru:"Директор · преподаватель арабского",en:"Director · Arabic teacher"},
+  teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
+  tags:{uz:["Oriental universiteti bitiruvchisi","Arab tilidan CEFR B2","4 yillik tajriba"],ru:["Выпускник университета Oriental","CEFR B2 по арабскому языку","4 года опыта"],en:["Graduate of Oriental University","CEFR B2 in Arabic","4 years of experience"]},
+  bio:{uz:"2022–2025 yillarda Habib Academy’da arab tili o‘qituvchisi, 2025 yildan SAID academy asoschisi va direktori.",ru:"В 2022–2025 годах преподавал арабский в Habib Academy, с 2025 года — основатель и директор SAID academy.",en:"Taught Arabic at Habib Academy in 2022–2025; founder and director of SAID academy since 2025."}}
+];
+function renderTeam(){const g=document.getElementById("teamGrid");if(!g)return;const d=T[lang];const CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  g.innerHTML=TEAM.map(t=>'<article class="tcard"><div class="ph"><img src="'+t.photo+'" alt="'+esc(t.name)+'" loading="lazy" width="560" height="616"></div><div class="tb"><span class="role'+(t.lead?' lead':'')+'">'+esc(t.role[lang]||t.role.uz)+'</span><h3>'+esc(t.name)+'</h3><p class="teach">'+esc(d.team_teaches)+': '+esc(t.teaches[lang]||t.teaches.uz)+'</p><ul class="tags">'+(t.tags[lang]||t.tags.uz).map(x=>'<li>'+CHK+esc(x)+'</li>').join('')+'</ul>'+(t.bio?'<p class="bio">'+esc(t.bio[lang]||t.bio.uz)+'</p>':'')+'</div></article>').join("")}
 const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 // Oynalar yumshoq yopiladi (Escape ham shu yo‘ldan o‘tadi)
 (function(){const cl=HTMLDialogElement.prototype.close;
@@ -1237,7 +1221,6 @@ document.addEventListener("click",e=>{
 })();
 
 document.getElementById("year").textContent=new Date().getFullYear();
-if(matchMedia("(max-width:860px)").matches)document.querySelector(".exp").removeAttribute("open");
 document.getElementById("taxiLink").href="https://3.redirect.appmetrica.yandex.com/route?end-lat="+GEO.lat+"&end-lon="+GEO.lon+"&ref=saidacademy&appmetrica_tracking_id=1178268795219780156";
 
 /* header shadow on scroll + back-to-top */
@@ -1258,7 +1241,7 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
 /* reveal on scroll */
 (function(){
   if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
-  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.dir,.lic>div,.faq details,.apply,.gal button,.cert,.step,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
+  const els=document.querySelectorAll(".stat,.adv,.course,.ct,.about-text,.video,.tcard,.lic>div,.faq details,.apply,.gal button,.cert,.step,section>.wrap>.eyebrow,section>.wrap>h2,section>.wrap>.sub");
   let first=true;
   const io=new IntersectionObserver(es=>{const batch=[];es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
     if(first){el.style.transition="none";el.style.transitionDelay="0ms";el.classList.add("in");batch.push(el)}else el.classList.add("in")});
@@ -1277,7 +1260,7 @@ if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWor
    Joy raqam bilan emas, "ekran tepasidagi blok + undan siljish" ko‘rinishida saqlanadi — shrift yoki rasm
    yuklanib balandlik o‘zgarsa ham o‘sha blok joyida qoladi. */
 (function(){const KEY="said_scroll";let t=0,moved=false;
-  const anchors=()=>document.querySelectorAll("main section[id],.stat,.course,.adv,.about-text,.video,.dir,.gal button,.cert,.lic>div,.faq details,.step,.apply,.ct,footer");
+  const anchors=()=>document.querySelectorAll("main section[id],.stat,.course,.adv,.about-text,.video,.tcard,.gal button,.cert,.lic>div,.faq details,.step,.apply,.ct,footer");
   const absTop=el=>{let t=0;while(el){t+=el.offsetTop;el=el.offsetParent}return t};/* transform (reveal) hisobga olinmaydi */
   const save=()=>{try{const y=scrollY;if(y<2){sessionStorage.setItem(KEY,"0");return}let best=-1,bt=0;anchors().forEach((el,i)=>{const top=absTop(el);if(top<=y+1&&top>=bt){bt=top;best=i}});
     sessionStorage.setItem(KEY,JSON.stringify({i:best,o:Math.round(y-bt),y:Math.round(y)}))}catch(e){}};

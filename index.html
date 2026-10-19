@@ -810,8 +810,8 @@ dialog.ap form.open .opt{display:contents}
       <form id="form" novalidate>
         <p class="hint" data-t="form_hint"></p>
         <div class="hp" aria-hidden="true"><label>Website<input id="website" tabindex="-1" autocomplete="off"></label></div>
-        <div class="f" id="fName"><label for="name" data-t="fl_name"></label><input id="name" autocomplete="name"><span class="err"></span></div>
-        <div class="f" id="fPhone"><label for="phone" data-t="fl_phone"></label><input id="phone" type="tel" autocomplete="tel" placeholder="+998 __ ___ __ __"><span class="err"></span></div>
+        <div class="f" id="fName"><label for="name" data-t="fl_name"></label><input id="name" autocomplete="name" class="ym-disable-keys"><span class="err"></span></div>
+        <div class="f" id="fPhone"><label for="phone" data-t="fl_phone"></label><input id="phone" type="tel" autocomplete="tel" class="ym-disable-keys" placeholder="+998 __ ___ __ __"><span class="err"></span></div>
         <div class="f full"><label for="course" data-t="fl_course"></label><select id="course"><option value="c1" data-t="c1_s"></option><option value="c2" data-t="c2_s"></option><option value="c3" data-t="c3_s"></option></select></div>
         <button type="button" class="more" id="moreBtn" aria-expanded="false" aria-controls="opt"><span data-t="more_t"></span></button>
         <div class="opt" id="opt">
@@ -1118,7 +1118,7 @@ function qzResult(){if(qzA.who==="kid")return{c:"c1"};if(qzA.read==="good"&&qzA.
 function qzRender(){const d=T[lang],box=document.getElementById("qzBody");
   const steps=[{k:"who",q:d.qz_q1,o:[["kid",d.qz_q1a],["adult",d.qz_q1b]]},{k:"read",q:d.qz_q2,o:[["none",d.qz_q2a],["some",d.qz_q2b],["good",d.qz_q2c]]},{k:"goal",q:d.qz_q3,o:[["read",d.qz_q3a],["gram",d.qz_q3b]]}];
   if(qzStep<3){const st=steps[qzStep];box.innerHTML='<p class="qz-step">'+(qzStep+1)+' / 3</p><h3>'+esc(st.q)+'</h3><div class="qz-opts">'+st.o.map(o=>'<button type="button" class="qopt" data-k="'+st.k+'" data-v="'+o[0]+'">'+esc(o[1])+'</button>').join("")+'</div>'+(qzStep?'<button type="button" class="qz-back" id="qzBack">← '+esc(d.qz_back)+'</button>':'');return}
-  const r=qzResult();box.innerHTML='<div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><p class="qz-step">'+esc(d.qz_res)+'</p><h3>'+esc(d[r.c+"_h"])+'</h3><p class="qz-why">'+esc(d["qz_r"+r.c.slice(1)])+'</p>'+(r.note?'<p class="qz-note">'+esc(d.qz_note)+'</p>':'')+'<button class="btn" type="button" id="qzGo" data-c="'+r.c+'">'+esc(d.enroll)+'</button><button class="btn light" type="button" id="qzAgain">'+esc(d.qz_again)+'</button>'}
+  const r=qzResult();goal("quiz");box.innerHTML='<div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><p class="qz-step">'+esc(d.qz_res)+'</p><h3>'+esc(d[r.c+"_h"])+'</h3><p class="qz-why">'+esc(d["qz_r"+r.c.slice(1)])+'</p>'+(r.note?'<p class="qz-note">'+esc(d.qz_note)+'</p>':'')+'<button class="btn" type="button" id="qzGo" data-c="'+r.c+'">'+esc(d.enroll)+'</button><button class="btn light" type="button" id="qzAgain">'+esc(d.qz_again)+'</button>'}
 document.getElementById("quizBtn").addEventListener("click",()=>{qzStep=0;qzA={};qzRender();quiz.showModal()});
 document.getElementById("quizX").addEventListener("click",()=>quiz.close());
 quiz.addEventListener("click",e=>{if(e.target===quiz){quiz.close();return}
@@ -1204,7 +1204,7 @@ form.addEventListener("submit",e=>{
   const btn=form.querySelector("button[type=submit]"),label=btn.textContent;
   btn.disabled=true;btn.textContent=T[lang].sending;
   sendTelegram({text,name,phone,course:c,age,format:fmt,when,lang,ref:getRef(),website:document.getElementById("website").value}).then(()=>{
-    form.reset();clearDraft();closeApply();done.showModal();
+    form.reset();clearDraft();closeApply();done.showModal();goal("lead");
   }).catch(()=>{
     failNote.textContent=T[lang].fail;failNote.hidden=false;sent.showModal();
   }).finally(()=>{btn.disabled=false;btn.textContent=label});
@@ -1252,7 +1252,7 @@ function hasOptDraft(){try{const d=JSON.parse(localStorage.getItem(DK)||"null");
   const f=form.querySelector('input[name=fmt][value="'+d.f+'"]');if(f)f.checked=true;const w=form.querySelector('input[name=when][value="'+d.w+'"]');if(w)w.checked=true;
 }catch(e){}})();
 form.addEventListener("input",saveDraft);form.addEventListener("change",saveDraft);
-function openApply(){if(applyDlg.open)return;dlgSlot.append(form);form.classList.remove("open");moreBtn.setAttribute("aria-expanded","false");if(hasOptDraft())openOpt();applyDlg.showModal();setTimeout(()=>document.getElementById("name").focus(),50)}
+function openApply(){if(applyDlg.open)return;goal("apply_open");dlgSlot.append(form);form.classList.remove("open");moreBtn.setAttribute("aria-expanded","false");if(hasOptDraft())openOpt();applyDlg.showModal();setTimeout(()=>document.getElementById("name").focus(),50)}
 function closeApply(){if(!applyDlg.open)return;applyDlg.close()}
 applyDlg.addEventListener("close",()=>{formHome.after(form);form.classList.remove("open")});
 document.getElementById("closeApply").addEventListener("click",closeApply);
@@ -1322,6 +1322,17 @@ totop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("
 (function(){const b=document.querySelector(".brand");if(!b)return;const im=b.querySelectorAll("img");
   b.addEventListener("click",()=>{b.classList.remove("tip");void b.offsetWidth;b.classList.add("tip")});
   im.forEach(i=>i.addEventListener("animationend",()=>b.classList.remove("tip")));
+})();
+/* Yandex Metrika: faqat jonli saytda, sahifa yuklangandan keyin ulanadi. Forma maydonlari yozib olinmaydi. */
+const YM_ID=113675253;
+function goal(n){try{if(typeof ym==="function")ym(YM_ID,"reachGoal",n)}catch(e){}}
+(function(){if(!/^(www\.)?saidacademy\.uz$/.test(location.hostname))return;
+  window.ym=window.ym||function(){(ym.a=ym.a||[]).push(arguments)};ym.l=+new Date();
+  const start=()=>{const sc=document.createElement("script");sc.async=true;sc.src="https://mc.yandex.ru/metrika/tag.js";document.head.appendChild(sc);
+    ym(YM_ID,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true})};
+  if(document.readyState==="complete")setTimeout(start,1200);else addEventListener("load",()=>setTimeout(start,1200));
+  document.addEventListener("click",e=>{const a=e.target.closest("a[href]");if(!a)return;const h=a.getAttribute("href")||"";
+    if(h.startsWith("tel:"))goal("call");else if(/t\.me\//.test(h))goal("telegram");else if(/instagram\.com/.test(h))goal("instagram");else if(/\.vcf$/.test(h))goal("vcard")});
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 /* JavaScript xatolari adminga Telegram orqali boradi (sessiyada ko‘pi bilan 3 ta, faqat jonli saytdan) */

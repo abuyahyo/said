@@ -183,24 +183,25 @@ body.menu-open{overflow:hidden}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}}
 
 /* director */
-.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:32px}
-.tcard{background:var(--bg-alt);border:1px solid var(--line);border-radius:24px;padding:14px 14px 20px;max-width:420px;transition:transform .25s ease,box-shadow .25s ease}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:32px}
+.tcard{background:var(--bg-alt);border:1px solid var(--line);border-radius:22px;padding:12px 12px 18px;max-width:360px;transition:transform .25s ease,box-shadow .25s ease}
 @media (hover:hover){.tcard:hover{transform:translateY(-4px);box-shadow:0 22px 48px -22px rgba(8,38,61,.28)}}
-.tcard .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/4.4;background:var(--soft);box-shadow:0 24px 50px -24px rgba(8,38,61,.45)}
+.tcard .ph{border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:var(--soft);box-shadow:0 24px 50px -24px rgba(8,38,61,.45)}
 .tcard .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
-.tcard .tb{padding:16px 6px 0}
+.tcard .tb{padding:14px 4px 0}
 .tcard .role{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
 .tcard .role.lead{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
-.tcard h3{font-size:20px;line-height:1.25;margin:10px 0 4px;letter-spacing:-.01em}
-.tcard .teach{color:var(--muted);font-size:14.5px;font-weight:600;margin:0}
-.tcard .tags{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
-.tcard .tags li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.tcard h3{font-size:18px;line-height:1.25;margin:9px 0 3px;letter-spacing:-.01em}
+.tcard .teach{color:var(--muted);font-size:14px;font-weight:600;margin:0}
+.tcard .tags{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.tcard .tags li{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:5px 9px;font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:7px}
 .tcard .tags svg{width:15px;height:15px;color:var(--brand-ink);flex:none}
-.tcard .bio{color:var(--muted);font-size:14.5px;line-height:1.55;margin:12px 0 0}
+.tcard .bio{color:var(--muted);font-size:13.5px;line-height:1.5;margin:10px 0 0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .team .tcard.more{display:none}.team.all .tcard.more{display:block}
 .team-more{display:none;margin:18px auto 0}.team-more.show{display:inline-flex}
-@media (max-width:700px){.team{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:26px -20px 0;padding:0 20px 8px;scrollbar-width:none}.team::-webkit-scrollbar{display:none}.tcard{flex:0 0 82%;max-width:none;scroll-snap-align:start}.team .tcard.more{display:block}.team-more{display:none!important}}
-@media (max-width:360px){.tcard{flex-basis:88%}}
+@media (max-width:700px){.team{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:26px -20px 0;padding:0 20px 8px;scrollbar-width:none}.team::-webkit-scrollbar{display:none}.tcard{flex:0 0 72%;max-width:none;scroll-snap-align:start}.team .tcard.more{display:block}.team-more{display:none!important}}
+@media (max-width:700px){.tcard .role{font-size:11px;letter-spacing:.04em;padding:4px 9px}.tcard .tags li{font-size:12px;padding:4px 8px}}
+@media (max-width:360px){.tcard{flex-basis:80%}}
 
 /* why us */
 .advs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
@@ -1020,10 +1021,10 @@ const TEAM=[
   role:{uz:"Arab tili ustozi",ru:"Преподаватель арабского",en:"Arabic teacher"},
   teaches:{uz:"Grammatika",ru:"Грамматика",en:"Grammar"},
   tags:{uz:["Arab tilidan CEFR B2 (davlat sertifikati)","Yangi Asr universiteti, filologiya","1,5 yillik tajriba"],ru:["CEFR B2 по арабскому (гос. сертификат)","Университет Yangi Asr, филология","1,5 года опыта"],en:["CEFR B2 in Arabic (state certificate)","Yangi Asr University, philology","1.5 years of experience"]},
-  bio:{uz:"SAID academy’da grammatika o‘qitadi. 100 dan ortiq o‘quvchi; ulardan 5 nafari B2, 3 nafari B1 darajasiga erishdi, 3 nafari oliy o‘quv yurtiga kirdi.",ru:"Преподаёт грамматику в SAID academy. Более 100 учеников: 5 достигли уровня B2, 3 — B1, 3 поступили в вузы.",en:"Teaches grammar at SAID academy. Over 100 students: 5 reached B2, 3 reached B1, and 3 entered university."}}
+  bio:{uz:"100 dan ortiq o‘quvchi: 5 nafari B2, 3 nafari B1 darajasiga erishdi, 3 nafari oliy o‘quv yurtiga kirdi.",ru:"Более 100 учеников: 5 достигли уровня B2, 3 — B1, 3 поступили в вузы.",en:"Over 100 students: 5 reached B2, 3 reached B1, and 3 entered university."}}
 ];
 function renderTeam(){const g=document.getElementById("teamGrid");if(!g)return;const d=T[lang];const CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-  const LIM=6;g.innerHTML=TEAM.map((t,i)=>'<article class="tcard'+(i>=LIM?' more':'')+'"><div class="ph"><img src="'+t.photo+'" alt="'+esc(t.name)+'" loading="lazy" width="560" height="616"></div><div class="tb"><span class="role'+(t.lead?' lead':'')+'">'+esc(t.role[lang]||t.role.uz)+'</span><h3>'+esc(t.name)+'</h3><p class="teach">'+esc(d.team_teaches)+': '+esc(t.teaches[lang]||t.teaches.uz)+'</p><ul class="tags">'+(t.tags[lang]||t.tags.uz).map(x=>'<li>'+CHK+esc(x)+'</li>').join('')+'</ul>'+(t.bio?'<p class="bio">'+esc(t.bio[lang]||t.bio.uz)+'</p>':'')+'</div></article>').join("");
+  const LIM=6;g.innerHTML=TEAM.map((t,i)=>'<article class="tcard'+(i>=LIM?' more':'')+'"><div class="ph"><img src="'+t.photo+'" alt="'+esc(t.name)+'" loading="lazy" width="560" height="560"></div><div class="tb"><span class="role'+(t.lead?' lead':'')+'">'+esc(t.role[lang]||t.role.uz)+'</span><h3>'+esc(t.name)+'</h3><p class="teach">'+esc(d.team_teaches)+': '+esc(t.teaches[lang]||t.teaches.uz)+'</p><ul class="tags">'+(t.tags[lang]||t.tags.uz).map(x=>'<li>'+CHK+esc(x)+'</li>').join('')+'</ul>'+(t.bio?'<p class="bio">'+esc(t.bio[lang]||t.bio.uz)+'</p>':'')+'</div></article>').join("");
   const mb=document.getElementById("teamMore");if(mb){mb.classList.toggle("show",TEAM.length>LIM&&!g.classList.contains("all"))}}
 document.getElementById("teamMore").addEventListener("click",()=>{document.getElementById("teamGrid").classList.add("all");document.getElementById("teamMore").classList.remove("show")});
 const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;

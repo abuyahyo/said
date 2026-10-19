@@ -168,8 +168,8 @@ body.menu-open{overflow:hidden}
 @media (max-width:360px){.stat:last-child b{font-size:26px}.stat:last-child span{font-size:15px}}
 
 /* about */
-.about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
-.about-text{background:var(--card);border-radius:28px;padding:40px}
+.about-grid{display:grid;grid-template-columns:1fr}
+.about-text{background:var(--card);border-radius:28px;padding:40px;max-width:860px}
 .about-text p{margin-top:18px;font-size:18px;color:var(--muted);max-width:62ch}
 .about-text p.eyebrow{margin-top:0;font-size:13px;color:var(--brand-ink);max-width:none}
 .video{position:relative;border-radius:28px;overflow:hidden;background:#0B2C47;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);box-shadow:0 30px 60px -30px rgba(8,38,61,.45)}
@@ -715,15 +715,6 @@ dialog.ap form.open .opt{display:contents}
       <p data-t="about_p"></p>
       <p data-t="about_p2"></p>
     </div>
-    <div class="video" id="videoCard">
-      <button type="button" class="cover" id="videoCover" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.webp" aria-label="Video">
-        <img src="assets/video-poster-2.webp" alt="" width="640" height="704" loading="lazy">
-        <span class="vtag"><i></i><span data-t="v_tag"></span> · 0:28</span>
-        <span class="vtext"><b data-t="video_h"></b><small data-t="video_sub"></small></span>
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v_play"></span></span>
-      </button>
-      <a class="vig" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-    </div>
   </div>
 </section>
 
@@ -1214,11 +1205,9 @@ lb.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")lbShow(lbIdx-1);if(e.ke
 (function(){let x0=null;lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});lb.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>40)lbShow(lbIdx+(dx<0?1:-1))},{passive:true})})();
 
 /* video player */
-const vd=document.getElementById("vd"),vdv=vd.querySelector("video"),vcard=document.getElementById("videoCard");
+const vd=document.getElementById("vd"),vdv=vd.querySelector("video"),vcard=null; // "Biz haqimizda" video kartochkasi olib tashlangan
 function playVideo(src,poster){vdv.poster=poster||"";vdv.src=src;vd.showModal();vdv.play().catch(()=>{})}
 function stopVideo(){vdv.pause();vdv.removeAttribute("src");vdv.load()}
-const vcover=document.getElementById("videoCover");
-vcover.addEventListener("click",()=>playVideo(vcover.dataset.video,vcover.dataset.poster));
 const hp=document.getElementById("heroPlay");if(hp)hp.addEventListener("click",()=>playVideo(hp.dataset.video,hp.dataset.poster));
 vd.querySelector(".x").addEventListener("click",()=>vd.close());
 vd.addEventListener("click",e=>{if(e.target===vd)vd.close()});

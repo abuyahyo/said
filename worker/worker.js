@@ -6,7 +6,7 @@
  * Kerakli sozlamalar (Worker > Settings > Variables and Secrets):
  *   BOT_TOKEN      — @BotFather bergan token
  *   CHAT_ID        — arizalar keladigan chat/guruh ID si
- *   ALLOWED_ORIGIN — ixtiyoriy, masalan: https://abuyahyo.github.io
+ *   ALLOWED_ORIGIN — ixtiyoriy, qo‘shimcha ruxsat etilgan sayt(lar), vergul bilan; saidacademy.uz va github.io oldindan ruxsatda
  *
  * Qo‘shimcha yo‘llar:
  *   POST /tg   — Telegram bot webhook (/start javobi, xabarlarni adminga uzatish)
@@ -46,7 +46,8 @@ function clean(v, max) {
   return String(v == null ? "" : v).replace(/[\u0000-\u001F\u007F]/g, " ").trim().slice(0, max);
 }
 
-const SITE = "https://abuyahyo.github.io/said/";
+const SITE = "https://saidacademy.uz/";
+const ORIGINS = ["https://saidacademy.uz", "https://www.saidacademy.uz", "https://abuyahyo.github.io"];
 const BOT_TEXT = {
   uz: "Assalomu alaykum! Bu SAID academy — Toshkentdagi arab tili o‘quv markazi.\n\n• Bolalar va kattalar uchun fonetika va grammatika\n• Birinchi dars — bepul\n• Har kuni 07:00–20:00\n• Tinchlik metrosi yaqinida: Shayxontohur tumani, Matlubot ko‘chasi, 72-uy\n• Telefon: +998 95 829 33 30\n\nAriza qoldirish uchun quyidagi tugmani bosing yoki shu yerga yozing — xabaringiz adminga yetadi.",
   ru: "Здравствуйте! Это SAID academy — центр арабского языка в Ташкенте.\n\n• Фонетика и грамматика для детей и взрослых\n• Первый урок — бесплатно\n• Ежедневно 07:00–20:00\n• Рядом с метро Тинчлик: Шайхантахурский район, ул. Матлубот, 72\n• Телефон: +998 95 829 33 30\n\nЧтобы оставить заявку, нажмите кнопку ниже или напишите здесь — сообщение получит администратор."
@@ -141,7 +142,8 @@ export default {
       return setupWebhook(env, request);
     }
     const origin = request.headers.get("Origin") || "";
-    const allowed = !env.ALLOWED_ORIGIN || origin === env.ALLOWED_ORIGIN;
+    const allowedList = ORIGINS.concat(env.ALLOWED_ORIGIN ? String(env.ALLOWED_ORIGIN).split(",").map(function (x) { return x.trim(); }) : []);
+    const allowed = allowedList.indexOf(origin) !== -1;
     const cors = {
       "Access-Control-Allow-Origin": allowed ? (origin || "*") : "null",
       "Access-Control-Allow-Methods": "POST, OPTIONS",

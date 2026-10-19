@@ -216,19 +216,12 @@ export default {
     // Xabar ostidagi tugma: arizachi bilan Telegramda yozishish (raqam Telegramda ro‘yxatdan o‘tgan bo‘lsa ochiladi)
     const keyboard = { inline_keyboard: [[{ text: "Telegramda yozish", url: "https://t.me/+" + phoneDigits }]] };
 
-    const url = "https://api.telegram.org/bot" + env.BOT_TOKEN + "/sendMessage";
-    let j;
-    try {
-      const r = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: env.CHAT_ID, text: text, disable_web_page_preview: true, reply_markup: keyboard })
-      });
-      j = await r.json();
-    } catch (e) {
-      j = { ok: false };
+    // Avval tugma bilan; Telegram tugmani rad etsa (masalan, raqam Telegramda yo‘q) — tugmasiz qayta yuboriladi
+    let j = await tg(env, "sendMessage", { chat_id: env.CHAT_ID, text: text, disable_web_page_preview: true, reply_markup: keyboard });
+    if (!j.ok) {
+      j = await tg(env, "sendMessage", { chat_id: env.CHAT_ID, text: text, disable_web_page_preview: true });
     }
-    return reply({ ok: !!j.ok, description: j.ok ? undefined : "Send failed" }, j.ok ? 200 : 502, cors);
+    return reply({ ok: !!j.ok, description: j.ok ? undefined : "Send failed: " + (j.description || "no response from Telegram") }, j.ok ? 200 : 502, cors);
   }
 };
 

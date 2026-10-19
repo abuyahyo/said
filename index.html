@@ -172,20 +172,21 @@ body.menu-open{overflow:hidden}
 .about-text{background:var(--card);border-radius:28px;padding:40px}
 .about-text p{margin-top:18px;font-size:18px;color:var(--muted);max-width:62ch}
 .about-text p.eyebrow{margin-top:0;font-size:13px;color:var(--brand-ink);max-width:none}
-.video{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;position:relative}
-.video .cover{all:unset;cursor:pointer;display:block;position:relative;aspect-ratio:16/10;background:#0B2C47;overflow:hidden}
-.video .cover img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform .5s ease;display:block}
+.video{position:relative;border-radius:28px;overflow:hidden;background:#0B2C47;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(#fff,#000);transform:translateZ(0);box-shadow:0 30px 60px -30px rgba(8,38,61,.45)}
+.video .cover{all:unset;cursor:pointer;display:block;position:relative;width:100%;height:100%;min-height:300px;aspect-ratio:4/4.4;background:#0B2C47;overflow:hidden;border-radius:inherit}
+.video .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;transition:transform .6s ease;display:block}
 @media (hover:hover){.video .cover:hover img{transform:scale(1.04)}}
-.video .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,0) 55%,rgba(8,38,61,.45))}
+.video .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,38,61,.12) 0%,rgba(8,38,61,0) 30%,rgba(8,38,61,.25) 55%,rgba(8,38,61,.88) 100%)}
 .video .cover:focus-visible{outline:3px solid var(--brand-ink);outline-offset:-3px}
-.video .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#fff;color:var(--brand);display:grid;place-items:center;transition:transform .2s;z-index:1}
-@media (hover:hover){.video .cover:hover .play{transform:translate(-50%,-50%) scale(1.07)}}
-.video .play svg{width:30px;height:30px;margin-left:3px}
-.video .dur{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:700;border-radius:8px;padding:4px 8px;z-index:1}
-.vbody{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
-.video h3{font-size:21px;margin:0 0 4px}
-.vsub{color:var(--muted);font-size:15px;margin:0 0 14px}
-@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}}
+.video .play{position:absolute;right:18px;bottom:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border-radius:999px;background:#fff;color:var(--brand-ink);font-weight:800;font-size:15px;transition:transform .2s}
+@media (hover:hover){.video .cover:hover .play{transform:scale(1.05)}}
+.video .play svg{width:20px;height:20px;color:var(--brand)}
+.vtag{position:absolute;left:18px;top:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:7px 12px}
+.vtag i{width:8px;height:8px;border-radius:50%;background:#FF4D4D;box-shadow:0 0 0 3px rgba(255,77,77,.3)}
+.vtext{position:absolute;left:20px;right:20px;bottom:84px;z-index:2;color:#fff}
+.vtext b{display:block;font-size:22px;font-weight:800;line-height:1.2;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.vtext small{display:block;margin-top:6px;font-size:14.5px;color:#DCEEFF;font-weight:600}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:16px}.about-text{padding:28px 22px}.video .cover{aspect-ratio:4/4.6;min-height:0}.vtext b{font-size:20px}.vtext{bottom:80px}}
 
 /* director */
 .team{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:32px}
@@ -477,10 +478,9 @@ footer .socials a{display:grid;place-items:center;width:42px;height:42px;border-
 
 /* video + gallery */
 .video .play{box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
-.vname{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-weight:700;font-size:15px}.vname svg{width:18px;height:18px;color:var(--brand)}.vname small{color:var(--muted);font-weight:600}
-.vig{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:14px;font-size:14px;font-weight:700;color:var(--brand-ink);text-decoration:none}
-.vig svg{width:16px;height:16px}
-@media (hover:hover){.vig:hover{text-decoration:underline}}
+.vig{position:absolute;right:18px;top:18px;z-index:3;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:#fff;display:grid;place-items:center;transition:background .2s}
+.vig svg{width:20px;height:20px}
+@media (hover:hover){.vig:hover{background:rgba(255,255,255,.3)}}
 dialog.vd{border:0;padding:0;background:transparent;max-width:min(92vw,440px);max-height:92vh}
 dialog.vd::backdrop{background:rgba(5,15,22,.88)}
 dialog.vd video{display:block;width:100%;max-height:86vh;aspect-ratio:9/16;border-radius:18px;background:#000;object-fit:contain}
@@ -717,16 +717,12 @@ dialog.ap form.open .opt{display:contents}
     </div>
     <div class="video" id="videoCard">
       <button type="button" class="cover" id="videoCover" data-video="assets/video-2.mp4" data-poster="assets/video-poster-2.webp" aria-label="Video">
-        <img src="assets/video-poster-2.webp" alt="" width="640" height="400" loading="lazy">
-        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
-        <span class="dur" id="coverDur">0:28</span>
+        <img src="assets/video-poster-2.webp" alt="" width="640" height="704" loading="lazy">
+        <span class="vtag"><i></i><span data-t="v_tag"></span> · 0:28</span>
+        <span class="vtext"><b data-t="video_h"></b><small data-t="video_sub"></small></span>
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v_play"></span></span>
       </button>
-      <div class="vbody">
-        <h3 data-t="video_h"></h3>
-        <p class="vsub" data-t="video_sub"></p>
-        <p class="vname"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg><span data-t="v2_t"></span><small>0:28</small></p>
-        <a class="vig" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span data-t="video_btn"></span></a>
-      </div>
+      <a class="vig" href="https://www.instagram.com/reel/DJixf7dIlUb/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
     </div>
   </div>
 </section>
@@ -942,7 +938,7 @@ f_subj:"Arab tili · Fonetika · Grammatika",f_who:"Bolalar va kattalar uchun",f
 s_students:"talaba",s_teachers:"ustoz",s_date:"1-aprel 2025",s_founded:"tashkil topgan sana",
 about_h:"Biz haqimizda",
 about_p:"SAID academy — 2025-yil aprel oyida Toshkentda tashkil topgan arab tili o‘quv markazi. Arab tilini fonetikadan boshlab, bosqichma-bosqich, tushunarli va amaliy tarzda o‘rgatamiz. Darslar bolalar uchun ham, kattalar uchun ham alohida dasturda olib boriladi.",about_p2:"Biz bilim yangi imkoniyatlar eshigini ochishiga ishonamiz — shuning uchun birinchi darsni bepul taklif qilamiz. Kelib, ustozlar va muhit bilan o‘zingiz tanishing.",
-video_h:"SAID academy haqida video",video_sub:"Markaz, ustozlar va darslar bilan tanishing",video_btn:"Instagramda ko‘rish",
+v_tag:"Video",v_play:"Ko‘rish",video_h:"SAID academy haqida video",video_sub:"Markaz, ustozlar va darslar bilan tanishing",video_btn:"Instagramda ko‘rish",
 courses_h:"Yo‘nalishlar",
 c1_s:"Bolalar — fonetika",c2_s:"Kattalar — fonetika",c3_s:"Grammatika",c1_who:"4 yoshdan katta bolalar",c1_h:"Bolalar uchun arab tili fonetikasi",c1_p:"Bola arab harflarini tanishdan boshlab, ularni to‘g‘ri talaffuz qilishni va bo‘g‘inlab o‘qishni o‘rganadi. Darslar o‘yin va mashqlar bilan qiziqarli o‘tadi, kichik guruhda har bir bolaga alohida e’tibor beriladi.",
 c2_who:"Kattalar",c2_h:"Kattalar uchun arab tili fonetikasi",c2_p:"Noldan boshlaganlar uchun: harflar, ularning so‘z boshida, o‘rtasida va oxirida yozilishi, to‘g‘ri talaffuz va o‘qish qoidalari. Kurs oxirida arabcha matnni mustaqil va ravon o‘qiy olasiz. Grammatika kursiga o‘tish uchun mustahkam poydevor bo‘ladi.",
@@ -987,7 +983,7 @@ f_subj:"Арабский язык · Фонетика · Грамматика",f
 s_students:"студентов",s_teachers:"преподавателей",s_date:"1 апреля 2025",s_founded:"дата основания",
 about_h:"О нас",
 about_p:"SAID academy — учебный центр арабского языка, основанный в апреле 2025 года в Ташкенте. Мы обучаем арабскому поэтапно, начиная с фонетики, понятно и практично. Для детей и для взрослых — отдельные программы.",about_p2:"Мы верим, что знания открывают дверь к новым возможностям, — поэтому первый урок у нас бесплатный. Приходите и познакомьтесь с преподавателями и атмосферой сами.",
-video_h:"Видео о SAID academy",video_sub:"Познакомьтесь с центром, преподавателями и занятиями",video_btn:"Смотреть в Instagram",
+v_tag:"Видео",v_play:"Смотреть",video_h:"Видео о SAID academy",video_sub:"Познакомьтесь с центром, преподавателями и занятиями",video_btn:"Смотреть в Instagram",
 courses_h:"Направления",
 c1_s:"Дети — фонетика",c2_s:"Взрослые — фонетика",c3_s:"Грамматика",c1_who:"Дети старше 4 лет",c1_h:"Фонетика арабского языка для детей",c1_p:"Ребёнок начинает со знакомства с арабскими буквами, учится правильно их произносить и читать по слогам. Занятия проходят в игровой форме с упражнениями, в небольшой группе каждому ребёнку уделяется внимание.",
 c2_who:"Взрослые",c2_h:"Фонетика арабского языка для взрослых",c2_p:"Для начинающих с нуля: буквы, их написание в начале, середине и конце слова, правильное произношение и правила чтения. К концу курса вы сможете самостоятельно и бегло читать арабский текст. Это прочная база для перехода к курсу грамматики.",
@@ -1032,7 +1028,7 @@ f_subj:"Arabic · Phonetics · Grammar",f_who:"For children and adults",f_metro:
 s_students:"students",s_teachers:"teachers",s_date:"April 1, 2025",s_founded:"founded",
 about_h:"About us",
 about_p:"SAID academy is an Arabic language center founded in Tashkent in April 2025. We teach Arabic step by step, starting with phonetics, in a clear and practical way. Children and adults follow separate programs.",about_p2:"We believe knowledge opens the door to new opportunities — that’s why your first lesson is free. Come and meet the teachers and the place for yourself.",
-video_h:"Video about SAID academy",video_sub:"Meet the center, the teachers and the classes",video_btn:"Watch on Instagram",
+v_tag:"Video",v_play:"Watch",video_h:"Video about SAID academy",video_sub:"Meet the center, the teachers and the classes",video_btn:"Watch on Instagram",
 courses_h:"Courses",
 c1_s:"Children — phonetics",c2_s:"Adults — phonetics",c3_s:"Grammar",c1_who:"Children aged 4+",c1_h:"Arabic phonetics for children",c1_p:"Children start by learning the Arabic letters, then how to pronounce them correctly and read syllable by syllable. Lessons are fun, with games and exercises, and every child gets attention in a small group.",
 c2_who:"Adults",c2_h:"Arabic phonetics for adults",c2_p:"For complete beginners: the letters, how they are written at the beginning, middle and end of a word, correct pronunciation and reading rules. By the end of the course you read Arabic text on your own and fluently. A solid base for moving on to the grammar course.",

@@ -1122,28 +1122,28 @@ const TEAM=[
   teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
   tags:{uz:["At-Tanal al-Arabi C1 (xalqaro sertifikat)","Ko‘kaldosh madrasasi talabasi","8 oylik tajriba"],ru:["At-Tanal al-Arabi C1 (международный сертификат)","Студент медресе Кукельдаш","8 месяцев опыта"],en:["At-Tanal al-Arabi C1 (international certificate)","Student at Kukeldash Madrasa","8 months of experience"]},
   bio:{uz:"40 dan ortiq o‘quvchiga dars bergan.",ru:"Обучил более 40 учеников.",en:"Has taught over 40 students."}},
- {mono:"م",name:"Qudratillayeva Malikaxon Alisher qizi",
+ {photo:"assets/teacher-room-1.webp",room:true,name:"Qudratillayeva Malikaxon Alisher qizi",
   role:{uz:"Arab tili ustozasi",ru:"Преподаватель арабского",en:"Arabic teacher"},
   teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
   tags:{uz:["Arab tilidan CEFR B2 (davlat sertifikati)","Toshkent davlat sharqshunoslik universiteti bitiruvchisi, filolog (arab tili)","3 yillik tajriba"],ru:["CEFR B2 по арабскому (гос. сертификат)","Выпускница Ташкентского государственного университета востоковедения, филолог (арабский язык)","3 года опыта"],en:["CEFR B2 in Arabic (state certificate)","Graduate of Tashkent State University of Oriental Studies, philologist (Arabic)","3 years of experience"]},
   bio:{uz:"100 dan ortiq o‘quvchiga dars bergan. O‘quvchilarini 4 oyda noldan bemalol suhbat darajasiga olib chiqqan.",ru:"Обучила более 100 учеников. За 4 месяца выводит учеников с нуля до свободного разговора.",en:"Has taught over 100 students and takes them from zero to confident conversation in 4 months."}},
- {mono:"ش",name:"Jaxongirova Shaxzoda Ziyoviddin qizi",
+ {photo:"assets/teacher-room-2.webp",room:true,name:"Jaxongirova Shaxzoda Ziyoviddin qizi",
   role:{uz:"Arab tili ustozasi",ru:"Преподаватель арабского",en:"Arabic teacher"},
   teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
   tags:{uz:["Arab tilidan CEFR B2 (davlat sertifikati)","Yangi Asr universiteti, mumtoz tillar filologiyasi, 4-kurs","SAID academy’da 1 yillik tajriba"],ru:["CEFR B2 по арабскому (гос. сертификат)","Университет Yangi Asr, филология классических языков, 4 курс","1 год в SAID academy"],en:["CEFR B2 in Arabic (state certificate)","Yangi Asr University, classical languages philology, 4th year","1 year at SAID academy"]},
   bio:{uz:"50 dan ortiq o‘quvchiga dars bergan. O‘quvchilarini 4 oyda noldan bemalol suhbat darajasiga olib chiqqan.",ru:"Обучила более 50 учеников. За 4 месяца выводит учеников с нуля до свободного разговора.",en:"Has taught over 50 students and takes them from zero to confident conversation in 4 months."}},
- {mono:"س",name:"Mirziyodova Sevinch Abdunosir qizi",
+ {photo:"assets/teacher-room-3.webp",room:true,name:"Mirziyodova Sevinch Abdunosir qizi",
   role:{uz:"Arab tili ustozasi",ru:"Преподаватель арабского",en:"Arabic teacher"},
   teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
   tags:{uz:["Arab tilidan CEFR B2 (davlat sertifikati, 2024)","Yangi Asr universiteti, mumtoz tillar filologiyasi, 2-kurs","2 yillik tajriba, shundan 1 yili SAID academy’da"],ru:["CEFR B2 по арабскому (гос. сертификат, 2024)","Университет Yangi Asr, филология классических языков, 2 курс","2 года опыта, из них 1 год в SAID academy"],en:["CEFR B2 in Arabic (state certificate, 2024)","Yangi Asr University, classical languages philology, 2nd year","2 years of experience, 1 of them at SAID academy"]},
   bio:{uz:"40 dan ortiq o‘quvchiga dars bergan. O‘quvchilarini 6 oyda noldan bemalol suhbat darajasiga olib chiqqan.",ru:"Обучила более 40 учеников. За 6 месяцев выводит учеников с нуля до свободного разговора.",en:"Has taught over 40 students and takes them from zero to confident conversation in 6 months."}},
- {mono:"ف",name:"Baxodirova Fotima Baxtiyor qizi",
+ {photo:"assets/teacher-room-4.webp",room:true,name:"Baxodirova Fotima Baxtiyor qizi",
   role:{uz:"Arab tili ustozasi",ru:"Преподаватель арабского",en:"Arabic teacher"},
   teaches:{uz:"Fonetika, grammatika",ru:"Фонетика, грамматика",en:"Phonetics, grammar"},
   tags:{uz:["Arab tilidan CEFR B2 (davlat sertifikati)","O‘zbekiston davlat jahon tillari universiteti, arab filologiyasi"],ru:["CEFR B2 по арабскому (гос. сертификат)","Узбекский государственный университет мировых языков, арабская филология"],en:["CEFR B2 in Arabic (state certificate)","Uzbekistan State World Languages University, Arabic philology"]}}
 ];
 function renderTeam(){const g=document.getElementById("teamGrid");if(!g)return;const d=T[lang];const CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-  const LIM=6;g.innerHTML=TEAM.map((t,i)=>'<article class="tcard'+(i>=LIM?' more':'')+'"><div class="ph'+(t.photo?'':' nophoto')+'">'+(t.photo?'<img src="'+t.photo+'" alt="'+esc(t.name)+'" loading="lazy" width="560" height="560">':'<span class="mono" lang="ar" aria-hidden="true">'+esc(t.mono||'')+'</span>')+'</div><div class="tb"><span class="role'+(t.lead?' lead':'')+'">'+esc(t.role[lang]||t.role.uz)+'</span><h3>'+esc(t.name)+'</h3>'+(t.teaches?'<p class="teach">'+esc(d.team_teaches)+': '+esc(t.teaches[lang]||t.teaches.uz)+'</p>':'')+'<ul class="tags">'+(t.tags[lang]||t.tags.uz).map(x=>'<li>'+CHK+esc(x)+'</li>').join('')+'</ul>'+(t.bio?'<p class="bio">'+esc(t.bio[lang]||t.bio.uz)+'</p>':'')+'</div></article>').join("");
+  const LIM=6;g.innerHTML=TEAM.map((t,i)=>'<article class="tcard'+(i>=LIM?' more':'')+'"><div class="ph'+(t.photo?'':' nophoto')+'">'+(t.photo?'<img src="'+t.photo+'" alt="'+(t.room?'':esc(t.name))+'" loading="lazy" width="560" height="560">':'<span class="mono" lang="ar" aria-hidden="true">'+esc(t.mono||'')+'</span>')+'</div><div class="tb"><span class="role'+(t.lead?' lead':'')+'">'+esc(t.role[lang]||t.role.uz)+'</span><h3>'+esc(t.name)+'</h3>'+(t.teaches?'<p class="teach">'+esc(d.team_teaches)+': '+esc(t.teaches[lang]||t.teaches.uz)+'</p>':'')+'<ul class="tags">'+(t.tags[lang]||t.tags.uz).map(x=>'<li>'+CHK+esc(x)+'</li>').join('')+'</ul>'+(t.bio?'<p class="bio">'+esc(t.bio[lang]||t.bio.uz)+'</p>':'')+'</div></article>').join("");
   const mb=document.getElementById("teamMore");if(mb){mb.classList.toggle("show",TEAM.length>LIM&&!g.classList.contains("all"))}}
 document.getElementById("teamMore").addEventListener("click",()=>{document.getElementById("teamGrid").classList.add("all");document.getElementById("teamMore").classList.remove("show")});
 const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;

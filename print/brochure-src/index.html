@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>SAID academy — broshyura</title>
+<style>
+/* Shriftlar: brendbuk bo‘yicha faqat Montserrat, Cormorant Garamond, Amiri */
+@font-face{font-family:"Montserrat";font-weight:500 800;src:url(fonts/Montserrat-800-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:600;src:url(fonts/CormorantGaramond-600i-latin.woff2) format("woff2")}
+@font-face{font-family:"Amiri";font-weight:700;src:url(../../assets/fonts/amiri-full.woff2) format("woff2")}
+
+/* Brend palitrasi */
+:root{--paper:#F6F4EF;--paper2:#FBFAF7;--sky:#DCE6EF;--blue:#226184;--navy:#1E3247;--gold:#C9A04E;--ink:#1B2531;--muted:#5A6675;--line:#CFDAE4}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--paper)}
+body{font-family:"Montserrat",sans-serif;font-weight:500;color:var(--ink);font-size:10.5pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{size:A4;margin:0}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--paper);page-break-after:always;padding:16mm}
+.page:last-child{page-break-after:auto}
+.page.navy{background:var(--navy);color:var(--paper)}
+.page.navy .kicker i{background:var(--sky)}
+.ar{font-family:"Amiri",serif;font-weight:700}
+em,.em{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:1.14em;color:var(--blue)}
+.navy em,.navy .em{color:var(--gold)}
+.kicker{display:flex;align-items:center;gap:3mm;font-size:8.5pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4mm}
+.kicker i{width:3.2mm;height:3.2mm;background:var(--gold);transform:rotate(45deg);flex:none}
+.navy .kicker{color:#9FB8CC}
+h1{font-weight:800;font-size:30pt;line-height:1.08;letter-spacing:-.02em;color:var(--navy);margin-bottom:5mm}
+h2{font-weight:800;font-size:19pt;line-height:1.12;letter-spacing:-.015em;color:var(--navy);margin-bottom:4mm}
+h3{font-weight:600;font-size:11pt;color:var(--navy);line-height:1.25}
+.navy h1,.navy h2,.navy h3{color:var(--paper)}
+.lead{font-size:11.5pt;color:var(--muted);max-width:150mm;margin-bottom:9mm}
+p.muted{color:var(--muted)}
+.foot{position:absolute;left:16mm;right:16mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8pt;color:var(--muted);font-weight:500}
+.navy .foot{color:#9FB8CC}
+.logo{display:flex;align-items:center;gap:3mm;font-weight:800;color:var(--blue);font-size:13pt;letter-spacing:-.01em}
+.logo img{height:11mm}
+.logo small{display:block;font-weight:600;font-size:7.5pt;letter-spacing:.08em;color:var(--blue);margin-top:-1mm}
+.navy .logo{color:var(--paper)}.navy .logo small{color:#9FB8CC}
+
+/* Ark (brend shakli) */
+.arch{border-radius:50% 50% 3mm 3mm / 42% 42% 3mm 3mm;overflow:hidden;background:var(--sky)}
+.card{background:var(--paper2);border:1px solid var(--line);border-radius:4mm;padding:7mm}
+.card.sky{background:var(--sky);border-color:transparent}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm}
+.stat{background:var(--sky);border-radius:4mm;padding:5mm 5mm 4mm}
+.stat b{display:block;font-weight:800;font-size:24pt;color:var(--navy);line-height:1.05;letter-spacing:-.02em}
+.stat span{font-size:9pt;color:var(--muted);font-weight:600}
+.tag{display:inline-block;background:var(--sky);color:var(--navy);border-radius:2mm;padding:1.2mm 2.6mm;font-size:7.8pt;font-weight:600;margin:0 1.5mm 1.5mm 0}
+.chk{list-style:none}
+.chk li{position:relative;padding-left:6mm;margin-bottom:2.2mm;font-size:9.8pt}
+.chk li::before{content:"";position:absolute;left:0;top:1.8mm;width:2.6mm;height:2.6mm;background:var(--blue);transform:rotate(45deg)}
+.navy .chk li::before{background:var(--gold)}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:2.4mm 6mm;font-size:9.5pt}
+.dl dt{color:var(--muted);font-weight:600}.dl dd{font-weight:600;color:var(--navy)}
+
+/* 1. Muqova */
+.cover .top{display:flex;justify-content:space-between;align-items:center}
+.cover .pill{font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);border-radius:999px;padding:2mm 4mm}
+.cover .hero{position:absolute;left:16mm;right:16mm;top:92mm;display:grid;grid-template-columns:1fr 66mm;gap:12mm;align-items:center}
+.cover h1{font-size:40pt;margin:4mm 0 7mm}
+.cover .sub{font-size:12pt;color:var(--muted);line-height:1.5;max-width:100mm}
+.cover .arch{width:66mm;height:92mm;display:grid;place-items:center;background:var(--navy);color:var(--paper);font-size:100pt;line-height:1}
+.cover .bottom{position:absolute;left:16mm;right:16mm;bottom:16mm;display:flex;justify-content:space-between;align-items:flex-end}
+.cover .bottom .site{font-weight:800;font-size:12pt;color:var(--navy)}
+.cover .bottom .site small{display:block;font-weight:600;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:1mm}
+.cover .facts{display:flex;gap:4mm}
+.cover .facts span{background:var(--sky);border-radius:999px;padding:2mm 4mm;font-size:8.5pt;font-weight:600;color:var(--navy)}
+
+/* Ustozlar */
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:4.5mm}
+.tc{background:var(--paper2);border:1px solid var(--line);border-radius:4mm;padding:4.5mm;display:flex;gap:4.5mm;align-items:flex-start}
+.tc .arch{width:27mm;height:34mm;flex:none}
+.tc .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.tc .body{flex:1;min-width:0}
+.tc .role{font-size:7.4pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5mm}
+.tc h3{font-size:9.8pt;margin-bottom:1mm;line-height:1.2}
+.tc .teach{font-size:8pt;color:var(--muted);margin-bottom:2mm}
+.tc ul{list-style:none;margin-bottom:2mm}
+.tc li{font-size:7.9pt;line-height:1.32;padding-left:3.8mm;position:relative;margin-bottom:1mm;color:var(--ink)}
+.tc li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.8mm;height:1.8mm;background:var(--blue);transform:rotate(45deg)}
+.tc .bio{font-size:7.9pt;color:var(--muted);line-height:1.38}
+.tc.info{background:var(--sky);border-color:transparent;flex-direction:column;justify-content:center;gap:0}
+.tc.info h3{font-size:12pt;margin-bottom:2.5mm}
+.tc.info p{font-size:9pt;color:var(--muted)}
+
+/* Kurslar */
+.course{background:var(--paper2);border:1px solid var(--line);border-radius:4mm;padding:6mm;display:flex;flex-direction:column}
+.course.sky{background:var(--sky);border-color:transparent}
+.course .n{font-weight:800;font-size:20pt;color:var(--blue);line-height:1;letter-spacing:-.02em}
+.course h3{margin:3mm 0 .5mm;font-size:11.5pt}
+.course .who{font-size:7.8pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:3.5mm}
+.course p{font-size:9pt;color:var(--muted);flex:1}
+.course .meta{margin-top:4mm;font-size:8pt;font-weight:600;color:var(--navy)}
+.band{background:var(--navy);color:var(--paper);border-radius:4mm;padding:6mm 8mm;font-weight:600;font-size:11pt;line-height:1.45}
+
+/* Qadamlar */
+.step{background:var(--paper2);border:1px solid var(--line);border-radius:4mm;padding:7mm}
+.step .lab{display:flex;align-items:center;gap:2.5mm;font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:3mm}
+.step .lab i{width:3mm;height:3mm;background:var(--blue);transform:rotate(45deg)}
+.step h3{font-size:12pt;margin-bottom:1.5mm}
+.step p{font-size:9.6pt;color:var(--muted)}
+.step small{display:inline-block;margin-top:3mm;background:var(--sky);border-radius:999px;padding:1.5mm 3mm;font-size:8pt;font-weight:600;color:var(--navy)}
+
+/* Afzalliklar */
+.adv{display:flex;gap:4mm;background:var(--paper2);border:1px solid var(--line);border-radius:4mm;padding:6mm}
+.adv .ic{flex:none;width:9mm;height:9mm;border-radius:2.5mm;background:var(--sky);display:grid;place-items:center;font-weight:800;color:var(--blue);font-size:10pt}
+.adv h3{font-size:11pt;margin-bottom:1.2mm}.adv p{font-size:9.4pt;color:var(--muted)}
+
+/* Natijalar */
+.cert{background:var(--paper2);border:1px solid var(--line);border-radius:4mm;overflow:hidden}
+.cert img{display:block;width:100%;height:60mm;object-fit:cover;object-position:top}
+.cert .cb{padding:3.5mm 4mm 4mm}
+.cert b{display:block;font-size:9pt;color:var(--navy);line-height:1.25}
+.cert .lvl{display:inline-block;margin-top:1.5mm;background:var(--navy);color:var(--paper);font-weight:800;font-size:8.5pt;border-radius:999px;padding:.8mm 2.6mm}
+.cert small{display:block;margin-top:1.5mm;font-size:7.5pt;color:var(--muted);font-weight:600}
+.note{font-size:8pt;color:var(--muted);margin-top:4mm}
+
+/* Savol-javob */
+.faq{background:var(--paper2);border:1px solid var(--line);border-radius:3.5mm;padding:4.5mm 5.5mm}
+.faq b{display:block;font-size:10.2pt;color:var(--navy);margin-bottom:1.5mm}
+.faq p{font-size:9pt;color:var(--muted)}
+
+/* Orqa muqova */
+.back .big{font-size:34pt;line-height:1.1;margin:0 0 6mm}
+.back .qrs{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:10mm}
+.back .qr{background:var(--paper);border-radius:4mm;padding:4mm;text-align:center;color:var(--navy)}
+.back .qr img{width:100%;display:block;margin-bottom:2mm}
+.back .qr b{display:block;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase}
+.back .qr small{display:block;font-size:8pt;color:var(--muted);font-weight:600}
+.back .ct{display:grid;grid-template-columns:1fr 1fr;gap:5mm 10mm;margin-top:10mm;font-size:9.5pt;color:#C9D6E2}
+.back .ct b{display:block;color:var(--paper);font-size:8pt;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1mm}
+.back .phone{font-weight:800;font-size:22pt;color:var(--paper);letter-spacing:-.01em}
+</style>
+</head>
+<body>
+
+<!-- 1. Muqova -->
+<section class="page cover">
+  <div class="top">
+    <div class="logo"><img src="../../assets/logo-dark.png" alt=""><span>SAID<small>academy</small></span></div>
+    <div class="pill">Arab tili o‘quv markazi · Toshkent</div>
+  </div>
+  <div class="hero">
+    <div>
+      <div class="kicker"><i></i>Broshyura · 2026</div>
+      <h1>Bilim yangi <em>imkoniyatlar</em> eshigini ochadi</h1>
+      <p class="sub">Bolalar va kattalar uchun arab tili fonetikasi va grammatikasi. Avval to‘g‘ri o‘qish, keyin grammatika.</p>
+    </div>
+    <div class="arch ar">أ</div>
+  </div>
+  <div class="bottom">
+    <div class="site">saidacademy.uz<small>Tinchlik metrosi yaqinida</small></div>
+    <div class="facts"><span>Birinchi dars bepul</span><span>Har kuni 07:00–20:00</span></div>
+  </div>
+</section>
+
+<!-- 2. Biz haqimizda -->
+<section class="page">
+  <div class="kicker"><i></i>Biz haqimizda</div>
+  <h1>Arab tilini <em>fonetikadan</em> boshlaymiz</h1>
+  <p class="lead">SAID academy — 2025-yil aprel oyida Toshkentda tashkil topgan arab tili o‘quv markazi. Arab tilini bosqichma-bosqich, tushunarli va amaliy tarzda o‘rgatamiz: avval to‘g‘ri o‘qish va talaffuz, keyin grammatika. Shunda bilim mustahkam qoladi. Bolalar va kattalar alohida dasturda o‘qiydi.</p>
+  <div class="grid4" style="margin-bottom:7mm">
+    <div class="stat"><b>400+</b><span>talaba</span></div>
+    <div class="stat"><b>10</b><span>ustoz</span></div>
+    <div class="stat"><b>B2 · C1</b><span>o‘quvchilar sertifikatlari</span></div>
+    <div class="stat"><b>07–20</b><span>har kuni ochiqmiz</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-bottom:3mm">Kimlar uchun</h3>
+      <ul class="chk">
+        <li>4 yoshdan katta bolalar</li>
+        <li>Arab tilini noldan boshlamoqchi kattalar</li>
+        <li>Harflarni bilib, ravon o‘qishni istaganlar</li>
+        <li>O‘qiy olib, grammatikani o‘rganmoqchilar</li>
+        <li>Talaffuzini to‘g‘rilamoqchi bo‘lganlar</li>
+        <li>Arabcha matnni tushunib, fikrini ifodalamoqchilar</li>
+      </ul>
+    </div>
+    <div class="card sky">
+      <h3 style="margin-bottom:3mm">Markaz faqat arab tiliga ixtisoslashgan</h3>
+      <p class="muted" style="font-size:9.5pt;margin-bottom:4mm">Ingliz, rus va boshqa tillar o‘qitilmaydi. Butun e’tibor bitta tilda: shuning uchun dastur chuqur, ustozlar esa aynan arab tili mutaxassislari.</p>
+      <div class="dl">
+        <dt>Yo‘nalishlar</dt><dd>Fonetika · Grammatika</dd>
+        <dt>Guruh</dt><dd>ko‘pi bilan 10–12 kishi</dd>
+        <dt>Format</dt><dd>guruh yoki individual</dd>
+        <dt>Manzil</dt><dd>Matlubot ko‘chasi, 72</dd>
+      </div>
+    </div>
+  </div>
+  <h2 style="margin-top:7mm">Bizning yondashuv</h2>
+  <div class="grid3">
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Avval</div><h3>Fonetika</h3><p class="muted" style="font-size:9.4pt;margin-top:1.5mm">Harflar, to‘g‘ri talaffuz va ravon o‘qish. Poydevor shu yerda qo‘yiladi.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Keyin</div><h3>Grammatika</h3><p class="muted" style="font-size:9.4pt;margin-top:1.5mm">So‘z turkumlari va gap tuzilishi, har bir mavzu matn bilan mustahkamlanadi.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Natija</div><h3>Tushunish va gapirish</h3><p class="muted" style="font-size:9.4pt;margin-top:1.5mm">Arabcha matnni tushunish va o‘z fikrini to‘g‘ri ifodalash.</p></div>
+  </div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>02</span></div>
+</section>
+
+<!-- 3. Nega biz -->
+<section class="page">
+  <div class="kicker"><i></i>Nega aynan biz</div>
+  <h1>Tekshirsa bo‘ladigan <em>faktlar</em></h1>
+  <p class="lead">Hamma aytadigan gaplar emas. Har bir band saytda hujjat bilan tasdiqlangan.</p>
+  <div class="grid2" style="margin-bottom:8mm">
+    <div class="adv"><div class="ic">1</div><div><h3>Fonetikadan boshlaymiz</h3><p>Avval to‘g‘ri o‘qish va talaffuz, keyin grammatika. Shunda bilim mustahkam qoladi.</p></div></div>
+    <div class="adv"><div class="ic">2</div><div><h3>Sertifikatli ustozlar</h3><p>Ustozlarimiz arab tilidan davlat (CEFR B2, C1) va xalqaro sertifikatlarga ega. Davlat sertifikati sertifikat.uzbmb.uz da tekshiriladi.</p></div></div>
+    <div class="adv"><div class="ic">3</div><div><h3>Natija isbot bilan</h3><p>Ustozlarimiz tayyorlagan o‘quvchilar davlat B2 va xalqaro C1 sertifikatlarini qo‘lga kiritgan.</p></div></div>
+    <div class="adv"><div class="ic">4</div><div><h3>Kichik guruhlar</h3><p>Guruhda ko‘pi bilan 10–12 kishi, har bir o‘quvchiga e’tibor yetadi.</p></div></div>
+    <div class="adv"><div class="ic">5</div><div><h3>Davlat litsenziyasi</h3><p>Markaz Maktabgacha va maktab ta’limi vazirligi tasdiqnomasi asosida rasmiy ishlaydi.</p></div></div>
+    <div class="adv"><div class="ic">6</div><div><h3>O‘tkazib yuborilgan dars qoplanadi</h3><p>Sabab o‘zingizda bo‘lsa ham, darsni boshqa kuni o‘tib beramiz.</p></div></div>
+  </div>
+  <h2>O‘qish formatlari</h2>
+  <div class="grid3">
+    <div class="card sky"><div class="kicker" style="margin-bottom:2mm">Guruh darsi</div><h3 style="font-size:14pt">1 soat 20 daqiqa</h3><p class="muted" style="font-size:8.8pt">Ko‘pi bilan 10–12 kishi. Bolalar va kattalar alohida guruhlarda.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Individual dars</div><h3 style="font-size:14pt">40 daqiqa</h3><p class="muted" style="font-size:8.8pt">Barcha kurslar bo‘yicha. Vaqt ustoz bilan kelishiladi.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Ish vaqti</div><h3 style="font-size:14pt">07:00 — 20:00</h3><p class="muted" style="font-size:8.8pt">Haftaning yetti kuni. Dars vaqti guruhga qarab kelishiladi.</p></div>
+  </div>
+  <div class="band" style="margin-top:8mm">Ustozlar, sertifikatlar va litsenziya haqidagi barcha ma’lumotlar saytda: saidacademy.uz — “Ustozlar” va “Natijalar” bo‘limlari.</div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>03</span></div>
+</section>
+
+<!-- 4. Kurslar -->
+<section class="page">
+  <div class="kicker"><i></i>Kurslar</div>
+  <h1>Uch <em>yo‘nalish</em></h1>
+  <p class="lead">Yoshga va darajaga qarab. Har bir kursda nazariya, amaliy mashqlar va matnlar bir tizimda beriladi.</p>
+  <div class="grid3" style="margin-bottom:7mm">
+    <div class="course">
+      <div class="n">01</div><h3>Bolalar uchun arab tili fonetikasi</h3><div class="who">4 yoshdan katta bolalar</div>
+      <p>Bola arab harflarini tanishdan boshlab, ularni to‘g‘ri talaffuz qilishni va bo‘g‘inlab o‘qishni o‘rganadi. Darslar o‘yin va mashqlar bilan qiziqarli o‘tadi, kichik guruhda har bir bolaga alohida e’tibor beriladi.</p>
+      <div class="meta">Guruh · Individual</div>
+    </div>
+    <div class="course sky">
+      <div class="n">02</div><h3>Kattalar uchun arab tili fonetikasi</h3><div class="who">Kattalar · noldan</div>
+      <p>Harflar, ularning so‘z boshida, o‘rtasida va oxirida yozilishi, to‘g‘ri talaffuz va o‘qish qoidalari. Kurs oxirida arabcha matnni mustaqil va ravon o‘qiy olasiz. Grammatika kursiga mustahkam poydevor.</p>
+      <div class="meta">Guruh · Individual</div>
+    </div>
+    <div class="course">
+      <div class="n">03</div><h3>Arab tili grammatikasi</h3><div class="who">O‘qishni biladiganlar</div>
+      <p>So‘z turkumlari, gap tuzilishi va fe’l shakllari bosqichma-bosqich o‘rgatiladi. Har bir mavzu matnlar va amaliy mashqlar bilan mustahkamlanadi. Maqsad: arabcha matnni tushunish va o‘z fikrini to‘g‘ri ifodalash.</p>
+      <div class="meta">Guruh · Individual</div>
+    </div>
+  </div>
+  <h2>Qaysi kurs menga mos?</h2>
+  <div class="grid3" style="margin-bottom:7mm">
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Farzandim uchun</div><h3>Bolalar fonetikasi</h3><p class="muted" style="font-size:8.8pt;margin-top:1.5mm">4 yoshdan: harflar, talaffuz va bo‘g‘inlab o‘qish, o‘yin tarzida.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">Noldan boshlayman</div><h3>Kattalar fonetikasi</h3><p class="muted" style="font-size:8.8pt;margin-top:1.5mm">Harflardan to‘g‘ri talaffuz va ravon o‘qishgacha.</p></div>
+    <div class="card"><div class="kicker" style="margin-bottom:2mm">O‘qiy olaman</div><h3>Grammatika</h3><p class="muted" style="font-size:8.8pt;margin-top:1.5mm">Matnni tushunish va to‘g‘ri gapirish uchun.</p></div>
+  </div>
+  <div class="band">Avval fonetika, keyin grammatika. Har bir mavzu amaliy mashq va matn bilan mustahkamlanadi, shunda bilim mustahkam qoladi.</div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>04</span></div>
+</section>
+
+<!-- 5. Qanday boshlanadi -->
+<section class="page">
+  <div class="kicker"><i></i>Qanday boshlanadi</div>
+  <h1>Uch oddiy <em>qadam</em></h1>
+  <p class="lead">Ariza qoldirishdan birinchi darsgacha hammasi bir necha kun ichida.</p>
+  <div class="grid3" style="margin-bottom:9mm">
+    <div class="step"><div class="lab"><i></i>1-qadam</div><h3>Ariza qoldirasiz</h3><p>Saytdagi formani to‘ldirasiz yoki qo‘ng‘iroq qilasiz. Bu 1 daqiqa oladi.</p><small>1 daqiqa</small></div>
+    <div class="step"><div class="lab"><i></i>2-qadam</div><h3>Biz qo‘ng‘iroq qilamiz</h3><p>Kun davomida bog‘lanib, qulay vaqt va mos guruhni kelishib olamiz.</p><small>Shu kuni</small></div>
+    <div class="step"><div class="lab"><i></i>3-qadam</div><h3>Bepul darsga kelasiz</h3><p>Ustoz va darslar bilan tanishasiz. Yoqsa, guruhda davom etasiz.</p><small>Birinchi dars bepul</small></div>
+  </div>
+  <h2>Darslarda nimalar bo‘ladi</h2>
+  <div class="grid2">
+    <div class="card"><h3>Fonetika</h3><p class="muted" style="font-size:9pt;margin:1.5mm 0 3mm">Harflar, ularning so‘zdagi shakllari, to‘g‘ri talaffuz va bo‘g‘inlab o‘qish. Bolalar uchun o‘yin va mashqlar bilan.</p><span class="tag">Natija: ravon o‘qish va to‘g‘ri talaffuz</span></div>
+    <div class="card"><h3>Grammatika</h3><p class="muted" style="font-size:9pt;margin:1.5mm 0 3mm">So‘z turkumlari, gap tuzilishi va fe’l shakllari bosqichma-bosqich, har bir mavzu matn bilan mustahkamlanadi.</p><span class="tag">Natija: matnni tushunish va fikrni ifodalash</span></div>
+    <div class="card"><h3>Kichik guruh yoki individual</h3><p class="muted" style="font-size:9pt;margin:1.5mm 0 3mm">Guruhda ko‘pi bilan 10–12 kishi. Istasangiz, barcha kurslar bo‘yicha individual darslar.</p><span class="tag">Natija: hech kim ortda qolmaydi</span></div>
+    <div class="card"><h3>O‘tkazib yuborilgan dars qoplanadi</h3><p class="muted" style="font-size:9pt;margin:1.5mm 0 3mm">Darsga kela olmadingizmi? Sabab o‘zingizda bo‘lsa ham, darsni boshqa kuni o‘tib beramiz.</p><span class="tag">Natija: mavzular yig‘ilib qolmaydi</span></div>
+  </div>
+  <div class="band" style="margin-top:8mm">Savolingiz bo‘lsa, +998 95 829 33 30 raqamiga qo‘ng‘iroq qiling. Har kuni 07:00 dan 20:00 gacha javob beramiz.</div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>05</span></div>
+</section>
+
+<!-- 6. Ustozlar 1 -->
+<section class="page">
+  <div class="kicker"><i></i>Jamoa</div>
+  <h1>Ustozlarimiz</h1>
+  <p class="lead" style="margin-bottom:7mm">Darslarni tajribali, arab tilini chuqur biladigan ustozlar olib boradi. O‘nta ustoz, hammasi arab tili mutaxassisi.</p>
+  <div class="tgrid">
+    <div class="tc"><div class="arch"><img src="../../assets/director.webp" alt=""></div><div class="body"><div class="role">Direktor · ustoz</div><h3>Ne’matullayev Saidkamolxon Mansurbek o‘g‘li</h3><div class="teach">Fonetika, grammatika</div><ul><li>Oriental universiteti bitiruvchisi</li><li>CEFR B2 (davlat sertifikati)</li><li>4 yillik tajriba</li></ul><p class="bio">2022–2025 yillarda Habib Academy’da ustoz, 2025 yildan SAID academy asoschisi va direktori.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-solihbekov.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozi</div><h3>Solihbekov Ne’matullo Lutfullo o‘g‘li</h3><div class="teach">Fonetika, grammatika</div><ul><li>CEFR C1 (davlat sertifikati, 2024)</li><li>Ko‘kaldosh madrasasi bitiruvchisi</li><li>4 yildan ortiq tajriba</li></ul><p class="bio">500 dan ortiq o‘quvchi: 5 nafari C1, 30 dan ortig‘i B2 darajasiga erishgan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-kabirjonov.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozi</div><h3>Kabirjonov Abdurahmon Zafarjon o‘g‘li</h3><div class="teach">Fonetika, grammatika</div><ul><li>Oriental universiteti, 4-kurs</li><li>4–5 yillik tajriba</li><li>SAID academy’da 1,5 yildan beri</li></ul><p class="bio">500 dan ortiq o‘quvchiga dars bergan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-fozilov.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozi</div><h3>Fozilov Ibrohim Komiljon o‘g‘li</h3><div class="teach">Grammatika</div><ul><li>CEFR B2 (davlat sertifikati)</li><li>Yangi Asr universiteti, filologiya</li><li>1,5 yillik tajriba</li></ul><p class="bio">100 dan ortiq o‘quvchi: 5 nafari B2, 3 nafari B1 darajasiga erishdi, 3 nafari oliy o‘quv yurtiga kirdi.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-orifjonov.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozi</div><h3>Orifjonov Abduvohid Sherzod o‘g‘li</h3><div class="teach">Fonetika, grammatika</div><ul><li>At-Tanal al-Arabi B2 (xalqaro)</li><li>Turkiyada 2 yillik tajriba</li><li>SAID academy’da yarim yildan beri</li></ul><p class="bio">40 dan ortiq o‘quvchiga dars bergan.</p></div></div>
+    <div class="tc info"><h3>Ustozni birga tanlaymiz</h3><p>Birinchi bepul darsda ustoz va guruh bilan tanishasiz. Yosh, daraja va qulay vaqtga qarab sizga mos guruhni birga tanlaymiz. Istasangiz, barcha kurslar bo‘yicha individual dars ham bor.</p></div>
+  </div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>06</span></div>
+</section>
+
+<!-- 7. Ustozlar 2 -->
+<section class="page">
+  <div class="kicker"><i></i>Jamoa</div>
+  <h1>Ustozlarimiz</h1>
+  <p class="lead" style="margin-bottom:7mm">Ustozalarimiz bolalar va kattalar guruhlarida fonetika hamda grammatika darslarini olib boradi.</p>
+  <div class="tgrid">
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-boboyev.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozi</div><h3>Babaev Dilshod Rustam o‘g‘li</h3><div class="teach">Fonetika, grammatika</div><ul><li>At-Tanal al-Arabi C1 (xalqaro)</li><li>Ko‘kaldosh madrasasi talabasi</li><li>8 oylik tajriba</li></ul><p class="bio">40 dan ortiq o‘quvchiga dars bergan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-hijab-1.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozasi</div><h3>Qudratillayeva Malikaxon Alisher qizi</h3><div class="teach">Fonetika, grammatika</div><ul><li>CEFR B2 (davlat sertifikati)</li><li>ToshDSHU bitiruvchisi, filolog (arab tili)</li><li>3 yillik tajriba</li></ul><p class="bio">100 dan ortiq o‘quvchi. O‘quvchilarini 4 oyda noldan bemalol suhbat darajasiga olib chiqqan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-hijab-2.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozasi</div><h3>Jaxongirova Shaxzoda Ziyoviddin qizi</h3><div class="teach">Fonetika, grammatika</div><ul><li>CEFR B2 (davlat sertifikati)</li><li>Yangi Asr universiteti, 4-kurs</li><li>SAID academy’da 1 yil</li></ul><p class="bio">50 dan ortiq o‘quvchi. O‘quvchilarini 4 oyda noldan bemalol suhbat darajasiga olib chiqqan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-hijab-3.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozasi</div><h3>Mirziyodova Sevinch Abdunosir qizi</h3><div class="teach">Fonetika, grammatika</div><ul><li>CEFR B2 (davlat sertifikati, 2024)</li><li>Yangi Asr universiteti, 2-kurs</li><li>2 yillik tajriba, 1 yili SAID academy’da</li></ul><p class="bio">40 dan ortiq o‘quvchi. O‘quvchilarini 6 oyda noldan bemalol suhbat darajasiga olib chiqqan.</p></div></div>
+    <div class="tc"><div class="arch"><img src="../../assets/teacher-hijab-4.webp" alt=""></div><div class="body"><div class="role">Arab tili ustozasi</div><h3>Baxodirova Fotima Baxtiyor qizi</h3><div class="teach">Fonetika, grammatika</div><ul><li>CEFR B2 (davlat sertifikati)</li><li>O‘zDJTU, arab filologiyasi</li></ul><p class="bio">Bolalar va kattalar guruhlarida fonetika hamda grammatika darslarini olib boradi.</p></div></div>
+    <div class="tc" style="background:var(--sky);border-color:transparent;align-items:center"><img src="../../assets/license-1.webp" alt="" style="width:27mm;border-radius:2mm;flex:none"><div class="body"><div class="role">Rasmiy litsenziya</div><h3>Davlat tasdiqnomasi</h3><p class="bio">O‘zbekiston Respublikasi Maktabgacha va maktab ta’limi vazirligi tomonidan berilgan <b style="color:var(--navy)">№ 681282</b> raqamli tasdiqnoma <b style="color:var(--navy)">(24.03.2025)</b>. Yuridik shaxs: “SAIDKAMOL ACADEMY” MChJ.</p></div></div>
+  </div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>07</span></div>
+</section>
+
+<!-- 8. Natijalar -->
+<section class="page">
+  <div class="kicker"><i></i>Natijalar</div>
+  <h1>Natijalar o‘zlari <em>gapirsin</em></h1>
+  <p class="lead">Ustozlarimiz tayyorlagan o‘quvchilar arab tilidan davlat va xalqaro sertifikatlarni qo‘lga kiritdi.</p>
+  <div class="grid4">
+    <div class="cert"><img src="../../assets/cert-1.webp" alt=""><div class="cb"><b>Omina Xolmurodova</b><span class="lvl">B2</span><small>Arab tili · Davlat sertifikati · 2026</small></div></div>
+    <div class="cert"><img src="../../assets/cert-2.webp" alt=""><div class="cb"><b>Solixabonu Olimjonova</b><span class="lvl">B2</span><small>Arab tili · Davlat sertifikati · 2025</small></div></div>
+    <div class="cert"><img src="../../assets/cert-3.webp" alt=""><div class="cb"><b>Mavludaxon Muxammadjonova</b><span class="lvl">B2</span><small>Arab tili · Davlat sertifikati · 2025</small></div></div>
+    <div class="cert"><img src="../../assets/cert-4.webp" alt=""><div class="cb"><b>Dovud Yo‘ldoshev</b><span class="lvl">C1</span><small>Arab tili · Xalqaro sertifikat · 2026</small></div></div>
+  </div>
+  <p class="note">Davlat sertifikatlari Bilim va malakalarni baholash agentligi tomonidan berilgan, haqiqiyligini sertifikat.uzbmb.uz saytida tekshirish mumkin. Xalqaro sertifikat At-Tanal al-Arabi tomonidan berilgan. Shaxsiy ma’lumotlar yopilgan.</p>
+  <div class="band" style="margin-top:9mm">Maqsad bitta: o‘quvchi arab tilida “harflarni bilaman” deb emas, “o‘qiyman, tushunaman va gapiraman” degan holatga yetishi.</div>
+  <h2 style="margin-top:9mm">Markazdan lavhalar</h2>
+  <div class="grid3">
+    <img class="arch" src="../../assets/gallery-1.webp" alt="" style="width:100%;height:46mm;object-fit:cover">
+    <img class="arch" src="../../assets/gallery-2.webp" alt="" style="width:100%;height:46mm;object-fit:cover">
+    <img class="arch" src="../../assets/gallery-4.webp" alt="" style="width:100%;height:46mm;object-fit:cover">
+  </div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>08</span></div>
+</section>
+
+<!-- 9. Savol-javob -->
+<section class="page">
+  <div class="kicker"><i></i>Savol-javob</div>
+  <h1>Ko‘p beriladigan <em>savollar</em></h1>
+  <p class="lead" style="margin-bottom:7mm">Boshqa savol bo‘lsa, qo‘ng‘iroq qiling yoki Telegram orqali yozing.</p>
+  <div class="grid2" style="gap:4.5mm">
+    <div class="faq"><b>Birinchi dars haqiqatan bepulmi?</b><p>Ha. Kelib, ustoz va darslar bilan tanishasiz, yoqsa guruhda davom etasiz.</p></div>
+    <div class="faq"><b>Necha yoshdan qabul qilasiz?</b><p>Fonetika kurslariga 4 yoshdan katta bolalar va kattalar. Grammatika darslari asosan kattalar uchun.</p></div>
+    <div class="faq"><b>Dars qancha davom etadi?</b><p>Guruh darsi 1 soat 20 daqiqa, individual dars 40 daqiqa.</p></div>
+    <div class="faq"><b>Qanday kurslar bor?</b><p>Bolalar uchun fonetika, kattalar uchun fonetika va arab tili grammatikasi.</p></div>
+    <div class="faq"><b>Individual darslar bormi?</b><p>Ha, barcha kurslar bo‘yicha individual darslar mavjud.</p></div>
+    <div class="faq"><b>Darsga kela olmasam nima bo‘ladi?</b><p>Darsni boshqa kuni o‘tib beramiz, sabab o‘zingizda bo‘lsa ham. Vaqtni ustoz bilan kelishasiz.</p></div>
+    <div class="faq"><b>Guruhda necha kishi bo‘ladi?</b><p>Har bir guruhda ko‘pi bilan 10–12 kishi tahsil oladi.</p></div>
+    <div class="faq"><b>Ota-onalar natijani qanday bilib turadi?</b><p>Istalgan vaqt ustoz bilan bevosita bog‘lanib, farzandining o‘zlashtirishi haqida ma’lumot olish mumkin.</p></div>
+    <div class="faq"><b>Boshqa tillar ham o‘qitiladimi?</b><p>Yo‘q. SAID academy faqat arab tiliga ixtisoslashgan. Ingliz, rus va boshqa tillar o‘qitilmaydi.</p></div>
+    <div class="faq"><b>Markaz qayerda joylashgan?</b><p>Toshkent, Shayxontohur tumani, Matlubot ko‘chasi, 72-uy. Tinchlik metrosi yaqinida.</p></div>
+    <div class="faq"><b>Qanday boshlasam bo‘ladi?</b><p>Qo‘ng‘iroq qiling yoki saytdan ariza qoldiring. Kun davomida bog‘lanib, bepul birinchi darsga taklif qilamiz.</p></div>
+    <div class="faq"><b>Markaz rasmiy faoliyat yuritadimi?</b><p>Ha, Maktabgacha va maktab ta’limi vazirligi tomonidan berilgan № 681282 raqamli tasdiqnoma asosida.</p></div>
+  </div>
+  <div class="foot"><span>SAID academy · Broshyura</span><span>09</span></div>
+</section>
+
+<!-- 10. Orqa muqova -->
+<section class="page navy back">
+  <div class="logo"><img src="../../assets/logo-light.png" alt=""><span>SAID<small>academy</small></span></div>
+  <div style="margin-top:26mm">
+    <div class="kicker"><i></i>Boshlash uchun</div>
+    <h1 class="big">Birinchi dars — <em>bepul</em></h1>
+    <p style="font-size:11.5pt;color:#C9D6E2;max-width:120mm">Kelib, ustozlar va muhit bilan o‘zingiz tanishing. Qo‘ng‘iroq qiling yoki QR-kod orqali saytdan ariza qoldiring.</p>
+  </div>
+  <div class="qrs">
+    <div class="qr"><img src="qr/site.png" alt=""><b>Sayt · ariza</b><small>saidacademy.uz</small></div>
+    <div class="qr"><img src="qr/tg.png" alt=""><b>Telegram</b><small>@saidacademy_admin</small></div>
+    <div class="qr"><img src="qr/ig.png" alt=""><b>Instagram</b><small>@said_academy_</small></div>
+  </div>
+  <div class="ct">
+    <div><b>Telefon</b><div class="phone">+998 95 829 33 30</div></div>
+    <div><b>Ish vaqti</b>Har kuni 07:00 — 20:00</div>
+    <div><b>Manzil</b>Toshkent sh., Shayxontohur tumani, Ilg‘or MFY,<br>Matlubot ko‘chasi, 72-uy<br>Tinchlik metrosi yaqinida</div>
+    <div><b>Sayt</b>saidacademy.uz</div>
+  </div>
+  <div class="foot"><span>SAID academy · Arab tili o‘quv markazi · Toshkent</span><span>10</span></div>
+</section>
+
+</body>
+</html>

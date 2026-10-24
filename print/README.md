@@ -14,7 +14,7 @@ Chop etishda QR hech bo‘lmaganda 3×3 sm bo‘lsin, atrofida oq bo‘sh joy qo
 
 ## Broshyura
 
-- `said-academy-broshyura.pdf` — 10 sahifali A4 broshyura, brendbuk (Said_Academy___Brendbuk) qoidalari asosida: ranglar 60-30-10 (qog‘oz · osmon · said-ko‘k · navy, oltin faqat bitta urg‘u), Montserrat + Cormorant Garamond (urg‘u so‘zlari) + Amiri (arab harfi), mehrob shaklidagi ramkalar. Sahifalar: muqova, biz haqimizda, nega aynan biz, kurslar, uch qadam, ustozlar (2 sahifa), natijalar, savol-javob, orqa muqovada QR-kodlar (sayt `?ref=qr`, Telegram admin, Instagram). Telegram’da yuborish va chop etish uchun.
+- `said-academy-broshyura.pdf` — 10 sahifali A4 broshyura, brendbuk (Said_Academy___Brendbuk) qoidalari asosida: ranglar 60-30-10 (qog‘oz · osmon · said-ko‘k · navy, oltin faqat bitta urg‘u), Cormorant Garamond (sarlavhalar, katta raqamlar, urg‘u so‘zlari) + Montserrat (matn) + Amiri (arab harfi), mehrob shaklidagi ramkalar. Sahifalar: muqova, biz haqimizda, nega aynan biz, kurslar, uch qadam, ustozlar (2 sahifa), natijalar, savol-javob, orqa muqovada QR-kodlar (sayt `?ref=qr`, Telegram admin, Instagram). Telegram’da yuborish va chop etish uchun.
 - `brochure-src/` — broshyuraning manbasi (`index.html`, shriftlar, QR-kodlar). Ma’lumot o‘zgarganda `index.html` tahrirlanadi va PDF qayta yaratiladi:
 
   ```

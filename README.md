@@ -1,91 +1,92 @@
-# SAID academy — sayt
+<div align="center">
 
-Toshkentdagi SAID academy arab tili o‘quv markazining rasmiy sayti.
-Jonli manzil: https://saidacademy.uz/
+# SAID academy — араб тили ўқув маркази
 
-## Tuzilishi
+**Тошкентдаги араб тили ўқув марказининг расмий сайти**
 
-- `index.html` — saytning o‘zi (HTML, CSS va JS bir faylda; uz/ru/en tillari)
-- `assets/` — logotip, rahbar surati va litsenziya hujjatlari
-- `worker/` — ariza formasi uchun Cloudflare Worker (ixtiyoriy, xavfsiz usul)
-- `.github/workflows/pages.yml` — `main` ga har push bo‘lganda saytni GitHub Pages ga joylaydi
+[**🌐 Сайт → saidacademy.uz**](https://saidacademy.uz/)
 
-## Lokal ko‘rish
+Болалар ва катталар учун араб тили: фонетика ва грамматика. Биринчи дарс бепул.
 
-```
+</div>
+
+---
+
+## 🎓 Йўналишлар
+
+| Курс | Ким учун |
+|------|----------|
+| **Болалар — фонетика** | 4 ёшдан катта болалар: араб ҳарфлари, тўғри талаффуз ва бўғинлаб ўқиш — ўйин ва машқлар билан, кичик гуруҳда |
+| **Катталар — фонетика** | Нолдан бошлаганлар учун: ҳарфлар ва уларнинг сўздаги шакллари, тўғри талаффуз, ўқиш қоидалари. Курс охирида арабча матнни мустақил ўқий оласиз |
+| **Араб тили грамматикаси** | Ўқишни биладиганлар учун: сўз туркумлари, гап тузилиши ва феъл шакллари босқичма-босқич. Мақсад — матнни тушуниш ва ўз фикрини тўғри ифодалаш |
+
+## ✨ Сайт имкониятлари
+
+- **Уч тилда** — ўзбек, рус ва инглиз тилларида
+- **Исминиз арабчада** — исмингизни ёзинг, арабча ёзилишини кўринг ва серия расм сифатида сақланг
+- **Марказ ҳаёти** — дарсхоналар ва марказ муҳити галереяси
+- **Устозлар ва ютуқлар** — ўқитувчилар таништуруви ва ўқувчилар сертификатлари
+- **Кўп бериладиган саволлар** — savol-javoblar bo‘limi
+- **Ариза қолдириш** — формани тўлдирсангиз, марказ ўзи бата фали асосингиз айт (ариза Telegram орқали админга юборилади)
+- **Офлайн ишлаши** — PWA илова сифатида ўрнатиш ва интернетсиз очиш мумкин
+
+## 🗂 Лойиҳа тузилиши
+
+| Файл/қийирәў | Вазифаси |
+|------|----------|
+| `index.html` | Сайтнинг ўзи (HTML, CSS, JS бир файлда; uz/ru/en) |
+| `assets/` | Логотиплар, расмлар, шрифтлар ва ҳужжатлар |
+| `worker/` | Ариза формаси учун Cloudflare Worker |
+| `news.json` | Сайтдаги эълон қатори |
+| `.github/workflows/` | GitHub Pages гавтелотчиз автоматик жойлаштириш |
+
+## 💻 Локал кўриш
+
+```bash
 python3 -m http.server 8000
+# http://localhost:8000 ни браузерда очинг
 ```
 
-So‘ng brauzerda http://localhost:8000 manzilini oching.
+## 🛠 Созлаш ва бошқариш
 
-## Ariza formasini Telegram botga ulash
+Ариза формасини Telegram ботга улаш, эълон қаторини янгилаш, курс ҳаволалари ва бошқа техник йўриқномалар — [SETUP.md](SETUP.md) файлида.
 
-Forma to‘ldirilganda ariza matni Telegram botga yuboriladi. Sozlamalar `index.html`
-ichida, `<script>` boshidagi `TG` obyektida:
+## 📞 Алоқа
 
-```js
-const TG={
-  endpoint:"",   // 2-usul: Cloudflare Worker manzili
-  botToken:"",   // 1-usul: bot tokeni
-  chatId:""      // 1-usul: chat ID
-};
-```
+- 📍 Тошкент ш., Шайхонтоҳур тумани, Матлубот кўчаси, 72 (Тинчлик метроcи яқинида)
+- 📞 +998 95 829 33 30
+- ✈️ [Telegram](https://t.me/saidacademy) · 📷 [Instagram](https://www.instagram.com/said_academy_/)
 
-Ikkalasi ham bo‘sh bo‘lsa, eski usul ishlaydi: ariza matni nusxalanadi va Telegram ochiladi.
+---
 
-### Bot yaratish (ikkala usul uchun ham kerak)
+## 🇬🇧 English
 
-1. Telegramda **@BotFather** ga `/newbot` deb yozing, nom va username bering.
-   BotFather sizga **token** beradi, masalan `123456789:AAH...`.
-2. Arizalar keladigan joy:
-   - **Shaxsiy chat** bo‘lsa: botga `/start` deb yozing.
-   - **Guruh** bo‘lsa: botni guruhga qo‘shing va guruhga istalgan xabar yozing.
-3. **Chat ID** ni olish: brauzerda quyidagi manzilni oching (TOKEN o‘rniga o‘z tokeningiz):
-   `https://api.telegram.org/botTOKEN/getUpdates`
-   Javobdagi `"chat":{"id":...}` qiymati — chat ID. Guruh uchun u manfiy son bo‘ladi (`-100...`).
+<div align="center">
 
-### 1-usul — oddiy (5 daqiqa)
+# SAID academy — Arabic Language Center
 
-`index.html` dagi `botToken` va `chatId` ni to‘ldiring. Tamom.
+Official website of SAID academy, an Arabic language learning center in Tashkent, Uzbekistan.
 
-Kamchiligi: token sayt kodida ochiq turadi. Uni ko‘rgan odam shu bot nomidan
-chatingizga xabar yuborishi mumkin. Shuning uchun bu bot faqat arizalar uchun
-ishlatilsin va boshqa hech qayerga qo‘shilmasin. Muammo bo‘lsa, BotFather'da
-`/revoke` bilan tokenni almashtirasiz.
+</div>
 
-### 2-usul — xavfsiz (Cloudflare Worker, bepul)
+### Courses
 
-Token Cloudflare'da maxfiy saqlanadi, saytda ko‘rinmaydi.
+- **Kids phonetics** (ages 4+): Arabic letters, correct pronunciation and reading through games, in small groups
+- **Adults phonetics**: from zero — letters, letter forms and reading rules; by the end you can read Arabic text on your own
+- **Arabic grammar**: for those who can read — word classes, sentence structure and verb forms, step by step
 
-1. https://dash.cloudflare.com da bepul hisob oching.
-2. **Workers & Pages → Create → Create Worker**, nom bering, **Deploy**.
-3. **Edit code** bosib, `worker/worker.js` tarkibini to‘liq joylashtiring va **Deploy**.
-4. **Settings → Variables and Secrets** da qo‘shing:
-   - `BOT_TOKEN` (Secret) — bot tokeni
-   - `CHAT_ID` (Secret) — chat ID
-   - `ALLOWED_ORIGIN` — ixtiyoriy; `saidacademy.uz` va `abuyahyo.github.io` kodda oldindan ruxsatda
-5. Worker manzilini (`https://....workers.dev`) `index.html` dagi `endpoint` ga yozing.
+### What the site offers
 
-## E’lon qatori va havolalar
+- Full multilingual interface (Uzbek, Russian, English)
+- "Your name in Arabic" tool: type your name, see it in Arabic and save a share-ready card
+- Photo gallery, teachers section, students' certificates, FAQ
+- Application form delivered to the center via Telegram
+- Works offline as an installable PWA
 
-- **E’lon** — `news.json` faylini GitHub'da tahrirlang: `uz`, `ru`, `en` matnlari, `link` (masalan `#apply` yoki to‘liq URL), `until` (`2026-12-31` ko‘rinishida, shu kundan keyin e’lon o‘zi yo‘qoladi). Matn bo‘sh bo‘lsa, qator ko‘rinmaydi. Saqlagandan 1–2 daqiqa o‘tib saytda chiqadi.
-- **Kurs havolasi** — `https://saidacademy.uz/?kurs=bolalar` (yoki `kattalar`, `grammatika`) ochilganda ariza oynasi shu kurs tanlangan holda ochiladi. Instagram bio va postlar uchun.
-- **Manba kuzatuvi** — havola oxiriga `?ref=instagram`, `?ref=telegram` yoki `?ref=qr` qo‘shing (masalan Instagram bio uchun `https://saidacademy.uz/?ref=instagram`). Shu havoladan kelgan odamning arizasida "Manba: Instagram" qatori chiqadi. Kerak bo‘lsa boshqa so‘z ham yozsa bo‘ladi (`?ref=reklama1`), u xabarda xuddi shunday ko‘rinadi.
-- **Kontakt fayli** — `said-academy.vcf`, "Kontaktni saqlash" tugmasi shu faylni yuklaydi.
+### Tech
 
-## Keyingi rejalar
+Single-file `index.html` (HTML + CSS + JS) deployed to GitHub Pages; an optional [Cloudflare Worker](SETUP.md) handles the application form. Live at [saidacademy.uz](https://saidacademy.uz/).
 
-Markazdan material kerak:
+### Contact
 
-- [ ] **Yandex Metrika** — hisoblagich raqami
-- [ ] **Sharhlar** — o‘quvchi yoki ota-onalarning 2–3 ta qisqa fikri (ism, bir-ikki jumla)
-- [ ] **O‘qituvchilar** — ism, rasm, qisqa ma’lumot
-- [ ] **Yangi sertifikatlar** — talabalar natijasi bo‘limiga qo‘shish uchun rasm
-
-Materialsiz qilsa bo‘ladi:
-
-- [ ] Mobil menyuga barcha bo‘limlar
-- [ ] Telegram botga `/start` javobi
-- [ ] Sayt xatolarini Telegramga yuborish
-
-Qilinmaydi (egasining qarori): dars jadvali, email, bot tokenini yangilash, Google Sheets, narxlar, tilni avtomatik tanlash, haftalik hisobot, ruscha promo video, Instagram post rasmlari, Google Maps, header'da telefon, "Ulashish" tugmasi, alifbo bo‘limi.
+📍 Matlubot st. 72, Shayxontohur district, Tashkent (near Tinchlik metro) · 📞 +998 95 829 33 30 · [Telegram](https://t.me/saidacademy) · [Instagram](https://www.instagram.com/said_academy_/)
